@@ -1,0 +1,65 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body { background: #0a0a0f; color: #fff; font-family: 'Inter', sans-serif; }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-md border border-purple-500/20 rounded-lg;
+  }
+  .neon-text-purple {
+    text-shadow: 0 0 10px #b347ff, 0 0 20px #b347ff, 0 0 40px #b347ff;
+  }
+  .neon-text-orange {
+    text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35, 0 0 40px #ff6b35;
+  }
+  .neon-border-purple {
+    box-shadow: 0 0 10px rgba(179,71,255,0.5), inset 0 0 10px rgba(179,71,255,0.1);
+    border: 1px solid rgba(179,71,255,0.6);
+  }
+  .neon-border-orange {
+    box-shadow: 0 0 10px rgba(255,107,53,0.5), inset 0 0 10px rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.6);
+  }
+  .game-btn {
+    @apply relative overflow-hidden px-8 py-3 font-game font-bold tracking-widest uppercase text-sm cursor-pointer transition-all duration-300;
+    clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+  }
+  .game-btn-purple {
+    @apply game-btn bg-purple-600 text-white hover:bg-purple-500;
+    box-shadow: 0 0 20px rgba(179,71,255,0.4);
+  }
+  .game-btn-purple:hover {
+    box-shadow: 0 0 30px rgba(179,71,255,0.8);
+  }
+  .game-btn-orange {
+    @apply game-btn bg-orange-600 text-white hover:bg-orange-500;
+    box-shadow: 0 0 20px rgba(255,107,53,0.4);
+  }
+  .stat-bar {
+    @apply h-2 rounded-full bg-purple-900/50 overflow-hidden;
+  }
+  .stat-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, #b347ff, #ff6b35);
+    box-shadow: 0 0 6px rgba(179,71,255,0.8);
+    transition: width 1s ease-out;
+  }
+  .hud-element {
+    @apply font-game text-xs tracking-widest uppercase;
+    text-shadow: 0 0 8px currentColor;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px currentColor;
+  }
+  .bg-scanline {
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+  }
+}
