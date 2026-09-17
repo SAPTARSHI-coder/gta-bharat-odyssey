@@ -22,7 +22,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const goToScene = useCallback((scene: Scene) => {
     setState(prev => ({ ...prev, currentScene: scene }));
-    window.scrollTo({ top: 0 });
+    const targetElement = document.getElementById(`section-${scene}`);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, []);
 
   const setCharacter = useCallback((character: Character) => {
@@ -35,6 +38,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const resetGame = useCallback(() => {
     setState(defaultState);
+    const landing = document.getElementById('section-landing');
+    if (landing) {
+      landing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, []);
 
   return (

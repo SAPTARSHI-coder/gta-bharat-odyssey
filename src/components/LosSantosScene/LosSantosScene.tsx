@@ -1,18 +1,14 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '../../context/GameContext';
-import { SceneBackground } from '../shared/SceneBackground';
-import { GTAMinimap } from '../HUD/GTAMinimap';
-import { GTAMissionBox } from '../HUD/GTAMissionBox';
 
 export function LosSantosScene() {
-  const { goToScene, character } = useGame();
-  const [stage, setStage] = useState<'intro' | 'explore' | 'portal_discovered'>('intro');
+  const { character } = useGame();
+  const [stage, setStage] = useState<'explore' | 'portal_discovered'>('explore');
 
-  useEffect(() => {
-    const t1 = setTimeout(() => setStage('explore'), 3500);
-    return () => clearTimeout(t1);
-  }, []);
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Keyboard shortcut [E] or [Space] to interact
   useEffect(() => {
@@ -21,72 +17,50 @@ export function LosSantosScene() {
         if (stage === 'explore') {
           setStage('portal_discovered');
         } else if (stage === 'portal_discovered') {
-          goToScene('portal');
+          scrollToSection('section-portal');
         }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [stage, goToScene]);
+  }, [stage]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden select-none">
-      {/* Cinematic Generated Photo-realistic Scene Background */}
-      <SceneBackground scene="los-santos" zoomDirection="in" />
-
-      {/* GTA Minimap Radar */}
-      <GTAMinimap locationName="PACIFIC COAST HWY" zoneType="beach" />
-
-      {/* GTA Mission Notification Box */}
-      <GTAMissionBox
-        title={
-          stage === 'portal_discovered'
-            ? 'Investigate the glowing anomaly on the beach.'
-            : 'Find the package near the pier.'
-        }
-        subtitle={
-          stage === 'portal_discovered'
-            ? 'A strange cosmic rift has opened near the coastline.'
-            : 'Explore the scenic coast before your meeting.'
-        }
-        badge={stage === 'portal_discovered' ? 'PRIORITY OBJECTIVE' : 'STORY MISSION'}
-      />
-
+    <div className="relative min-h-screen w-full flex flex-col justify-between py-24 px-6 md:px-12 select-none">
       {/* Center Cinematic Story Narrative */}
-      <div className="fixed z-30 inset-x-0 top-1/3 -translate-y-1/2 px-6 pointer-events-none">
-        <div className="text-center max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="hud-element text-xs tracking-[0.4em] text-amber-400 mb-2 font-bold"
-          >
-            ◈ CHAPTER 1: THE PACIFIC DEPARTURE ◈
-          </motion.div>
+      <div className="relative z-20 my-auto text-center max-w-3xl mx-auto pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.8 }}
+          className="hud-element text-xs md:text-sm tracking-[0.4em] text-amber-400 mb-3 font-bold"
+        >
+          ◈ CHAPTER 1: PACIFIC SHORES ◈
+        </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-cinematic text-5xl md:text-7xl text-white mb-3"
-            style={{ textShadow: '0 5px 30px rgba(0,0,0,0.9), 0 0 50px rgba(255,107,53,0.4)' }}
-          >
-            {stage === 'portal_discovered'
-              ? 'A RIFT IN REALITY'
-              : 'LOS SANTOS COAST'}
-          </motion.h2>
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-white mb-4 leading-tight"
+          style={{ textShadow: '0 5px 35px rgba(0,0,0,0.9), 0 0 50px rgba(255,107,53,0.5)' }}
+        >
+          {stage === 'portal_discovered' ? 'A RIFT IN REALITY' : 'LOS SANTOS BEACH'}
+        </motion.h2>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-game text-sm md:text-base text-white/80 tracking-wider mb-2"
-          >
-            {stage === 'portal_discovered'
-              ? 'An electric gateway is warping space and time right before your eyes.'
-              : 'The golden hour over Santa Monica. You thought this city was your final stop.'}
-          </motion.p>
-        </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="font-game text-sm sm:text-base md:text-lg text-white/85 tracking-wider max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+        >
+          {stage === 'portal_discovered'
+            ? 'An intense cosmic vortex is ripping through the coastline alley, crackling with violet lightning.'
+            : 'The sun melts into the Pacific ocean behind Del Perro pier. Your journey here is only the prologue.'}
+        </motion.p>
       </div>
 
       {/* Glowing Interactive Portal Marker */}
@@ -95,11 +69,10 @@ export function LosSantosScene() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', damping: 15 }}
-          className="fixed z-30 cursor-pointer top-[45%] right-[20%] md:right-[25%]"
-          onClick={() => goToScene('portal')}
+          className="relative z-30 cursor-pointer mx-auto my-4"
+          onClick={() => scrollToSection('section-portal')}
         >
-          <div className="relative flex flex-col items-center">
-            {/* Glowing Vortex Beacon */}
+          <div className="flex flex-col items-center">
             <motion.div
               animate={{
                 scale: [1, 1.25, 1],
@@ -115,54 +88,51 @@ export function LosSantosScene() {
               <span className="text-2xl animate-spin">🌀</span>
             </motion.div>
 
-            {/* Prompt Pill */}
             <motion.div
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="mt-3 glass-panel px-3 py-1 text-center border border-purple-400"
+              className="mt-3 glass-panel px-3.5 py-1 text-center border border-purple-400"
             >
-              <div className="font-game text-xs text-white font-bold tracking-widest flex items-center gap-1.5">
+              <div className="font-game text-xs text-white font-bold tracking-widest flex items-center gap-2">
                 <span className="px-1.5 py-0.5 rounded bg-white/20 text-[10px]">E</span>
-                <span>ENTER RIFT</span>
+                <span>STEP INTO RIFT</span>
               </div>
             </motion.div>
           </div>
         </motion.div>
       )}
 
-      {/* Bottom Interactive HUD Bar */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-3">
+      {/* Bottom Interactive Action Controls */}
+      <div className="relative z-30 flex flex-col items-center gap-3 mt-auto">
         <AnimatePresence mode="wait">
-          {stage === 'explore' && (
+          {stage === 'explore' ? (
             <motion.button
               key="explore-btn"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -15 }}
               onClick={() => setStage('portal_discovered')}
               className="game-btn-orange px-8 py-3.5 text-sm md:text-base flex items-center gap-3 cursor-pointer shadow-xl"
             >
-              <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/20">E</span>
-              <span className="font-bold tracking-wider">INVESTIGATE THE SHORELINE →</span>
+              <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/20 font-bold">E</span>
+              <span className="font-bold tracking-wider">INVESTIGATE COASTLINE →</span>
             </motion.button>
-          )}
-
-          {stage === 'portal_discovered' && (
+          ) : (
             <motion.button
               key="portal-btn"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              onClick={() => goToScene('portal')}
-              className="game-btn-purple px-10 py-4 text-base md:text-lg flex items-center gap-3 cursor-pointer shadow-[0_0_35px_rgba(179,71,255,0.7)]"
+              onClick={() => scrollToSection('section-portal')}
+              className="game-btn-purple px-10 py-4 text-base md:text-lg flex items-center gap-3 cursor-pointer shadow-[0_0_35px_rgba(179,71,255,0.8)]"
             >
-              <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/20">SPACE</span>
-              <span className="font-bold tracking-wider">STEP INTO THE PORTAL →</span>
+              <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">SPACE</span>
+              <span className="font-bold tracking-wider">ENTER THE PORTAL [SCROLL DOWN] →</span>
             </motion.button>
           )}
         </AnimatePresence>
 
-        <div className="font-game text-[11px] text-white/40 tracking-widest">
-          {character ? `${character.name.toUpperCase()} · ${character.title}` : 'OPERATIVE'}
+        <div className="font-game text-[11px] text-white/50 tracking-widest">
+          {character ? `${character.name.toUpperCase()} · ${character.title}` : 'OPERATIVE DISPATCH'}
         </div>
       </div>
     </div>

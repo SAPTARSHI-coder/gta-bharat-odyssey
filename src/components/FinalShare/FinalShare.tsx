@@ -1,4 +1,4 @@
-﻿import React, { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useGame } from '../../context/GameContext';
 import { Particles } from '../shared/Particles';
@@ -24,11 +24,11 @@ export function FinalShare() {
 
   return (
     <div className="min-h-screen bg-game-dark relative overflow-hidden flex flex-col select-none">
-      {/* Deep Space Background */}
+      {/* Dark Translucent Backdrop */}
       <div
-        className="fixed inset-0 z-0"
+        className="absolute inset-0 z-0 bg-black/80 backdrop-blur-md"
         style={{
-          background: 'radial-gradient(ellipse at center, #180035 0%, #0a0018 45%, #05050a 100%)',
+          background: 'radial-gradient(ellipse at center, rgba(24,0,53,0.7) 0%, rgba(10,0,24,0.85) 45%, rgba(5,5,10,0.95) 100%)',
         }}
       />
       <Particles count={20} color="#ff9933" />
