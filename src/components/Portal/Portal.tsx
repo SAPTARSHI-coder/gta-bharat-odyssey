@@ -2,25 +2,27 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '../../context/GameContext';
 import { SceneBackground } from '../shared/SceneBackground';
+import { GTAMinimap } from '../HUD/GTAMinimap';
+import { GTAMissionBox } from '../HUD/GTAMissionBox';
 
 function PortalRing({ radius, color, duration, opacity }: {
   radius: number; color: string; duration: number; opacity: number;
 }) {
   return (
     <motion.div
-      className="absolute rounded-full border-2"
+      className="absolute rounded-full border-2 pointer-events-none"
       style={{
         width: radius * 2,
         height: radius * 2,
         borderColor: color,
         opacity,
-        boxShadow: `0 0 20px ${color}, inset 0 0 20px ${color}`,
+        boxShadow: `0 0 25px ${color}, inset 0 0 25px ${color}`,
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
       }}
-      animate={{ rotate: [0, 360], scale: [1, 1.03, 1] }}
-      transition={{ rotate: { duration, repeat: Infinity, ease: 'linear' }, scale: { duration: 2, repeat: Infinity } }}
+      animate={{ rotate: [0, 360], scale: [1, 1.04, 1] }}
+      transition={{ rotate: { duration, repeat: Infinity, ease: 'linear' }, scale: { duration: 2.2, repeat: Infinity } }}
     />
   );
 }
@@ -39,7 +41,7 @@ function WarpEffect({ onComplete }: { onComplete: () => void }) {
     canvas.height = window.innerHeight;
 
     let frame = 0;
-    const maxFrames = 120;
+    const maxFrames = 130;
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
 
@@ -47,16 +49,16 @@ function WarpEffect({ onComplete }: { onComplete: () => void }) {
 
     function draw() {
       if (!ctx || !canvas) return;
-      ctx.fillStyle = `rgba(0,0,0,${frame < 60 ? 0.05 : 0.1})`;
+      ctx.fillStyle = `rgba(0,0,0,${frame < 60 ? 0.06 : 0.12})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const progress = frame / maxFrames;
-      const numLines = 80;
+      const numLines = 90;
 
       for (let i = 0; i < numLines; i++) {
         const angle = (i / numLines) * Math.PI * 2;
-        const speed = (1 + (i % 5)) * 15 * progress;
-        const length = 50 + i * 3 * progress;
+        const speed = (1 + (i % 5)) * 18 * progress;
+        const length = 60 + i * 3.5 * progress;
         const x1 = cx + Math.cos(angle) * speed;
         const y1 = cy + Math.sin(angle) * speed;
         const x2 = cx + Math.cos(angle) * (speed + length);
@@ -66,14 +68,14 @@ function WarpEffect({ onComplete }: { onComplete: () => void }) {
         ctx.moveTo(x1, y1);
         ctx.lineTo(x2, y2);
         ctx.strokeStyle = colors[i % colors.length];
-        ctx.globalAlpha = Math.max(0, 1 - progress * 0.5);
-        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = Math.max(0, 1 - progress * 0.4);
+        ctx.lineWidth = 2;
         ctx.stroke();
       }
 
       // White flash at end
-      if (frame > 100) {
-        ctx.globalAlpha = (frame - 100) / 20;
+      if (frame > 105) {
+        ctx.globalAlpha = (frame - 105) / 25;
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
@@ -92,8 +94,7 @@ function WarpEffect({ onComplete }: { onComplete: () => void }) {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-[100]"
-      style={{ pointerEvents: 'none' }}
+      className="fixed inset-0 z-[100] pointer-events-none"
     />
   );
 }
@@ -104,110 +105,104 @@ export function Portal() {
   const [warping, setWarping] = useState(false);
 
   function handleEnter() {
+    if (phase !== 'approach') return;
     setPhase('enter');
     setTimeout(() => {
       setWarping(true);
-    }, 2000);
+    }, 1800);
   }
+
+  // Keyboard shortcut [E] or [Space] to enter
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.key === 'e' || e.key === 'E' || e.key === ' ') && phase === 'approach') {
+        handleEnter();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [phase]);
 
   function handleWarpComplete() {
     goToScene('mumbai');
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <SceneBackground scene="portal" />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden select-none">
+      {/* Photo-realistic Portal Scene Background */}
+      <SceneBackground scene="portal" zoomDirection="out" />
 
-      {/* Particle field */}
-      <div className="fixed inset-0 pointer-events-none z-5">
-        {Array.from({ length: 60 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              background: ['#b347ff', '#ff6b35', '#00f5ff', '#ff2d87'][i % 4],
-            }}
-            animate={{
-              x: [0, (Math.random() - 0.5) * 200],
-              y: [0, (Math.random() - 0.5) * 200],
-              opacity: [0, 1, 0],
-              scale: [0, 1.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              delay: Math.random() * 5,
-              repeat: Infinity,
-            }}
-          />
-        ))}
-      </div>
+      {/* GTA Minimap Radar */}
+      <GTAMinimap locationName="COSMIC RIFT [ANOMALY]" zoneType="gateway" />
 
-      {/* Portal Center */}
+      {/* GTA Mission Box */}
+      <GTAMissionBox
+        title="Investigate the Gateway."
+        subtitle="Step into the swirling vortex to traverse across the world."
+        badge="CRITICAL EVENT"
+      />
+
+      {/* Portal Energy Rings in center */}
       <div className="relative z-20 flex flex-col items-center">
-        {/* Portal rings */}
-        <div className="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center mb-12">
-          <PortalRing radius={190} color="rgba(179,71,255,0.2)" duration={20} opacity={0.3} />
-          <PortalRing radius={170} color="rgba(179,71,255,0.4)" duration={15} opacity={0.5} />
-          <PortalRing radius={150} color="#b347ff" duration={10} opacity={0.7} />
-          <PortalRing radius={130} color="#cc88ff" duration={8} opacity={0.8} />
-          <PortalRing radius={110} color="rgba(255,107,53,0.6)" duration={12} opacity={0.6} />
+        <div className="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center mb-6">
+          <PortalRing radius={200} color="rgba(179,71,255,0.25)" duration={22} opacity={0.3} />
+          <PortalRing radius={175} color="rgba(0,245,255,0.4)" duration={16} opacity={0.5} />
+          <PortalRing radius={150} color="#b347ff" duration={11} opacity={0.7} />
+          <PortalRing radius={125} color="#00f5ff" duration={8} opacity={0.85} />
 
-          {/* Portal core */}
+          {/* Central Pulsing Vortex Glow */}
           <motion.div
-            className="absolute rounded-full flex items-center justify-center"
+            className="absolute rounded-full flex items-center justify-center cursor-pointer"
             style={{
-              width: 180,
-              height: 180,
-              background: 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(200,150,255,0.7) 30%, rgba(100,0,200,0.5) 60%, transparent 100%)',
-              boxShadow: '0 0 60px #b347ff, 0 0 120px rgba(179,71,255,0.5)',
+              width: 170,
+              height: 170,
+              background: 'radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(179,71,255,0.8) 35%, rgba(0,245,255,0.6) 70%, transparent 100%)',
+              boxShadow: '0 0 60px #b347ff, 0 0 120px #00f5ff',
             }}
             animate={phase === 'enter' ? {
-              scale: [1, 1.3, 1.1],
+              scale: [1, 1.4, 1.2],
               boxShadow: [
                 '0 0 60px #b347ff',
-                '0 0 150px #b347ff, 0 0 300px rgba(179,71,255,0.5)',
-                '0 0 80px #b347ff',
+                '0 0 180px #b347ff, 0 0 350px #00f5ff',
+                '0 0 90px #ff2d87',
               ],
             } : {
-              scale: [1, 1.05, 1],
+              scale: [1, 1.08, 1],
             }}
-            transition={{ duration: phase === 'enter' ? 2 : 3, repeat: Infinity }}
+            transition={{ duration: phase === 'enter' ? 1.5 : 2.5, repeat: Infinity }}
+            onClick={handleEnter}
           >
             <motion.div
-              className="text-4xl"
+              className="text-4xl text-white font-bold"
               animate={{ rotate: [0, 360] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
             >
-              ✦
+              🌀
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Text */}
+        {/* Narrative Banner */}
         <AnimatePresence mode="wait">
           {phase === 'approach' && (
             <motion.div
               key="approach"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="text-center mb-8"
+              exit={{ opacity: 0, y: -15 }}
+              className="text-center mb-6"
             >
-              <motion.div
-                className="hud-element text-purple-400 mb-3 tracking-[0.5em]"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
+              <div className="hud-element text-purple-400 mb-1 tracking-[0.4em]">
+                ◈ DIMENSIONAL CONVERGENCE ◈
+              </div>
+              <h2
+                className="font-cinematic text-5xl md:text-7xl text-white mb-2"
+                style={{ textShadow: '0 0 35px #b347ff' }}
               >
-                ◈ ANOMALY DETECTED ◈
-              </motion.div>
-              <h2 className="font-cinematic text-5xl md:text-7xl text-white mb-3"
-                style={{ textShadow: '0 0 40px #b347ff' }}>
-                UNKNOWN DESTINATION
+                ACROSS THE WORLDS
               </h2>
-              <p className="text-white/50 font-game text-sm tracking-wider">
-                What lies beyond is uncharted.
+              <p className="text-white/70 font-game text-sm tracking-wider">
+                Connecting Los Santos to the ancient and modern spirit of Bharat.
               </p>
             </motion.div>
           )}
@@ -217,45 +212,39 @@ export function Portal() {
               key="enter"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center mb-8"
+              className="text-center mb-6"
             >
-              <motion.div
+              <div
                 className="font-cinematic text-4xl md:text-6xl text-white"
-                animate={{ opacity: [0.8, 1, 0.8] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-                style={{ textShadow: '0 0 40px rgba(255,255,255,0.8)' }}
+                style={{ textShadow: '0 0 50px rgba(255,255,255,0.9)' }}
               >
-                ENTERING PORTAL...
-              </motion.div>
-              <div className="font-game text-sm text-purple-300 mt-3 tracking-widest">
-                COORDINATES UNKNOWN ·  DESTINATION LOCKED
+                WARPING DESTINATION: MUMBAI...
+              </div>
+              <div className="font-game text-sm text-cyan-300 mt-2 tracking-widest">
+                LAT: 18.9220° N, LON: 72.8347° E · LOCKED
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Enter button */}
+        {/* Prompt Button matching concept art: "Press E to Enter" */}
         {phase === 'approach' && (
           <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
             onClick={handleEnter}
-            className="game-btn-purple text-lg px-12 py-4 relative"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="game-btn-purple text-base md:text-lg px-12 py-4 flex items-center gap-3 cursor-pointer shadow-[0_0_35px_rgba(179,71,255,0.8)]"
           >
-            <motion.div
-              className="absolute inset-0 rounded"
-              animate={{ boxShadow: ['0 0 20px #b347ff', '0 0 50px #b347ff', '0 0 20px #b347ff'] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            ◈ ENTER PORTAL ◈
+            <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
+              E
+            </span>
+            <span className="font-bold tracking-wider">PRESS E TO ENTER PORTAL</span>
           </motion.button>
         )}
       </div>
 
-      {/* Warp effect */}
+      {/* Warp Canvas Transition */}
       {warping && <WarpEffect onComplete={handleWarpComplete} />}
     </div>
   );
