@@ -6,6 +6,7 @@ export type Scene =
   | 'portal'
   | 'mumbai'
   | 'delhi'
+  | 'kolkata'
   | 'editor'
   | 'final';
 
@@ -25,7 +26,7 @@ export interface Character {
   outfit: 'jacket' | 'hoodie' | 'suit' | 'casual';
   background: 'streets' | 'tech' | 'art' | 'hustle';
   stats: CharacterStats;
-  avatar: string; // emoji or generated
+  avatar: string;
 }
 
 export interface GameState {

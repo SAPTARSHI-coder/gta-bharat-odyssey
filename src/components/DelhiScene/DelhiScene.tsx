@@ -154,11 +154,10 @@ export function DelhiScene() {
             ◈ JOURNEY COMPLETE — CREATE YOUR POSTER ◈
           </div>
           <button
-            onClick={() => goToScene('editor')}
+            onClick={() => goToScene('kolkata')}
             className="game-btn-purple px-10 py-4 text-lg"
           >
-            CREATE JOURNEY POSTER →
-          </button>
+            JOURNEY TO KOLKATA →</button>
         </motion.div>
       )}
 
@@ -171,3 +170,4 @@ export function DelhiScene() {
     </div>
   );
 }
+

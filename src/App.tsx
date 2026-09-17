@@ -7,17 +7,10 @@ import { LosSantosScene } from './components/LosSantosScene/LosSantosScene';
 import { Portal } from './components/Portal/Portal';
 import { MumbaiScene } from './components/MumbaiScene/MumbaiScene';
 import { DelhiScene } from './components/DelhiScene/DelhiScene';
+import { KolkataScene } from './components/KolkataScene/KolkataScene';
 import { JourneyEditor } from './components/JourneyEditor/JourneyEditor';
 import { FinalShare } from './components/FinalShare/FinalShare';
 import { HUD } from './components/HUD/HUD';
-
-const pageVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-
-const pageTransition = { duration: 0.6 };
 
 function SceneRouter() {
   const { currentScene } = useGame();
@@ -26,21 +19,21 @@ function SceneRouter() {
     <AnimatePresence mode="wait">
       <motion.div
         key={currentScene}
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        transition={pageTransition}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6 }}
         className="w-full"
       >
-        {currentScene === 'landing' && <Landing />}
-        {currentScene === 'character' && <CharacterCreator />}
+        {currentScene === 'landing'    && <Landing />}
+        {currentScene === 'character'  && <CharacterCreator />}
         {currentScene === 'los-santos' && <LosSantosScene />}
-        {currentScene === 'portal' && <Portal />}
-        {currentScene === 'mumbai' && <MumbaiScene />}
-        {currentScene === 'delhi' && <DelhiScene />}
-        {currentScene === 'editor' && <JourneyEditor />}
-        {currentScene === 'final' && <FinalShare />}
+        {currentScene === 'portal'     && <Portal />}
+        {currentScene === 'mumbai'     && <MumbaiScene />}
+        {currentScene === 'delhi'      && <DelhiScene />}
+        {currentScene === 'kolkata'    && <KolkataScene />}
+        {currentScene === 'editor'     && <JourneyEditor />}
+        {currentScene === 'final'      && <FinalShare />}
       </motion.div>
     </AnimatePresence>
   );
@@ -54,5 +47,3 @@ export default function App() {
     </>
   );
 }
-
-
