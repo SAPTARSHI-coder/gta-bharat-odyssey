@@ -1,6 +1,7 @@
-﻿import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useGame } from '../../context/GameContext';
+import { sounds } from '../../utils/audio';
 
 interface TopBarProps {
   activeSectionId: string;
@@ -22,6 +23,7 @@ const SECTION_TITLES: Record<string, { title: string; location: string; step: nu
 
 export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: TopBarProps) {
   const { character } = useGame();
+  const [soundActive, setSoundActive] = useState(true);
   const info = SECTION_TITLES[activeSectionId] || SECTION_TITLES['section-landing'];
 
   return (
@@ -91,12 +93,27 @@ export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: To
             </div>
           )}
 
+          <button
+            onClick={() => {
+              sounds.enabled = !sounds.enabled;
+              setSoundActive(sounds.enabled);
+              if (sounds.enabled) sounds.playClick();
+            }}
+            title={soundActive ? 'Mute Sound FX' : 'Enable Sound FX'}
+            className="glass-panel px-2 py-1 border border-white/20 hover:border-amber-400 text-xs cursor-pointer transition-colors"
+          >
+            {soundActive ? '🔊' : '🔇'}
+          </button>
+
           <div className="glass-panel px-2.5 py-1 border border-white/15 font-mono text-xs text-amber-400 font-bold">
             {Math.round(progressPercent)}%
           </div>
 
           <button
-            onClick={() => onNavigate('section-editor')}
+            onClick={() => {
+              sounds.playClick();
+              onNavigate('section-editor');
+            }}
             className="game-btn-orange text-xs px-3.5 py-1.5 cursor-pointer font-bold tracking-wider hidden sm:inline-flex"
           >
             🎨 POSTER STUDIO

@@ -1,5 +1,6 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { sounds } from '../../utils/audio';
 
 function PortalRing({ radius, color, duration, opacity }: {
   radius: number; color: string; duration: number; opacity: number;
@@ -27,6 +28,7 @@ export function Portal() {
   const [phase, setPhase] = useState<'idle' | 'warping'>('idle');
 
   const scrollToMumbai = () => {
+    sounds.playPortalWarp();
     setPhase('warping');
     setTimeout(() => {
       document.getElementById('section-mumbai')?.scrollIntoView({ behavior: 'smooth' });

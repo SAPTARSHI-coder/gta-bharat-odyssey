@@ -2,12 +2,14 @@ import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useGame } from '../../context/GameContext';
 import { Particles } from '../shared/Particles';
+import { sounds } from '../../utils/audio';
 
 export function FinalShare() {
   const { character, finalPosterDataUrl, resetGame } = useGame();
 
   const handleDownload = useCallback(() => {
     if (!finalPosterDataUrl) return;
+    sounds.playMissionSuccess();
     const a = document.createElement('a');
     a.href = finalPosterDataUrl;
     a.download = `${character?.name.toLowerCase().replace(/\s+/g, '_') ?? 'journey'}_los_santos_bharat.png`;

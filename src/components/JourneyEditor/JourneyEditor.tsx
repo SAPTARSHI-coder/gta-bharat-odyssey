@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ImageEditor, { type ImageEditorRef } from '@unlayer/react-image-editor';
 import { useGame } from '../../context/GameContext';
+import { sounds } from '../../utils/audio';
 import type { Character } from '../../types';
 
 interface TemplateOption {
@@ -176,6 +177,7 @@ export function JourneyEditor() {
   }, [selectedTemplateId, character]);
 
   const handleSave = useCallback(({ dataUrl }: { dataUrl: string; blob: Blob }) => {
+    sounds.playCameraShutter();
     setFinalPoster(dataUrl);
     // Smooth scroll to final debrief section
     const finalSec = document.getElementById('section-final');
