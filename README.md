@@ -1,182 +1,197 @@
+<div align="center">
+
 # 🌴 LOS SANTOS → BHARAT 🇮🇳
 ### *"Same Dreams. A Different Map."*
 
+[![Live Demo](https://img.shields.io/badge/LIVE%20DEMO-gta--bharat--odyssey.vercel.app-00f5ff?style=for-the-badge&logo=vercel)](https://gta-bharat-odyssey-uu7w.vercel.app)
+[![GitHub Repo](https://img.shields.io/badge/GITHUB-SAPTARSHI--coder%2Fgta--bharat--odyssey-181717?style=for-the-badge&logo=github)](https://github.com/SAPTARSHI-coder/gta-bharat-odyssey)
 [![Built With React Image Editor](https://img.shields.io/badge/Built%20With-React%20Image%20Editor-b347ff?style=for-the-badge&logo=react)](https://github.com/unlayer/react-image-editor)
-[![Unlayer Challenge](https://img.shields.io/badge/%23BuiltWithImageEditor-GTA%20VI%20Inspired-ff6b35?style=for-the-badge)](https://www.linkedin.com/posts/builtwithimageeditor-ugcPost-7501266289240240128-5qRa/)
-[![Contest Entry](https://img.shields.io/badge/Contest%20Entry-1st%20Prize%20Target-ffd700?style=for-the-badge)](https://github.com/unlayer/react-image-editor)
-[![Tech Stack](https://img.shields.io/badge/Vite%208%20%7C%20React%2019%20%7C%20TypeScript%20%7C%20Tailwind-138808?style=for-the-badge)](https://vitejs.dev/)
+[![Unlayer Challenge](https://img.shields.io/badge/%23BuiltWithImageEditor-Challenge%20Entry-ff6b35?style=for-the-badge)](https://www.linkedin.com/posts/builtwithimageeditor-ugcPost-7501266289240240128-5qRa/)
+[![Prize Target](https://img.shields.io/badge/Target-1st%20Prize%20%24500-ffd700?style=for-the-badge)](https://github.com/unlayer/react-image-editor)
 
-> **A production-grade, cinematic open-world interactive story built for the Unlayer "Build with React Image Editor Challenge" ($1,000 Prize Pool).**
+<br/>
 
----
+<a href="https://gta-bharat-odyssey-uu7w.vercel.app">
+  <img src="./showcase_hero.png" alt="Los Santos to Bharat — GTA Style Unlayer Challenge Edition" width="100%" />
+</a>
 
-## 🎮 The Concept
+<br/>
 
-What if the open-world freedom of **GTA VI** tore a dimensional rift between the neon-drenched shores of **Los Santos Beach** and the vibrant, ancient heartbeat of **Bharat (India)**?
+### 🎮 **[LAUNCH LIVE PRODUCTION DEMO →](https://gta-bharat-odyssey-uu7w.vercel.app)**
+*Optimized for Desktop, Laptop (1080p/1440p/4K), and Tablet/Mobile*
 
-You build your operative. You discover the rift. You step through.
-
-Then you hit **Mumbai**, **New Delhi**, and **Kolkata** — each a living open-world landmark with its own cinematic score and GTA-authentic HUD. At the end of the road, you enter the **Unlayer React Image Editor** and stamp your legend onto a custom wanted poster — downloaded, shared, and eternalized.
-
-> *Same dreams. A different map.*
+</div>
 
 ---
 
-## ✨ What Makes This Stand Out
+## ⚡ Executive Summary
 
-### 🎥 1. Hatom-Style Scrollytelling (Awwwards-Grade Architecture)
-- **Seamless Vertical Journey**: The entire experience is a fluid, continuous vertical scroll through 9 cinematic chapters — like a movie you can interact with.
-- **Fixed Background Manager**: Cross-fades between 8 high-resolution concept art scenes (Los Santos Beach, Cosmic Portal, Mumbai Harbor, India Gate, Victoria Memorial) with a continuous Ken Burns parallax camera sway.
-- **Right-Rail Chapter Navigator**: Glowing chapter indicators `01–09`, tooltips, and one-click smooth scroll to any landmark — inspired by Awwwards-grade scrollytelling sites like Hatom.
-- **Live Top Progress Bar**: Journey completion indicator (0% → 100%) with interactive clickable breadcrumb route nav in the top bar.
+**Los Santos to Bharat** is an Awwwards-grade, open-world interactive scrollytelling web experience built for the official **Unlayer "Build with React Image Editor Challenge" ($1,000 Prize Pool)**.
 
-### 🕹️ 2. Authentic GTA In-Game HUD System
-- **Dynamic GTA Radar Minimap**: Circular pulsing radar scanner pinned to the bottom-right with real district labels (`DEL PERRO BEACH`, `COLABA HARBOR`, `KARTAVYA PATH`, `VICTORIA MEMORIAL`), compass, player dot, health/armor bars.
-- **GTA Mission Objective Banner**: Slides in from top-left on every chapter enter — just like the real GTA mission system — with badge, title, and context line.
-- **Keyboard Navigation**: `E` / `Space` to interact with portals, sweep the coast, or warp between dimensions.
-- **Immersive Story Wording**: Every line of dialogue, button label, HUD badge, and narration is written in authentic GTA voice.
-
-### 🎨 3. Core Integration: Unlayer React Image Editor Studio
-The Unlayer editor is the **climax of the journey** — not a footnote:
-
-- **Dynamic Canvas Personalizer**: Before loading into Unlayer, a Canvas API engine auto-generates a base travel poster stamped with the player's operative alias, class title, and attribute stats (`DRIVING · TECH · STYLE`).
-- **7-Landmark Template Rail**: Players choose any scene to edit:
-  - 🌟 Official GTA-Style Wanted Travel Poster (personalized)
-  - ✨ Cinematic Key Art Split-Screen Cover
-  - 🌴 Del Perro Beach, Los Santos
-  - 🌀 The Dimensional Rift Portal
-  - 🏛️ Mumbai Taj Palace & Gateway of India
-  - 🇮🇳 New Delhi Kartavya Path & India Gate
-  - 👑 Kolkata Victoria Memorial & Howrah Bridge
-  - 🇨🇳 Great Wall of China (Badaling Ridge District · $280K Bounty)
-  - 🇧🇷 Christ the Redeemer (Corcovado Summit · $195K Bounty)
-  - 🇮🇹 The Colosseum (Gladiator Arena District · $320K Bounty)
-  - 🇲🇽 Chichen Itza (Kukulcan Pyramid · $160K Bounty)
-  - 🕌 Taj Mahal Eternal (Eternal Shrine Agra · $240K Bounty)
-  - 🇵🇪 Machu Picchu (Lost Incan Citadel · $145K Bounty)
-  - 🇯🇴 Petra Treasury (Al-Khazneh Rose City · $210K Bounty)
-- **Full Editor Power**: Filters, crop, draw, text typography, stickers, frames — the full `@unlayer/react-image-editor` feature set.
-- **Social Debrief Export**: Generates a verified Twitter/X-style social card with instant high-res PNG download.
-
-### 🏛️ 4. The 7 Wonders Global Heist Board
-- **Dimensional Blast Radius**: When the player crosses the rift from Los Santos into Bharat, the cosmic tear doesn't stop — it shatters reality across all 7 Wonders of the World!
-- **Interactive GTA Wanted Dossiers**: High-intensity dossier cards with bounties ($145K – $320K), difficulty ratings (3–5 stars), interactive mission modals, and direct pipeline into the Unlayer Editor.
-- **14 Total Editor Templates**: Doubles the creative canvas for users and judges alike!
-
-### 🔊 5. Procedural Web Audio Synthesizer
-- Built entirely with the native **Web Audio API** (`AudioContext`) — zero external MP3 files, zero latency, zero copyright issues.
-- Synthesized: button click tones, cosmic portal warp frequencies, camera shutter on poster save, triumphant mission-complete chime.
-- Mute/unmute toggle in the top nav.
+Instead of embedding `@unlayer/react-image-editor` as a plain utility tool, this project transforms it into the **ultimate narrative climax**: an authentic **Ammu-Nation Crime Lab** where operatives forge their fake IDs, wanted posters, and street-level mugshots after pulling off interdimensional heists across **Los Santos**, **Bharat (India)**, and all **Seven Wonders of the World**.
 
 ---
 
-## 🕹️ Story Flow: 10 Chapters
+## 🎯 What Makes This Stand Out
 
-| # | Location | Story Beat |
-|---|---|---|
-| **01** | **Title Screen** | Cinematic cover reveal + challenge badge + call to action |
-| **02** | **Operative Lab** | Character builder: alias, look, origins, stat distribution |
-| **03** | **Del Perro Beach, LS** | Sunset on the Pacific. Five-star heat. A strange anomaly pulses. |
-| **04** | **The Dimensional Rift** | Neon urban alleyway tears open. GPS reads: DESTINATION UNKNOWN. |
-| **05** | **Colaba Harbor, Mumbai** | Gateway of India. Taj Mahal Palace. Arabian Sea. Maximum City. |
-| **06** | **Kartavya Path, New Delhi** | The grand axis of power. India Gate burns eternal. |
-| **07** | **Victoria Memorial, Kolkata** | City of Joy. White marble. The journey peaks. |
-| **08** | **Seven Wonders Heist Board** | Global dossiers unlocked: China, Brazil, Rome, Mexico, Agra, Peru, Jordan. |
-| **09** | **Poster Studio** | Powered by **@unlayer/react-image-editor** — stamp your legend across 14 templates. |
-| **10** | **Mission Debrief** | Social card preview, stats recap, high-res download, share. |
+### 🎨 1. Deep `@unlayer/react-image-editor` Integration (The Climax)
+The Unlayer Image Editor is the payoff of a 10-chapter cinematic journey:
+- **Canvas Auto-Personalizer Engine**: Before loading into Unlayer, a custom HTML5 Canvas rendering pipeline auto-stamps the operative's alias, crime archetype, and custom stats (`DRIVING · TECH · STREET · STYLE`) directly onto high-resolution key art.
+- **14 Master Crime Scene Templates**: Operatives can toggle between 14 curated scenes directly in the editor toolbar:
+  1. 🌟 **Official GTA Wanted Travel Poster** (Canvas-personalized with player stats)
+  2. ✨ **Key Art Split Panoramic** (Los Santos to Bharat visual)
+  3. 🌴 **Del Perro Beach Sunset** (Pacific Coast Highway & Comet)
+  4. 🌀 **The Cosmic Portal** (Neon alleyway dimensional breach)
+  5. 🏛️ **Mumbai Taj Palace** (Colaba Pier & Arabian Sea)
+  6. 🇮🇳 **New Delhi India Gate** (Kartavya Path & motorcades)
+  7. 👑 **Kolkata Victoria Memorial** (Colonial marble & Howrah Bridge)
+  8. 🇨🇳 **Great Wall of China** (Badaling Ridge · $280,000 Bounty)
+  9. 🇧🇷 **Christ the Redeemer** (Corcovado Summit · $195,000 Bounty)
+  10. 🇮🇹 **The Roman Colosseum** (Gladiator Arena · $320,000 Bounty)
+  11. 🇲🇽 **Chichen Itza Pyramid** (Kukulcan Plaza · $160,000 Bounty)
+  12. 🕌 **Taj Mahal Eternal** (Yamuna Reflecting Pool · $240,000 Bounty)
+  13. 🇵🇪 **Machu Picchu Citadel** (Lost Incan Terraces · $145,000 Bounty)
+  14. 🇯🇴 **Petra Treasury** (Al-Khazneh Canyon · $210,000 Bounty)
+- **Full Creative Power**: High-contrast noir/sunset filters, precision cropping, custom text typography, annotations, stickers, and shapes.
+- **1-Click High-Res PNG Export**: Stamped with user alias and instant social debrief preview.
 
 ---
 
-## 🚀 Quick Start
+### 🏛️ 2. The Seven Wonders Global Heist Board (Chapter 08)
+When reality ruptures, seven world wonders open up as active Interpol targets:
+- **16:9 Living Atmospheric FX per Wonder**:
+  - 🇧🇷 *Rio de Janeiro*: Tropical storm rain & randomized lightning flashes
+  - 🇮🇳 *Agra*: 18 floating illuminated Diwali lanterns ascending over the pool
+  - 🇮🇹 *Rome*: Glowing arena embers drifting from the subterranean hypogeum
+  - 🇲🇽 *Yucatan*: Pulsing electromagnetic green/cyan energy fireflies
+  - 🇨🇳 *Great Wall*: Parallax mountain mist rolling across the ridge
+  - 🇵🇪 *Andes*: Divine Incan sun god rays cutting through cloud cover
+  - 🇯🇴 *Petra*: Bedouin desert torchlight flickering across sandstone facades
+- **Interactive Dossiers & Filmstrip**: Bounties ($145K to $320K), threat star ratings (★★★☆☆ to ★★★★★), target counter, keyboard shortcut cycling (`1-7`, `Arrow Keys`), and **4K Theater Fullscreen Mode**.
+- **Instant Editor Pipeline**: Clicking *"FORGE WANTED POSTER FOR THIS TARGET"* directly switches the Unlayer Editor to that wonder's art.
+
+---
+
+### 🕹️ 3. Authentic Rockstar Games GTA HUD System
+- **Dynamic Pulsing Radar Minimap**: Pinned GTA radar with sweeping scanner, GPS destination waypoint, North compass, location callout, and dual Health (Green) & Armor (Blue) meters.
+- **Flashing Wanted Stars**: Iconic GTA ★ ★ ★ ★ ★ heat indicator flashing in the HUD.
+- **Sliding Mission Objective Banners**: Authentic mission notifications slide in on chapter transition with audio chimes.
+- **Responsive Clearance Architecture**: HUD elements dynamically scope to open-world chapters so they never overlap or crowd the interactive Crime Lab or Seven Wonders Board.
+
+---
+
+### 🎥 4. Awwwards-Grade Scrollytelling Architecture
+- **Seamless Continuous Scroll**: 10 fluid chapters linked by a central game state machine.
+- **Fixed Background Manager**: Smooth cross-fades between high-resolution master art with subtle Ken Burns cinematic camera drift.
+- **Vertical Hatom Navigation Rail**: Right-side interactive chapter tracker with animated pulse rings, hover tooltips, and jump-to-chapter functionality.
+- **Dynamic Progress Bar**: Header progress line (0% → 100%) with clickable breadcrumbs.
+- **Synthesized Web Audio API**: Procedural sound effects (warp frequencies, camera shutter, UI blips, mission passed fanfare) with zero external audio assets or latency.
+
+---
+
+## 🗺️ Chapter Walkthrough
+
+| # | Chapter ID | Title | Gameplay & Story Beat |
+|---|---|---|---|
+| **01** | `section-landing` | **Prologue: Los Santos to Bharat** | Cinematic split-world hero, live badges, mission launcher |
+| **02** | `section-character` | **LSPD Booking Dossier** | Character creator: alias, criminal vibe, stat sliders (Driving, Tech, Street, Style) |
+| **03** | `section-los-santos` | **Chapter 1: Vinewood Heat** | Del Perro Pier sunset, 2-star wanted level, comet overheating, alley anomaly |
+| **04** | `section-portal` | **Chapter 2: The Cosmic Singularity** | Interactive pulsing rift vortex, keyboard `[E]` warp trigger |
+| **05** | `section-mumbai` | **Chapter 3: Maximum City** | Colaba Pier, Taj Mahal Palace, Arabian Sea harbor, drifting lanterns |
+| **06** | `section-delhi` | **Chapter 4: Corridors of Power** | Kartavya Path, India Gate, 10-lane VIP asphalt, yellow taxi chase |
+| **07** | `section-kolkata` | **Chapter 5: Rebel City** | Victoria Memorial, Howrah Bridge, intercontinental rift shockwave |
+| **08** | `section-wonders` | **Chapter 6: 7 Wonders Heist Board** | Global Interpol Red Notices, 7 living wonders, $1.3M bounty pool, 4K theater |
+| **09** | `section-editor` | **Chapter 7: Ammu-Nation Crime Lab** | **@unlayer/react-image-editor** studio with 14 heist templates & stats stamp |
+| **10** | `section-final` | **Mission Passed: Respect +100** | $1,000,000 payout, verified social card preview, high-res download |
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    REACT 19 + VITE 8                        │
+├──────────────────────────────┬──────────────────────────────┤
+│  Visual & Animation Layer    │  @unlayer/react-image-editor │
+│  • Tailwind CSS v3           │  • 14 Template Pipeline      │
+│  • Framer Motion Springs     │  • Canvas Stats Personalizer │
+│  • Living Shader FX          │  • High-Res Export Engine    │
+├──────────────────────────────┼──────────────────────────────┤
+│  HUD & Navigation System     │  Procedural Web Audio Engine │
+│  • Dynamic Radar Minimap     │  • Native Web Audio Context  │
+│  • Pinned Mission Banners    │  • Portal Warp Frequencies   │
+│  • Hatom Chapter Rail        │  • Camera Shutter & Chimes   │
+└──────────────────────────────┴──────────────────────────────┘
+```
+
+| Technology | Version / Purpose |
+|---|---|
+| **Core Editor** | [`@unlayer/react-image-editor`](https://www.npmjs.com/package/@unlayer/react-image-editor) v1.0.2 |
+| **Framework** | [React 19](https://react.dev/) + [Vite 8](https://vitejs.dev/) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) (Strict Mode) |
+| **Styling** | [Tailwind CSS v3](https://tailwindcss.com/) with custom GTA dark palette |
+| **Motion** | [Framer Motion](https://www.framer.com/motion/) |
+| **Audio** | Native Browser `AudioContext` Synthesizer (Zero MP3 dependencies) |
+| **Hosting** | [Vercel](https://vercel.com/) (Node 22 · Auto-Deployment via GitHub) |
+
+---
+
+## 🚀 Running Locally
 
 ### Prerequisites
 - **Node.js v22.12.0+** (required by Vite 8)
-- npm 10+
+- **npm v10+**
 
 ```bash
-# Clone the repository
+# 1. Clone the repository
 git clone https://github.com/SAPTARSHI-coder/gta-bharat-odyssey.git
 
-# Navigate into project directory
+# 2. Navigate to project root
 cd gta-bharat-odyssey
 
-# Install dependencies
+# 3. Install dependencies
 npm install
 
-# Start local development server
+# 4. Start Vite development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit `http://localhost:3000` in your browser.
 
----
-
-## 📦 Production Build & Deployment
-
+### Production Build
 ```bash
-# Type check + production bundle
+# Type check and build bundle
 npm run build
 
 # Preview production build locally
 npm run preview
 ```
 
-### ✅ Deploy in 1-Click on Vercel:
-1. Go to [vercel.com/new](https://vercel.com/new)
-2. Import **`SAPTARSHI-coder/gta-bharat-odyssey`** from GitHub
-3. Leave all settings as **default** (Framework: Vite, Root: `./`, Output: `dist`)
-4. Click **Deploy** ✅
-
-The included `vercel.json` handles all SPA rewrites automatically. The `.npmrc` and `engines` field guarantee Vercel uses Node 22.
-
 ---
 
-## 🛠️ Tech Stack
+## 🏆 Unlayer Challenge Submission Overview
 
-| Layer | Technology |
+| Field | Submission Value |
 |---|---|
-| Framework | React 19 + TypeScript + Vite 8 |
-| Styling | Tailwind CSS v3 + custom GTA neon design system |
-| Animation | Framer Motion (scroll-triggered, spring physics) |
-| **Image Editor** | **`@unlayer/react-image-editor` v1.0.2** |
-| Audio | Native Web Audio API synthesizer (zero deps) |
-| Icons | Lucide React |
-| Deploy | Vercel (Node 22 · SPA rewrites) |
+| **Contest Name** | Unlayer "Build with React Image Editor" Challenge |
+| **Prize Pool** | $1,000 ($500 1st Prize · $300 2nd Prize · $200 3rd Prize) |
+| **Official Hashtag** | `#BuiltWithImageEditor` |
+| **Organizer** | [Unlayer](https://unlayer.com/) (YC W22) |
+| **Live App URL** | [https://gta-bharat-odyssey-uu7w.vercel.app](https://gta-bharat-odyssey-uu7w.vercel.app) |
+| **GitHub Repository** | [https://github.com/SAPTARSHI-coder/gta-bharat-odyssey](https://github.com/SAPTARSHI-coder/gta-bharat-odyssey) |
+| **Author** | Saptarshi Sadhu |
+
+### Verification Checklist ✅
+- [x] **Original Concept**: GTA-inspired story transporting players between Los Santos and Bharat.
+- [x] **Core `@unlayer/react-image-editor`**: Editor is the centerpiece where players forge their wanted poster.
+- [x] **Customization**: 14 selectable templates, automated canvas character stat stamping, filters, annotations, and export.
+- [x] **Open Source**: Public GitHub repository with clean history and documentation.
+- [x] **Live Deployment**: Hosted on Vercel with HTTPS and zero-latency CDN.
 
 ---
 
-## 🏆 Unlayer Challenge Submission Details
+## 📜 License & Disclaimers
 
-| Field | Value |
-|---|---|
-| **Challenge** | Build with React Image Editor |
-| **Prize Pool** | $1,000 (3 winners) |
-| **Organizer** | Unlayer (YC W22) |
-| **Hashtag** | `#BuiltWithImageEditor` |
-| **Submission Deadline** | September 24, 2026 at 23:59 UTC |
-| **Official Repo** | [github.com/unlayer/react-image-editor](https://github.com/unlayer/react-image-editor) |
-| **Contest Post** | [LinkedIn Announcement](https://www.linkedin.com/posts/builtwithimageeditor-ugcPost-7501266289240240128-5qRa/) |
+This project is licensed under the **MIT License**.
 
-### What the judges asked for ✅
-
-- [x] Built an original GTA VI-inspired experience
-- [x] Used React Image Editor as a **core part** of the implementation (chapter 8 is the climax)
-- [x] Allowed users to edit/customize at least one visual within the experience
-- [x] Published in a **public GitHub repository** with a clear README
-- [x] Deployed with a working **live link**
-- [x] `#BuiltWithImageEditor`
-
----
-
-## 🎯 Why This Should Win
-
-1. **Concept originality**: No one else is building a full open-world narrative. This is a *game*, not a demo.
-2. **Unlayer as the climax**: The editor is the payoff of a 9-chapter story — players are emotionally invested before they even open it.
-3. **Production quality**: Awwwards-grade scrollytelling, authentic GTA HUD system, procedural audio, custom Canvas personalization — all from scratch.
-4. **Visual impact**: 8 high-resolution cinematic concept art scenes for 5 real-world landmarks across 2 continents.
-5. **Complete feature set**: Character customization, mission system, keyboard interaction, sound design, export, and social sharing.
-
----
-
-*Disclaimer: All artwork, narratives, and concepts are 100% original creations inspired by open-world adventure games. No Rockstar Games or Take-Two Interactive assets, IP, logos, or code were used or referenced.*
-
+*Disclaimer: This is an artistic, parody-inspired creative technology project built purely for the Unlayer developer hackathon. All character traits, code, dialogues, and procedural audio are 100% original. No proprietary assets or code from Rockstar Games or Take-Two Interactive were used.*
