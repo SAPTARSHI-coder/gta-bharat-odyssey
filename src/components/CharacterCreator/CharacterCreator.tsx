@@ -79,98 +79,88 @@ export const ARCHETYPES: Record<'urban' | 'tech' | 'street' | 'corporate', Chara
 };
 
 const APPEARANCES = ['urban', 'tech', 'street', 'corporate'] as const;
-const OUTFITS = ['jacket', 'hoodie', 'suit', 'casual'] as const;
-const BACKGROUNDS = ['streets', 'tech', 'art', 'hustle'] as const;
 
-const TITLES: Record<string, string> = {
-  'tech-tech-jacket': 'CYBER OPERATIVE',
-  'tech-tech-hoodie': 'TECH NOMAD',
-  'urban-street-jacket': 'STREET LEGEND',
-  'corporate-suit-tech': 'SHADOW EXEC',
-  'street-hustle-casual': 'HUSTLER',
-  'art-art-casual': 'VISIONARY',
-};
-
-function getTitle(appearance: string, background: string, outfit: string): string {
-  const key = `${appearance}-${background}-${outfit}`;
-  return TITLES[key] || 'LONE WOLF';
+interface StatRowProps {
+  label: string;
+  value: number;
+  color: string;
+  onChange: (val: number) => void;
 }
 
-function getAvatar(appearance: string): string {
-  const avatars: Record<string, string> = {
-    urban: '🕶️', tech: '💻', street: '🎭', corporate: '⚡',
-  };
-  return avatars[appearance] || '🌟';
-}
-
-const DEFAULT_STATS: CharacterStats = { driving: 75, street: 70, tech: 85, style: 80, luck: 65 };
-
-function StatSlider({ label, value, onChange, color }: {
-  label: string; value: number; onChange: (v: number) => void; color: string;
-}) {
+function StatRow({ label, value, color, onChange }: StatRowProps) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="hud-element text-white/60 text-[10px] w-28 shrink-0 truncate">{label}</span>
-      <div className="flex-1 stat-bar h-1.5 bg-white/10 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full rounded-full"
-          style={{ width: `${value}%`, background: `linear-gradient(90deg, ${color}, #ff6b35)` }}
-          animate={{ width: `${value}%` }}
-          transition={{ duration: 0.3 }}
+    <div className="flex items-center gap-3">
+      <span className="font-game text-xs text-white/80 w-20 shrink-0 tracking-wide">{label}</span>
+      <div className="flex-1 relative flex items-center">
+        <input
+          type="range"
+          min="20"
+          max="100"
+          value={value}
+          onChange={e => onChange(Number(e.target.value))}
+          className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-purple-400 focus:outline-none"
+          style={{
+            background: `linear-gradient(to right, ${color} 0%, ${color} ${value}%, rgba(255,255,255,0.1) ${value}%, rgba(255,255,255,0.1) 100%)`,
+          }}
         />
       </div>
-      <div className="flex gap-0.5 shrink-0">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <div
-            key={i}
-            className="w-1.5 h-2.5 rounded-xs cursor-pointer transition-all"
-            style={{
-              background: i < Math.round(value / 20) ? color : 'rgba(255,255,255,0.15)',
-              boxShadow: i < Math.round(value / 20) ? `0 0 3px ${color}` : 'none',
-            }}
-            onClick={() => onChange((i + 1) * 20)}
-          />
-        ))}
-      </div>
-      <span className="font-game text-[11px] font-bold w-6 text-right" style={{ color }}>{value}</span>
+      <span className="font-game text-xs font-bold w-7 text-right" style={{ color }}>
+        {value}
+      </span>
     </div>
   );
 }
 
 export function CharacterCreator() {
   const { goToScene, setCharacter } = useGame();
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState('');
+  const [name, setName] = useState('Saptarshi');
+  const [gender, setGender] = useState<'Male' | 'Female' | 'Non-binary'>('Male');
+  const [backgroundOption, setBackgroundOption] = useState('Tech Nomad');
   const [appearance, setAppearance] = useState<typeof APPEARANCES[number]>('urban');
-  const [outfit, setOutfit] = useState<typeof OUTFITS[number]>('jacket');
-  const [background, setBackground] = useState<typeof BACKGROUNDS[number]>('tech');
-  const [stats, setStats] = useState<CharacterStats>({ ...DEFAULT_STATS });
+
+  // Stats matching the ChatGPT mockup: Driving, Shooting, IQ, Style (plus Luck)
+  const [stats, setStats] = useState<CharacterStats>({
+    driving: 70,
+    street: 40, // Shooting / Combat
+    tech: 90,   // IQ / Hacking
+    style: 80,  // Style
+    luck: 65,
+  });
+
   const [error, setError] = useState('');
 
   const currentArchetype = ARCHETYPES[appearance];
-  const title = getTitle(appearance, background, outfit);
-  const avatar = getAvatar(appearance);
-  const totalPoints = Object.values(stats).reduce((a, b) => a + b, 0);
 
-  function updateStat(key: keyof CharacterStats, value: number) {
-    setStats(prev => ({ ...prev, [key]: value }));
-  }
+  // Map chosen background option to game internal types
+  const getMappedBackground = (opt: string): 'streets' | 'tech' | 'art' | 'hustle' => {
+    switch (opt) {
+      case 'Vinewood Hustler': return 'hustle';
+      case 'Street Enforcer': return 'streets';
+      case 'Corporate Embezzler': return 'hustle';
+      case 'Master Forger': return 'art';
+      default: return 'tech';
+    }
+  };
 
   const handleStart = () => {
-    if (!name.trim()) { setError('Enter your operative alias'); return; }
+    if (!name.trim()) {
+      setError('Please enter a character name');
+      return;
+    }
     sounds.playClick();
     const char: Character = {
       name: name.trim().toUpperCase(),
-      title,
-      bio: bio || currentArchetype.defaultBio,
+      title: backgroundOption.toUpperCase(),
+      bio: `${gender} operative. ${currentArchetype.defaultBio}`,
       appearance,
-      outfit,
-      background,
+      outfit: 'hoodie',
+      background: getMappedBackground(backgroundOption),
       stats,
-      avatar,
+      avatar: appearance === 'tech' ? '💻' : appearance === 'street' ? '🎭' : appearance === 'corporate' ? '⚡' : '🕶️',
       image: currentArchetype.image,
     };
     setCharacter(char);
+
     const lsSec = document.getElementById('section-los-santos');
     if (lsSec) {
       lsSec.scrollIntoView({ behavior: 'smooth' });
@@ -179,11 +169,10 @@ export function CharacterCreator() {
     }
   };
 
-  // Keyboard navigation: [1-4] to select character, [Arrow Keys] to cycle, [Enter] to submit
+  // Keyboard controls: 1-4 to select character, Arrow keys to cycle, Enter to continue
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Check if user is typing in the text input
-      const isInput = document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA';
+      const isInput = document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'SELECT';
       if (isInput) {
         if (e.key === 'Enter') {
           handleStart();
@@ -214,326 +203,305 @@ export function CharacterCreator() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [name, title, bio, appearance, outfit, background, stats, currentArchetype]);
+  }, [name, gender, backgroundOption, appearance, stats, currentArchetype]);
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-center select-none overflow-hidden bg-black/85 backdrop-blur-md pt-16 pb-4 px-4 md:px-8">
-      {/* Background grid */}
+    <div className="relative h-screen max-h-screen w-full flex items-center justify-center select-none overflow-hidden bg-black/90 backdrop-blur-md px-4 py-2">
+      {/* Background cyber grid */}
       <div
-        className="fixed inset-0 z-0 opacity-10 pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-10"
         style={{
-          backgroundImage: 'linear-gradient(rgba(179,71,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(179,71,255,0.3) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
+          backgroundImage:
+            'linear-gradient(rgba(179,71,255,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(179,71,255,0.25) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full my-auto">
-        {/* Compact Header */}
-        <div className="text-center mb-3">
-          <div className="hud-element text-purple-400 text-[10px] sm:text-xs font-bold tracking-[0.35em]">
-            ★ CHAPTER 02: LSPD BOOKING DOSSIER // RAP SHEET ★
+      {/* Main Unified ChatGPT Concept Card (Panel 1: "1. Character Creation") */}
+      <div className="relative z-10 max-w-4xl w-full bg-neutral-950/85 border border-purple-500/30 rounded-2xl p-4 sm:p-5 shadow-[0_0_50px_rgba(0,0,0,0.9),0_0_30px_rgba(179,71,255,0.2)] backdrop-blur-2xl">
+        {/* Top Header Badge */}
+        <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/10">
+          <div className="hud-element text-purple-400 text-[10px] font-bold tracking-[0.25em]">
+            ★ CHAPTER 02: LSPD BIOMETRIC LINEUP & BOOKING DOSSIER ★
           </div>
-          <h2
-            className="font-cinematic text-3xl sm:text-4xl md:text-5xl text-white tracking-wide leading-tight"
-            style={{ textShadow: '0 0 25px rgba(179,71,255,0.6)' }}
-          >
-            BUILD YOUR CRIMINAL
-          </h2>
-          <div className="font-game text-[10px] sm:text-[11px] text-white/50 tracking-wider">
-            PRESS <span className="text-amber-400 font-bold">[1-4]</span> OR <span className="text-amber-400 font-bold">[←/→]</span> TO CYCLE SUSPECTS · PRESS <span className="text-amber-400 font-bold">[ENTER]</span> TO HIT STREETS
+          <div className="font-game text-[10px] text-white/50 tracking-wider hidden sm:block">
+            PRESS <span className="text-amber-400 font-bold">[1-4]</span> OR <span className="text-amber-400 font-bold">[←/→]</span> TO CYCLE · <span className="text-purple-400 font-bold">[ENTER]</span> CONTINUE
           </div>
         </div>
 
-        {/* 2-Column Balanced Dashboard */}
-        <div className="grid lg:grid-cols-12 gap-4 items-stretch">
-          {/* Left Column: Dossier Configurations (5 cols) */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-3">
-            {/* Alias Card */}
-            <div className="glass-panel p-3.5 bg-black/75 border border-white/15 rounded-xl">
-              <label className="hud-element text-purple-400 block text-[10px] font-bold tracking-wider mb-1">
-                ◈ OPERATIVE ALIAS / STREET NAME
-              </label>
-              <input
-                value={name}
-                onChange={e => { setName(e.target.value); setError(''); }}
-                placeholder='e.g. FRANKIE "THE GHOST" VANCE'
-                className="w-full bg-black/60 border border-purple-500/40 rounded px-3.5 py-1.5 text-white font-game text-sm uppercase tracking-widest focus:outline-none focus:border-purple-400 placeholder-white/25 transition-all"
-                maxLength={20}
+        {/* 2-Column Responsive Card Grid */}
+        <div className="grid md:grid-cols-12 gap-5 items-stretch">
+          {/* Left Column: Character Portrait & Selector Thumbnails (5 cols) */}
+          <div className="md:col-span-5 flex flex-col justify-between">
+            {/* Viewport with Animated Character & Laser HUD */}
+            <div className="relative w-full h-[270px] sm:h-[290px] rounded-xl overflow-hidden bg-black border border-white/15 flex items-center justify-center">
+              {/* LSPD Height Measurement Chart */}
+              <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                {["6'8\"", "6'4\"", "6'0\"", "5'8\"", "5'4\"", "5'0\""].map((hMark, idx) => (
+                  <div
+                    key={hMark}
+                    className="absolute w-full flex items-center justify-between px-3 text-[9px] font-mono text-white/40"
+                    style={{ top: `${10 + idx * 14}%` }}
+                  >
+                    <span className="border-b border-white/20 w-6" />
+                    <span>{hMark}</span>
+                    <span className="border-b border-white/20 flex-1 mx-2" />
+                    <span>{hMark}</span>
+                    <span className="border-b border-white/20 w-6" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Dynamic Atmospheric Spotlight */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-10"
+                style={{
+                  background: `radial-gradient(ellipse at 50% 15%, ${currentArchetype.color}40 0%, transparent 70%)`,
+                }}
+                animate={{ opacity: [0.5, 0.9, 0.5] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
               />
-              {error && <p className="text-red-400 text-[10px] mt-1 font-game font-bold">⚠ {error}</p>}
-            </div>
 
-            {/* Specialty Selection (4 buttons) */}
-            <div className="glass-panel p-3 bg-black/75 border border-white/15 rounded-xl">
-              <label className="hud-element text-purple-400 block text-[10px] font-bold tracking-wider mb-1.5">
-                ◈ CRIMINAL SPECIALTY (1 OF 4)
-              </label>
-              <div className="grid grid-cols-2 gap-1.5">
-                {APPEARANCES.map((a, idx) => {
-                  const arch = ARCHETYPES[a];
-                  const isSelected = appearance === a;
-                  return (
-                    <button
-                      key={a}
-                      type="button"
-                      onClick={() => { sounds.playClick(); setAppearance(a); }}
-                      className={`px-2 py-1.5 rounded text-[11px] font-game uppercase tracking-wider transition-all cursor-pointer border flex items-center gap-1.5 justify-center ${
-                        isSelected
-                          ? 'border-purple-400 bg-purple-600/30 text-white shadow-[0_0_12px_rgba(179,71,255,0.6)] font-bold'
-                          : 'border-white/10 bg-black/40 text-white/50 hover:border-purple-500/50 hover:text-white/80'
-                      }`}
-                    >
-                      <span className="font-mono text-[10px] text-amber-400">[{idx + 1}]</span>
-                      <span className="truncate">{arch.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+              {/* The Living Animated Character Render */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentArchetype.id}
+                  initial={{ opacity: 0, scale: 0.94, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.04, y: -8 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                  className="relative z-10 w-full h-full flex items-center justify-center"
+                >
+                  <motion.img
+                    src={currentArchetype.image}
+                    alt={currentArchetype.name}
+                    animate={{
+                      y: [0, -5, 0],
+                      scale: [1, 1.015, 1],
+                      rotate: [0, 0.25, 0, -0.25, 0],
+                    }}
+                    transition={{
+                      duration: 4.5,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    className="w-full h-full object-cover object-top filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.9)] cursor-pointer"
+                    onClick={() => sounds.playClick()}
+                  />
+                </motion.div>
+              </AnimatePresence>
 
-            {/* Threads & Origin Combined */}
-            <div className="glass-panel p-3 bg-black/75 border border-white/15 rounded-xl grid grid-cols-2 gap-3">
-              <div>
-                <label className="hud-element text-purple-400 block text-[10px] font-bold tracking-wider mb-1">
-                  ◈ THREADS
-                </label>
-                <div className="space-y-1">
-                  {OUTFITS.map(o => (
-                    <button
-                      key={o}
-                      type="button"
-                      onClick={() => { sounds.playClick(); setOutfit(o); }}
-                      className={`w-full px-2 py-0.5 rounded text-[10px] font-game uppercase tracking-wider transition-all cursor-pointer border truncate text-left ${
-                        outfit === o
-                          ? 'border-purple-400 bg-purple-600/30 text-white font-bold'
-                          : 'border-white/10 bg-black/40 text-white/50 hover:text-white'
-                      }`}
-                    >
-                      {o === 'jacket' ? '🧥 Biker Jacket' : o === 'hoodie' ? '👕 Heist Hoodie' : o === 'suit' ? '👔 Silk Suit' : '👟 Tracksuit'}
-                    </button>
-                  ))}
+              {/* Laser Scanline */}
+              <motion.div
+                className="absolute left-0 right-0 h-[2px] pointer-events-none z-20"
+                style={{
+                  background: `linear-gradient(90deg, transparent 5%, ${currentArchetype.color} 50%, transparent 95%)`,
+                  boxShadow: `0 0 10px ${currentArchetype.color}`,
+                }}
+                animate={{ top: ['10%', '88%', '10%'] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+              />
+
+              {/* HUD Target Overlay */}
+              <div className="absolute inset-2 pointer-events-none z-20 flex flex-col justify-between p-1.5">
+                <div className="flex items-start justify-between">
+                  <div className="font-mono text-[9px] text-white/90 bg-black/75 px-1.5 py-0.5 rounded border border-white/10 flex items-center gap-1 backdrop-blur-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+                    <span>REC</span>
+                  </div>
+                  <div
+                    className="font-mono text-[9px] bg-black/75 px-1.5 py-0.5 rounded border border-white/10 text-right backdrop-blur-sm font-bold"
+                    style={{ color: currentArchetype.color }}
+                  >
+                    MATCH: 99.4%
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <label className="hud-element text-purple-400 block text-[10px] font-bold tracking-wider mb-1">
-                  ◈ SYNDICATE ORIGIN
-                </label>
-                <div className="space-y-1">
-                  {BACKGROUNDS.map(b => (
-                    <button
-                      key={b}
-                      type="button"
-                      onClick={() => { sounds.playClick(); setBackground(b); }}
-                      className={`w-full px-2 py-0.5 rounded text-[10px] font-game uppercase tracking-wider transition-all cursor-pointer border truncate text-left ${
-                        background === b
-                          ? 'border-purple-400 bg-purple-600/30 text-white font-bold'
-                          : 'border-white/10 bg-black/40 text-white/50 hover:text-white'
-                      }`}
-                    >
-                      {b === 'streets' ? '🏙️ South Central' : b === 'tech' ? '🔬 Silicon Hacker' : b === 'art' ? '🎨 Master Forger' : '💰 High Smuggler'}
-                    </button>
-                  ))}
+                <div className="flex items-end justify-between">
+                  <div className="bg-black/85 px-2 py-1 rounded border border-white/15 backdrop-blur-md">
+                    <div className="font-cinematic text-xs text-white tracking-wider">
+                      {name ? name.toUpperCase() : currentArchetype.name}
+                    </div>
+                    <div className="font-game text-[9px] text-white/60">
+                      {currentArchetype.height} · BOUNTY: {currentArchetype.bounty}
+                    </div>
+                  </div>
+                  <div className="font-game text-[10px] px-1.5 py-0.5 rounded bg-black/85 border text-amber-400 border-amber-400/40 backdrop-blur-md font-bold">
+                    {currentArchetype.threat}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Heist Stats Sliders (Compact) */}
-            <div className="glass-panel p-3 bg-black/75 border border-white/15 rounded-xl">
-              <div className="hud-element text-purple-400 mb-2 font-bold tracking-wider text-[10px] flex items-center justify-between">
-                <span>◈ HEIST ATTRIBUTES</span>
-                <span className="text-orange-400 font-mono text-[11px]">INDEX: {totalPoints}/500</span>
-              </div>
-              <div className="space-y-1.5">
-                <StatSlider label="TECH // HACKING" value={stats.tech} onChange={v => updateStat('tech', v)} color="#00f5ff" />
-                <StatSlider label="WHEELMAN // GETAWAY" value={stats.driving} onChange={v => updateStat('driving', v)} color="#ff9933" />
-                <StatSlider label="SWAGGER // DISGUISE" value={stats.style} onChange={v => updateStat('style', v)} color="#ff2d87" />
-                <StatSlider label="STREET HEAT // INTEL" value={stats.street} onChange={v => updateStat('street', v)} color="#4ade80" />
-                <StatSlider label="DEVIL'S LUCK" value={stats.luck} onChange={v => updateStat('luck', v)} color="#ffd700" />
-              </div>
+            {/* 4 Avatar Selection Thumbnails (Directly Below Portrait, matching ChatGPT panel) */}
+            <div className="grid grid-cols-4 gap-1.5 mt-2.5">
+              {Object.values(ARCHETYPES).map((arch, idx) => {
+                const isSelected = appearance === arch.id;
+                return (
+                  <button
+                    key={arch.id}
+                    type="button"
+                    onClick={() => {
+                      sounds.playClick();
+                      setAppearance(arch.id);
+                    }}
+                    className={`relative group rounded-lg overflow-hidden border transition-all duration-200 cursor-pointer p-1 text-center ${
+                      isSelected
+                        ? 'border-purple-400 bg-purple-950/80 shadow-[0_0_12px_rgba(179,71,255,0.7)] scale-105'
+                        : 'border-white/10 bg-black/60 opacity-60 hover:opacity-100 hover:border-white/30'
+                    }`}
+                  >
+                    <div className="w-full h-8 rounded overflow-hidden mb-0.5">
+                      <img
+                        src={arch.image}
+                        alt={arch.name}
+                        className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div
+                      className="font-game text-[8px] font-bold truncate"
+                      style={{ color: isSelected ? arch.color : '#fff' }}
+                    >
+                      [{idx + 1}] {arch.name.split(' ')[0]}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Specialty Snippet */}
+            <div className="mt-2 px-2.5 py-1.5 rounded-lg bg-black/50 border border-white/10 flex items-center justify-between text-[10px] font-game text-white/70">
+              <span className="truncate" style={{ color: currentArchetype.color }}>
+                {currentArchetype.name}
+              </span>
+              <span className="text-white/40 truncate ml-2">{currentArchetype.role}</span>
             </div>
           </div>
 
-          {/* Right Column: LIVING GTA BIOMETRIC LINEUP STAGE (6 cols) */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-2.5">
-            {/* Animated Lineup Box */}
-            <div
-              className="glass-panel p-3.5 relative overflow-hidden rounded-2xl border bg-black/85 backdrop-blur-xl flex-1 flex flex-col justify-between"
-              style={{
-                borderColor: `${currentArchetype.color}60`,
-                boxShadow: `0 0 30px ${currentArchetype.color}20, inset 0 0 25px ${currentArchetype.color}10`,
-              }}
-            >
-              {/* Header Badge */}
-              <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-white/10">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full animate-ping" style={{ background: currentArchetype.color }} />
-                  <span className="hud-element text-[11px] tracking-wider font-bold" style={{ color: currentArchetype.color }}>
-                    ★ LSPD BIOMETRIC LINEUP // CAM-04 ★
-                  </span>
-                </div>
-                <div className="font-game text-[9px] text-white/50 tracking-wider">
-                  SUSPECT ID: #{appearance.toUpperCase()}-9042
-                </div>
-              </div>
+          {/* Right Column: "Who Are You?" Form & Stats (7 cols, exact match to ChatGPT concept) */}
+          <div className="md:col-span-7 flex flex-col justify-between space-y-2.5 pl-0 md:pl-2">
+            {/* Title & Subtitle */}
+            <div>
+              <h2 className="font-cinematic text-2xl sm:text-3xl text-white tracking-wide leading-tight">
+                Who Are You?
+              </h2>
+              <p className="font-game text-xs text-white/60 tracking-wider">
+                Every journey starts with a character.
+              </p>
+            </div>
 
-              {/* 3D-Styled Animated Character Viewport (Compact Height: 260px-280px) */}
-              <div className="relative w-full h-[260px] sm:h-[280px] rounded-xl overflow-hidden bg-neutral-950 border border-white/15 flex items-center justify-center">
-                {/* LSPD Height Measurement Grid Lines in background */}
-                <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-                  {["6'8\"", "6'4\"", "6'0\"", "5'8\"", "5'4\"", "5'0\""].map((hMark, idx) => (
-                    <div
-                      key={hMark}
-                      className="absolute w-full flex items-center justify-between px-3 text-[9px] font-mono text-white/40"
-                      style={{ top: `${12 + idx * 14}%` }}
-                    >
-                      <span className="border-b border-white/20 w-6" />
-                      <span>{hMark}</span>
-                      <span className="border-b border-white/20 flex-1 mx-2" />
-                      <span>{hMark}</span>
-                      <span className="border-b border-white/20 w-6" />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Atmospheric Spotlight Cone */}
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-10"
-                  style={{
-                    background: `radial-gradient(ellipse at 50% 15%, ${currentArchetype.color}35 0%, transparent 70%)`,
-                  }}
-                  animate={{ opacity: [0.5, 0.85, 0.5] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                />
-
-                {/* The Animated Character Render */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentArchetype.id}
-                    initial={{ opacity: 0, scale: 0.94, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.04, y: -8 }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                    className="relative z-10 w-full h-full flex items-center justify-center"
+            {/* Gender / Persona Radio Pills */}
+            <div className="flex items-center gap-3">
+              {(['Male', 'Female', 'Non-binary'] as const).map(g => {
+                const isSelected = gender === g;
+                return (
+                  <button
+                    key={g}
+                    type="button"
+                    onClick={() => {
+                      sounds.playClick();
+                      setGender(g);
+                    }}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-game transition-all cursor-pointer border ${
+                      isSelected
+                        ? 'border-purple-400 bg-purple-600/30 text-white font-bold shadow-[0_0_10px_rgba(179,71,255,0.4)]'
+                        : 'border-white/15 bg-white/5 text-white/60 hover:text-white hover:border-white/30'
+                    }`}
                   >
-                    {/* Natural Breathing & Stance Shift Animation */}
-                    <motion.img
-                      src={currentArchetype.image}
-                      alt={currentArchetype.name}
-                      animate={{
-                        y: [0, -5, 0],
-                        scale: [1, 1.015, 1],
-                        rotate: [0, 0.25, 0, -0.25, 0],
-                      }}
-                      transition={{
-                        duration: 4.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }}
-                      className="w-full h-full object-cover object-top filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.9)] cursor-pointer"
-                      onClick={() => sounds.playClick()}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Moving Facial Recognition Laser Scanline */}
-                <motion.div
-                  className="absolute left-0 right-0 h-[2px] pointer-events-none z-20"
-                  style={{
-                    background: `linear-gradient(90deg, transparent 5%, ${currentArchetype.color} 50%, transparent 95%)`,
-                    boxShadow: `0 0 10px ${currentArchetype.color}`,
-                  }}
-                  animate={{ top: ['12%', '86%', '12%'] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-                />
-
-                {/* HUD Targeting Brackets */}
-                <div className="absolute inset-2 pointer-events-none z-20 flex flex-col justify-between p-1.5">
-                  <div className="flex items-start justify-between">
-                    <div className="font-mono text-[9px] text-white/90 bg-black/75 px-1.5 py-0.5 rounded border border-white/10 flex items-center gap-1 backdrop-blur-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
-                      <span>REC</span>
-                    </div>
-                    <div className="font-mono text-[9px] bg-black/75 px-1.5 py-0.5 rounded border border-white/10 text-right backdrop-blur-sm font-bold" style={{ color: currentArchetype.color }}>
-                      MATCH: 99.4%
-                    </div>
-                  </div>
-
-                  <div className="flex items-end justify-between">
-                    <div className="bg-black/85 px-2 py-1 rounded border border-white/15 backdrop-blur-md">
-                      <div className="font-cinematic text-xs text-white tracking-wider">
-                        {name ? name.toUpperCase() : currentArchetype.name}
-                      </div>
-                      <div className="font-game text-[9px] text-white/60">
-                        {currentArchetype.height} · BOUNTY: {currentArchetype.bounty}
-                      </div>
-                    </div>
-                    <div className="font-game text-[10px] px-1.5 py-0.5 rounded bg-black/85 border text-amber-400 border-amber-400/40 backdrop-blur-md font-bold">
-                      {currentArchetype.threat}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 4 Interactive Character Switcher Mini Tabs */}
-              <div className="grid grid-cols-4 gap-1.5 mt-2">
-                {Object.values(ARCHETYPES).map((arch, idx) => {
-                  const isSelected = appearance === arch.id;
-                  return (
-                    <button
-                      key={arch.id}
-                      type="button"
-                      onClick={() => {
-                        sounds.playClick();
-                        setAppearance(arch.id);
-                      }}
-                      className={`relative group rounded-lg overflow-hidden border transition-all duration-200 cursor-pointer p-1 text-center ${
-                        isSelected
-                          ? 'border-purple-400 bg-purple-950/80 shadow-[0_0_12px_rgba(179,71,255,0.7)] scale-105'
-                          : 'border-white/10 bg-black/60 opacity-60 hover:opacity-100 hover:border-white/30'
+                    <span
+                      className={`w-2 h-2 rounded-full ${
+                        isSelected ? 'bg-purple-400 shadow-[0_0_5px_#c084fc]' : 'border border-white/40'
                       }`}
-                    >
-                      <div className="w-full h-8 rounded overflow-hidden mb-0.5">
-                        <img src={arch.image} alt={arch.name} className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                      <div className="font-game text-[8px] font-bold truncate" style={{ color: isSelected ? arch.color : '#fff' }}>
-                        [{idx + 1}] {arch.name.split(' ')[0]}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
+                    />
+                    <span>{g}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-              {/* Compact Dossier Intel */}
-              <div className="mt-2 p-2 rounded-lg bg-black/60 border border-white/10 text-left">
-                <div className="flex items-center justify-between text-xs mb-0.5">
-                  <span className="font-cinematic text-xs tracking-wider text-white">
-                    {currentArchetype.name}
-                  </span>
-                  <span className="font-game text-[9px] px-1.5 py-0.5 rounded bg-white/10 text-amber-300 font-bold">
-                    {title}
-                  </span>
-                </div>
-                <div className="font-game text-[10px] text-white/70 truncate">
-                  {currentArchetype.specialty}
+            {/* Name Input Field */}
+            <div>
+              <label className="font-game text-xs text-white/70 block mb-1">Name</label>
+              <input
+                value={name}
+                onChange={e => {
+                  setName(e.target.value);
+                  setError('');
+                }}
+                placeholder="Enter character name..."
+                maxLength={24}
+                className="w-full bg-black/60 border border-white/20 focus:border-purple-400 rounded-lg px-3.5 py-1.5 text-white font-game text-sm tracking-wider focus:outline-none transition-all shadow-inner"
+              />
+              {error && <p className="text-red-400 text-[10px] mt-1 font-game">⚠ {error}</p>}
+            </div>
+
+            {/* Background Dropdown Selector */}
+            <div>
+              <label className="font-game text-xs text-white/70 block mb-1">Background</label>
+              <div className="relative">
+                <select
+                  value={backgroundOption}
+                  onChange={e => {
+                    sounds.playClick();
+                    setBackgroundOption(e.target.value);
+                  }}
+                  className="w-full bg-black/80 border border-white/20 focus:border-purple-400 rounded-lg px-3.5 py-1.5 text-white font-game text-sm tracking-wider focus:outline-none appearance-none cursor-pointer transition-all pr-8"
+                >
+                  <option value="Tech Nomad">Tech Nomad</option>
+                  <option value="Vinewood Hustler">Vinewood Hustler</option>
+                  <option value="Street Enforcer">Street Enforcer</option>
+                  <option value="Corporate Embezzler">Corporate Embezzler</option>
+                  <option value="Master Forger">Master Forger</option>
+                </select>
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white/50 text-xs">
+                  ▼
                 </div>
               </div>
             </div>
 
-            {/* Confirm & Start Button (Always Visible in Viewport) */}
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={handleStart}
-              className="w-full game-btn-orange py-3.5 text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(255,107,53,0.7)] shrink-0"
-            >
-              <span className="px-1.5 py-0.5 rounded bg-black/40 font-mono text-[10px] border border-white/30 font-bold">
-                ENTER
-              </span>
-              <span className="font-bold tracking-wider">
-                CONFIRM DOSSIER & HIT THE STREETS →
-              </span>
-            </motion.button>
+            {/* 4 Clean Stat Sliders (Driving, Shooting, IQ, Style) */}
+            <div className="space-y-2 pt-1">
+              <StatRow
+                label="Driving"
+                value={stats.driving}
+                color="#ff9933"
+                onChange={v => setStats(prev => ({ ...prev, driving: v }))}
+              />
+              <StatRow
+                label="Shooting"
+                value={stats.street}
+                color="#ff2d87"
+                onChange={v => setStats(prev => ({ ...prev, street: v }))}
+              />
+              <StatRow
+                label="IQ"
+                value={stats.tech}
+                color="#00f5ff"
+                onChange={v => setStats(prev => ({ ...prev, tech: v }))}
+              />
+              <StatRow
+                label="Style"
+                value={stats.style}
+                color="#c084fc"
+                onChange={v => setStats(prev => ({ ...prev, style: v }))}
+              />
+            </div>
+
+            {/* Continue Button (Glowing Purple Gradient matching ChatGPT concept) */}
+            <div className="pt-1">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleStart}
+                className="w-full py-2.5 px-6 rounded-xl font-game font-bold text-sm tracking-wider uppercase text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 hover:from-purple-500 hover:to-indigo-500 shadow-[0_0_20px_rgba(168,85,247,0.6)] cursor-pointer flex items-center justify-center gap-2 transition-all"
+              >
+                <span>Continue</span>
+                <span className="px-1.5 py-0.5 rounded bg-black/40 text-[9px] font-mono border border-white/20">
+                  ENTER
+                </span>
+                <span>→</span>
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>
