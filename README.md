@@ -48,17 +48,29 @@ The Unlayer editor is the **climax of the journey** — not a footnote:
   - 🏛️ Mumbai Taj Palace & Gateway of India
   - 🇮🇳 New Delhi Kartavya Path & India Gate
   - 👑 Kolkata Victoria Memorial & Howrah Bridge
+  - 🇨🇳 Great Wall of China (Badaling Ridge District · $280K Bounty)
+  - 🇧🇷 Christ the Redeemer (Corcovado Summit · $195K Bounty)
+  - 🇮🇹 The Colosseum (Gladiator Arena District · $320K Bounty)
+  - 🇲🇽 Chichen Itza (Kukulcan Pyramid · $160K Bounty)
+  - 🕌 Taj Mahal Eternal (Eternal Shrine Agra · $240K Bounty)
+  - 🇵🇪 Machu Picchu (Lost Incan Citadel · $145K Bounty)
+  - 🇯🇴 Petra Treasury (Al-Khazneh Rose City · $210K Bounty)
 - **Full Editor Power**: Filters, crop, draw, text typography, stickers, frames — the full `@unlayer/react-image-editor` feature set.
 - **Social Debrief Export**: Generates a verified Twitter/X-style social card with instant high-res PNG download.
 
-### 🔊 4. Procedural Web Audio Synthesizer
+### 🏛️ 4. The 7 Wonders Global Heist Board
+- **Dimensional Blast Radius**: When the player crosses the rift from Los Santos into Bharat, the cosmic tear doesn't stop — it shatters reality across all 7 Wonders of the World!
+- **Interactive GTA Wanted Dossiers**: High-intensity dossier cards with bounties ($145K – $320K), difficulty ratings (3–5 stars), interactive mission modals, and direct pipeline into the Unlayer Editor.
+- **14 Total Editor Templates**: Doubles the creative canvas for users and judges alike!
+
+### 🔊 5. Procedural Web Audio Synthesizer
 - Built entirely with the native **Web Audio API** (`AudioContext`) — zero external MP3 files, zero latency, zero copyright issues.
 - Synthesized: button click tones, cosmic portal warp frequencies, camera shutter on poster save, triumphant mission-complete chime.
 - Mute/unmute toggle in the top nav.
 
 ---
 
-## 🕹️ Story Flow: 9 Chapters
+## 🕹️ Story Flow: 10 Chapters
 
 | # | Location | Story Beat |
 |---|---|---|
@@ -68,9 +80,10 @@ The Unlayer editor is the **climax of the journey** — not a footnote:
 | **04** | **The Dimensional Rift** | Neon urban alleyway tears open. GPS reads: DESTINATION UNKNOWN. |
 | **05** | **Colaba Harbor, Mumbai** | Gateway of India. Taj Mahal Palace. Arabian Sea. Maximum City. |
 | **06** | **Kartavya Path, New Delhi** | The grand axis of power. India Gate burns eternal. |
-| **07** | **Victoria Memorial, Kolkata** | City of Joy. White marble. Your expedition ends here. |
-| **08** | **Poster Studio** | Powered by **@unlayer/react-image-editor** — stamp your legend. |
-| **09** | **Mission Debrief** | Social card preview, stats recap, high-res download, share. |
+| **07** | **Victoria Memorial, Kolkata** | City of Joy. White marble. The journey peaks. |
+| **08** | **Seven Wonders Heist Board** | Global dossiers unlocked: China, Brazil, Rome, Mexico, Agra, Peru, Jordan. |
+| **09** | **Poster Studio** | Powered by **@unlayer/react-image-editor** — stamp your legend across 14 templates. |
+| **10** | **Mission Debrief** | Social card preview, stats recap, high-res download, share. |
 
 ---
 

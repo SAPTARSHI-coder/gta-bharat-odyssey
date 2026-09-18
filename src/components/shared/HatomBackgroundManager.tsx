@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   WaterRippleOverlay,
@@ -18,6 +18,7 @@ export type HatomSceneId =
   | 'section-mumbai'
   | 'section-delhi'
   | 'section-kolkata'
+  | 'section-wonders'
   | 'section-editor'
   | 'section-final';
 
@@ -69,6 +70,12 @@ const BG_CONFIGS: Record<HatomSceneId, BackgroundConfig> = {
     zoom: 'pan-left',
     overlayGrad: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.75) 100%)',
     tintColor: '#66aaff',
+  },
+  'section-wonders': {
+    image: '/assets/taj_mahal_gta.jpg',
+    zoom: 'out',
+    overlayGrad: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(20,5,30,0.92) 100%)',
+    tintColor: '#ff2d87',
   },
   'section-editor': {
     image: '/assets/journey_poster_default.jpg',

@@ -7,6 +7,7 @@ import { Portal } from './components/Portal/Portal';
 import { MumbaiScene } from './components/MumbaiScene/MumbaiScene';
 import { DelhiScene } from './components/DelhiScene/DelhiScene';
 import { KolkataScene } from './components/KolkataScene/KolkataScene';
+import { SevenWondersBoard } from './components/SevenWonders/SevenWondersBoard';
 import { JourneyEditor } from './components/JourneyEditor/JourneyEditor';
 import { FinalShare } from './components/FinalShare/FinalShare';
 import { HatomBackgroundManager } from './components/shared/HatomBackgroundManager';
@@ -23,6 +24,7 @@ const SECTION_MINIMAP: Record<string, { location: string; zone: 'beach' | 'urban
   'section-mumbai':     { location: 'COLABA HARBOR, MUMBAI',   zone: 'beach' },
   'section-delhi':      { location: 'KARTAVYA PATH, DELHI',    zone: 'monument' },
   'section-kolkata':    { location: 'VICTORIA MEMORIAL, WB',   zone: 'monument' },
+  'section-wonders':    { location: 'GLOBAL WANTED BOARD',     zone: 'monument' },
   'section-editor':     { location: 'REACT IMAGE EDITOR',      zone: 'urban' },
   'section-final':      { location: 'MISSION DEBRIEF',         zone: 'monument' },
 };
@@ -58,13 +60,18 @@ const SECTION_MISSION: Record<string, { title: string; subtitle?: string; badge:
     title: 'End of the road. Start of the legend.',
     subtitle: 'City of Joy. Marble. History. Your final chapter awaits.',
   },
+  'section-wonders': {
+    badge: 'STAGE 7: 7 WONDERS OF THE WORLD',
+    title: 'Global heists unlocked.',
+    subtitle: 'The rift shattered reality across 7 global landmarks. Choose your target.',
+  },
   'section-editor': {
-    badge: 'STAGE 7: UNLAYER POSTER STUDIO',
+    badge: 'STAGE 8: UNLAYER POSTER STUDIO',
     title: 'Stamp your legend.',
     subtitle: 'Customize your wanted poster with Unlayer React Image Editor.',
   },
   'section-final': {
-    badge: 'STAGE 8: MISSION DEBRIEF',
+    badge: 'STAGE 9: MISSION DEBRIEF',
     title: 'Five-star legend unlocked.',
     subtitle: 'Download your poster. Share your legacy. The world needs to know.',
   },
@@ -186,12 +193,17 @@ export default function App() {
           <KolkataScene />
         </section>
 
-        {/* Section 08: Unlayer React Image Editor Studio */}
+        {/* Section 08: Seven Wonders Global Wanted Board */}
+        <section id="section-wonders" className="relative w-full min-h-screen">
+          <SevenWondersBoard />
+        </section>
+
+        {/* Section 09: Unlayer React Image Editor Studio */}
         <section id="section-editor" className="relative w-full min-h-screen">
           <JourneyEditor />
         </section>
 
-        {/* Section 09: Final Share & Debrief */}
+        {/* Section 10: Final Share & Debrief */}
         <section id="section-final" className="relative w-full min-h-screen">
           <FinalShare />
         </section>

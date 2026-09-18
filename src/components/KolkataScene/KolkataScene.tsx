@@ -31,8 +31,8 @@ function KolkataGlow({ x, y, delay }: { x: number; y: number; delay: number }) {
 }
 
 export function KolkataScene() {
-  const scrollToEditor = () => {
-    document.getElementById('section-editor')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToWonders = () => {
+    document.getElementById('section-wonders')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -91,24 +91,24 @@ export function KolkataScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          Your expedition ends here. But legends don't retire — they get framed, printed, and shared worldwide.
-          It's time to hit the Poster Studio.
+          Your expedition across Bharat has peaked. But the rift didn't stop here — cosmic seismic waves just shattered the global grid.
+          Seven ancient wonders across the planet are now wide open.
         </motion.p>
       </div>
 
       {/* Bottom Action Controls */}
       <div className="relative z-30 flex flex-col items-center gap-2 mt-auto">
         <motion.button
-          onClick={scrollToEditor}
+          onClick={scrollToWonders}
           className="game-btn-purple px-10 py-4 text-base md:text-lg flex items-center gap-3 cursor-pointer shadow-[0_0_40px_rgba(179,71,255,0.85)]"
         >
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">DESIGN YOUR WANTED POSTER IN UNLAYER →</span>
+          <span className="font-bold tracking-wider">ACCESS 7 WONDERS GLOBAL HEIST BOARD [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          ◆ POWERED BY @UNLAYER/REACT-IMAGE-EDITOR · YOUR MUGSHOT AWAITS ◆
+          ◆ PLANETARY TARGETS UNLOCKED · SEVEN WONDERS DOSSIER ◆
         </div>
       </div>
     </div>

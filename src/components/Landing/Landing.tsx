@@ -188,7 +188,9 @@ export function Landing() {
           <span>→</span>
           <span className="hover:text-cyan-300 transition-colors">5. Victoria Memorial, Kolkata</span>
           <span>→</span>
-          <span className="text-amber-400 font-bold">6. Unlayer Poster Studio</span>
+          <span className="hover:text-red-300 transition-colors">6. 7 Wonders Global Board</span>
+          <span>→</span>
+          <span className="text-amber-400 font-bold">7. Unlayer Poster Studio</span>
         </div>
 
         <div className="flex items-center gap-3 ml-auto text-white/40 text-[11px]">

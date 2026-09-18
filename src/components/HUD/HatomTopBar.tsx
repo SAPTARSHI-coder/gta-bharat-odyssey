@@ -17,8 +17,9 @@ const SECTION_TITLES: Record<string, { title: string; location: string; step: nu
   'section-mumbai':     { title: 'CHAPTER 3: MUMBAI',    location: 'COLABA HARBOR, BHARAT',    step: 5 },
   'section-delhi':      { title: 'CHAPTER 4: NEW DELHI', location: 'KARTAVYA PATH, BHARAT',    step: 6 },
   'section-kolkata':    { title: 'CHAPTER 5: KOLKATA',   location: 'VICTORIA MEMORIAL, BHARAT',step: 7 },
-  'section-editor':     { title: 'POSTER STUDIO',        location: 'REACT IMAGE EDITOR',       step: 8 },
-  'section-final':      { title: 'MISSION DEBRIEF',      location: 'JOURNEY COMPLETED',        step: 9 },
+  'section-wonders':    { title: 'SEVEN WONDERS',        location: 'GLOBAL WANTED BOARD',      step: 8 },
+  'section-editor':     { title: 'POSTER STUDIO',        location: 'REACT IMAGE EDITOR',       step: 9 },
+  'section-final':      { title: 'MISSION DEBRIEF',      location: 'JOURNEY COMPLETED',        step: 10 },
 };
 
 export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: TopBarProps) {
@@ -65,6 +66,7 @@ export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: To
             { id: 'section-mumbai',     label: 'MUMBAI' },
             { id: 'section-delhi',      label: 'DELHI' },
             { id: 'section-kolkata',    label: 'KOLKATA' },
+            { id: 'section-wonders',    label: '7 WONDERS' },
             { id: 'section-editor',     label: 'POSTER' },
           ].map((item, i, arr) => {
             const isCurrent = activeSectionId === item.id;

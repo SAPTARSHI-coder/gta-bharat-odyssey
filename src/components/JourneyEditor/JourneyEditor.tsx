@@ -63,6 +63,55 @@ const TEMPLATES: TemplateOption[] = [
     path: '/assets/kolkata_victoria_memorial.jpg',
     description: 'Victoria Memorial lake reflection & Howrah Bridge',
   },
+  {
+    id: 'great-wall',
+    name: 'Great Wall of China (Wonder)',
+    icon: '🇨🇳',
+    path: '/assets/great_wall_gta.jpg',
+    description: 'Badaling Ridge District · Beijing, China · $280K Bounty',
+  },
+  {
+    id: 'christ-redeemer',
+    name: 'Christ the Redeemer (Wonder)',
+    icon: '🇧🇷',
+    path: '/assets/christ_redeemer_gta.jpg',
+    description: 'Corcovado Summit · Rio de Janeiro, Brazil · $195K Bounty',
+  },
+  {
+    id: 'colosseum',
+    name: 'The Colosseum (Wonder)',
+    icon: '🇮🇹',
+    path: '/assets/colosseum_gta.jpg',
+    description: 'Gladiator Arena District · Rome, Italy · $320K Bounty',
+  },
+  {
+    id: 'chichen-itza',
+    name: 'Chichen Itza (Wonder)',
+    icon: '🇲🇽',
+    path: '/assets/chichen_itza_gta.jpg',
+    description: 'Kukulcan Pyramid · Yucatan, Mexico · $160K Bounty',
+  },
+  {
+    id: 'taj-mahal',
+    name: 'Taj Mahal Eternal (Wonder)',
+    icon: '🕌',
+    path: '/assets/taj_mahal_gta.jpg',
+    description: 'Eternal Shrine · Agra, India · $240K Bounty',
+  },
+  {
+    id: 'machu-picchu',
+    name: 'Machu Picchu (Wonder)',
+    icon: '🇵🇪',
+    path: '/assets/machu_picchu_gta.jpg',
+    description: 'Lost Incan Citadel · Andes, Peru · $145K Bounty',
+  },
+  {
+    id: 'petra',
+    name: 'Petra Rose-Red City (Wonder)',
+    icon: '🇯🇴',
+    path: '/assets/petra_gta.jpg',
+    description: 'Al-Khazneh Treasury · Ma\'an, Jordan · $210K Bounty',
+  },
 ];
 
 // Canvas-based poster customizer: stamps character details cleanly onto high-res base art

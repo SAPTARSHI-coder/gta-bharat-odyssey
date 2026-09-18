@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 export interface Chapter {
@@ -15,9 +15,10 @@ export const CHAPTERS: Chapter[] = [
   { id: 'section-portal',     number: '04', name: 'THE PORTAL',     badge: 'COSMIC RIFT' },
   { id: 'section-mumbai',     number: '05', name: 'MUMBAI',         badge: 'TAJ MAHAL PALACE' },
   { id: 'section-delhi',      number: '06', name: 'NEW DELHI',      badge: 'INDIA GATE' },
-  { id: 'section-kolkata',      number: '07', name: 'KOLKATA',        badge: 'VICTORIA MEMORIAL' },
-  { id: 'section-editor',     number: '08', name: 'POSTER STUDIO',  badge: 'REACT IMAGE EDITOR' },
-  { id: 'section-final',      number: '09', name: 'MISSION DEBRIEF', badge: 'SHARE & DOWNLOAD' },
+  { id: 'section-kolkata',    number: '07', name: 'KOLKATA',        badge: 'VICTORIA MEMORIAL' },
+  { id: 'section-wonders',    number: '08', name: 'SEVEN WONDERS',  badge: 'GLOBAL HEIST BOARD' },
+  { id: 'section-editor',     number: '09', name: 'POSTER STUDIO',  badge: 'REACT IMAGE EDITOR' },
+  { id: 'section-final',      number: '10', name: 'MISSION DEBRIEF', badge: 'SHARE & DOWNLOAD' },
 ];
 
 interface HatomNavRailProps {
