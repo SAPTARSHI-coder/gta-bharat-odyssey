@@ -8,7 +8,7 @@ export function Landing() {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-black select-none">
+    <div className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-black select-none pt-14">
       {/* Background Image: High-Resolution Generated Cover Art */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div

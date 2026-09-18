@@ -119,6 +119,14 @@ export default function App() {
   const minimapInfo = SECTION_MINIMAP[activeSectionId] || SECTION_MINIMAP['section-los-santos'];
   const missionInfo = SECTION_MISSION[activeSectionId];
 
+  const isNarrativeScene = [
+    'section-los-santos',
+    'section-portal',
+    'section-mumbai',
+    'section-delhi',
+    'section-kolkata',
+  ].includes(activeSectionId);
+
   return (
     <div ref={containerRef} className="relative w-full min-h-screen bg-black text-white selection:bg-purple-500 selection:text-white">
       {/* 1. Hatom-Style Fixed Background Manager with Seamless Cross-Fading */}
@@ -138,16 +146,16 @@ export default function App() {
         onSelectChapter={handleScrollToSection}
       />
 
-      {/* 4. Pinned Dynamic GTA Minimap (visible across gameplay sections) */}
-      {activeSectionId !== 'section-landing' && activeSectionId !== 'section-character' && (
+      {/* 4. Pinned Dynamic GTA Minimap (visible exclusively across gameplay narrative chapters) */}
+      {isNarrativeScene && (
         <GTAMinimap
           locationName={minimapInfo.location}
           zoneType={minimapInfo.zone}
         />
       )}
 
-      {/* 5. Pinned Dynamic GTA Mission Box (slides in when entering a chapter) */}
-      {missionInfo && (
+      {/* 5. Pinned Dynamic GTA Mission Box (slides in exclusively during narrative chapters) */}
+      {missionInfo && isNarrativeScene && (
         <GTAMissionBox
           key={activeSectionId}
           badge={missionInfo.badge}

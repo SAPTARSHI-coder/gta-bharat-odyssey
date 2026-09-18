@@ -398,7 +398,7 @@ export function SevenWondersBoard() {
   }, 0);
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-between select-none overflow-hidden bg-black text-white py-16 px-4 md:px-10">
+    <div className="relative min-h-screen w-full flex flex-col justify-between select-none overflow-hidden bg-black text-white pt-20 pb-6 px-4 md:px-12">
       {/* FULL BLEED BACKGROUND: Cross-fading 16:9 4K Artwork */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="wait">
@@ -447,25 +447,25 @@ export function SevenWondersBoard() {
       </div>
 
       {/* TOP BAR: Chapter Badge + Global Bounty Ticker + Theater Toggle */}
-      <div className="relative z-20 w-full flex flex-wrap items-center justify-between gap-4 pt-4">
-        <div className="flex items-center gap-3">
+      <div className="relative z-20 w-full flex flex-wrap items-center justify-between gap-3 max-w-7xl mx-auto">
+        <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-          <span className="hud-element text-red-400 text-xs md:text-sm tracking-[0.4em] font-bold">
+          <span className="hud-element text-red-400 text-xs md:text-sm tracking-[0.35em] font-bold">
             ★ CHAPTER 08: INTERPOL RED NOTICES // 7 WONDERS ★
           </span>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="glass-panel px-4 py-1.5 border border-red-500/40 flex items-center gap-2">
-            <span className="font-game text-[11px] text-white/70">GLOBAL BOUNTY POOL:</span>
-            <span className="font-cinematic text-lg text-red-400" style={{ textShadow: '0 0 10px #ff4444' }}>
+          <div className="glass-panel px-3.5 py-1.5 border border-red-500/40 flex items-center gap-2 bg-black/70 backdrop-blur-md">
+            <span className="font-game text-[10px] sm:text-[11px] text-white/70">GLOBAL BOUNTY POOL:</span>
+            <span className="font-cinematic text-base sm:text-lg text-red-400" style={{ textShadow: '0 0 10px #ff4444' }}>
               ${totalBounty.toLocaleString()}
             </span>
           </div>
 
           <button
             onClick={() => setIsTheaterOpen(true)}
-            className="glass-panel px-3 py-1.5 text-xs font-game border border-white/20 hover:border-amber-400 text-white/80 hover:text-white cursor-pointer transition-all flex items-center gap-1.5"
+            className="glass-panel px-3 py-1.5 text-xs font-game border border-white/20 hover:border-amber-400 text-white/80 hover:text-white cursor-pointer transition-all flex items-center gap-1.5 bg-black/70 backdrop-blur-md"
             title="Open 4K Fullscreen Theater"
           >
             <span>⛶</span>
@@ -475,48 +475,74 @@ export function SevenWondersBoard() {
       </div>
 
       {/* CENTER STAGE: Left-Aligned GTA Dossier Briefing + Target Intel */}
-      <div className="relative z-20 my-auto py-8 max-w-2xl">
+      <div className="relative z-20 my-auto py-4 max-w-xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentWonder.id}
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="space-y-4"
+            exit={{ opacity: 0, x: 15 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="glass-panel p-5 sm:p-6 rounded-2xl border border-white/15 bg-black/85 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] space-y-3.5"
+            style={{
+              borderLeft: `4px solid ${currentWonder.color}`,
+              boxShadow: `0 0 35px ${currentWonder.color}25, 0 20px 50px rgba(0,0,0,0.9)`,
+            }}
           >
-            {/* Target Location / Flag */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-2xl leading-none">{currentWonder.flag}</span>
-              <span
-                className="font-game text-xs tracking-widest font-bold px-2.5 py-1 rounded"
-                style={{
-                  background: 'rgba(0,0,0,0.85)',
-                  color: currentWonder.color,
-                  border: `1px solid ${currentWonder.color}50`,
-                  boxShadow: `0 0 12px ${currentWonder.color}30`,
-                }}
-              >
-                TARGET {currentIndex + 1} OF 7 · {currentWonder.district}
-              </span>
-              <span className="font-game text-xs text-white/50">{currentWonder.country}</span>
+            {/* Header: Target Location, Flag & Quick Navigation Chevrons */}
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-2xl leading-none">{currentWonder.flag}</span>
+                <span
+                  className="font-game text-[11px] tracking-widest font-bold px-2.5 py-1 rounded"
+                  style={{
+                    background: 'rgba(0,0,0,0.9)',
+                    color: currentWonder.color,
+                    border: `1px solid ${currentWonder.color}60`,
+                    boxShadow: `0 0 12px ${currentWonder.color}30`,
+                  }}
+                >
+                  TARGET 0{currentIndex + 1} OF 07 · {currentWonder.district}
+                </span>
+                <span className="font-game text-[11px] text-white/50">{currentWonder.country}</span>
+              </div>
+
+              {/* In-Card Quick Target Chevrons */}
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous Target"
+                  className="w-7 h-7 rounded-md bg-white/10 hover:bg-white/20 border border-white/20 hover:border-amber-400 text-white/80 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-all"
+                  title="Previous Heist Target (←)"
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next Target"
+                  className="w-7 h-7 rounded-md bg-white/10 hover:bg-white/20 border border-white/20 hover:border-amber-400 text-white/80 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-all"
+                  title="Next Heist Target (→)"
+                >
+                  ›
+                </button>
+              </div>
             </div>
 
-            {/* Giant Cinematic Wonder Name */}
+            {/* Cinematic Wonder Title */}
             <h2
-              className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-white leading-none tracking-wide"
+              className="font-cinematic text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-wide"
               style={{
-                textShadow: `0 5px 30px rgba(0,0,0,0.9), 0 0 40px ${currentWonder.color}70`,
+                textShadow: `0 4px 25px rgba(0,0,0,0.9), 0 0 35px ${currentWonder.color}70`,
               }}
             >
               {currentWonder.name}
             </h2>
 
-            {/* Bounty & Status Badges */}
-            <div className="flex flex-wrap items-center gap-3">
+            {/* Threat, Bounty & Status Badges */}
+            <div className="flex flex-wrap items-center gap-2.5">
               {/* Stars */}
-              <div className="glass-panel px-3 py-1.5 border border-white/20 flex items-center gap-1">
-                <span className="font-game text-[10px] text-white/40 mr-1">THREAT:</span>
+              <div className="glass-panel px-3 py-1 border border-white/20 flex items-center gap-1 bg-black/60">
+                <span className="font-game text-[10px] text-white/50 mr-1">THREAT:</span>
                 {Array.from({ length: 5 }, (_, i) => (
                   <span
                     key={i}
@@ -533,11 +559,11 @@ export function SevenWondersBoard() {
 
               {/* Bounty */}
               <div
-                className="glass-panel px-4 py-1.5 border font-game text-sm font-bold tracking-wider"
+                className="glass-panel px-3 py-1 border font-game text-xs font-bold tracking-wider bg-black/60"
                 style={{
                   borderColor: `${currentWonder.color}60`,
                   color: currentWonder.status === 'CLEARED' ? '#4ade80' : '#ffd700',
-                  textShadow: '0 0 10px currentColor',
+                  textShadow: '0 0 8px currentColor',
                 }}
               >
                 {currentWonder.status === 'CLEARED' ? '✓ BOUNTY CLAIMED' : `BOUNTY: ${currentWonder.bounty}`}
@@ -545,7 +571,7 @@ export function SevenWondersBoard() {
 
               {/* Status */}
               <div
-                className={`font-game text-xs font-bold tracking-widest px-3 py-1.5 rounded ${
+                className={`font-game text-[11px] font-bold tracking-widest px-2.5 py-1 rounded ${
                   currentWonder.status === 'CLEARED'
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
                     : 'bg-red-500/20 text-red-400 border border-red-500/50'
@@ -556,104 +582,104 @@ export function SevenWondersBoard() {
             </div>
 
             {/* Mission Briefing Text */}
-            <div
-              className="glass-panel p-4 border-l-4 max-w-xl backdrop-blur-md bg-black/75"
-              style={{ borderColor: currentWonder.color }}
-            >
+            <div className="border-l-2 pl-3 py-1" style={{ borderColor: currentWonder.color }}>
               <div className="font-game text-[10px] text-white/50 tracking-widest uppercase mb-1">
                 FIB SURVEILLANCE & MISSION INTEL:
               </div>
-              <p className="font-game text-sm sm:text-base text-white/90 leading-relaxed">
+              <p className="font-game text-xs sm:text-sm text-white/90 leading-relaxed italic">
                 "{currentWonder.brief}"
               </p>
             </div>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={handleCustomizeInEditor}
-                className="game-btn-purple text-sm sm:text-base px-8 py-3.5 flex items-center gap-3 cursor-pointer shadow-[0_0_35px_rgba(179,71,255,0.8)]"
+                className="game-btn-purple text-xs sm:text-sm px-6 py-2.5 flex items-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(179,71,255,0.7)]"
               >
-                <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
+                <span className="px-1.5 py-0.5 rounded bg-black/40 font-mono text-[10px] border border-white/30 font-bold">
                   E
                 </span>
                 <span className="font-bold tracking-wider">
-                  FORGE WANTED POSTER FOR THIS TARGET →
+                  FORGE WANTED POSTER →
                 </span>
               </button>
 
               <button
                 onClick={() => setIsTheaterOpen(true)}
-                className="glass-panel px-5 py-3.5 font-game text-xs text-white/80 hover:text-white border border-white/20 hover:border-cyan-400 cursor-pointer transition-colors"
+                className="glass-panel px-4 py-2.5 font-game text-xs text-white/80 hover:text-white border border-white/20 hover:border-cyan-400 cursor-pointer transition-colors bg-black/60"
               >
-                4K HEIST INTEL [FULLSCREEN] 👁️
+                4K HEIST INTEL 👁️
               </button>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Screen Edge Left/Right Arrows for Rapid Navigation */}
-      <button
-        onClick={handlePrev}
-        aria-label="Previous Wonder"
-        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full glass-panel border border-white/20 hover:border-amber-400 text-white/70 hover:text-white flex items-center justify-center text-2xl font-bold cursor-pointer transition-all hover:scale-110 active:scale-95"
-      >
-        ‹
-      </button>
-
-      <button
-        onClick={handleNext}
-        aria-label="Next Wonder"
-        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full glass-panel border border-white/20 hover:border-amber-400 text-white/70 hover:text-white flex items-center justify-center text-2xl font-bold cursor-pointer transition-all hover:scale-110 active:scale-95"
-      >
-        ›
-      </button>
-
       {/* BOTTOM: Filmstrip Dial of all 7 Wonders */}
-      <div className="relative z-20 w-full pt-4">
-        {/* Filmstrip selector track */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto py-2 px-4 no-scrollbar">
-          {WONDERS.map((w, idx) => {
-            const isSelected = idx === currentIndex;
-            return (
-              <button
-                key={w.id}
-                onClick={() => handleSelectWonder(idx)}
-                className={`relative group shrink-0 rounded-lg overflow-hidden transition-all duration-300 cursor-pointer ${
-                  isSelected
-                    ? 'w-24 sm:w-32 h-16 sm:h-20 scale-105'
-                    : 'w-16 sm:w-20 h-14 sm:h-16 opacity-55 hover:opacity-100 hover:scale-100'
-                }`}
-                style={{
-                  border: isSelected ? `2px solid ${w.color}` : '1px solid rgba(255,255,255,0.2)',
-                  boxShadow: isSelected ? `0 0 20px ${w.color}80, inset 0 0 10px ${w.color}40` : 'none',
-                }}
-              >
-                <img
-                  src={w.image}
-                  alt={w.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-                <div className="absolute bottom-1 left-1.5 right-1.5 flex items-center justify-between text-[10px] font-game">
-                  <span className="text-xs">{w.flag}</span>
-                  <span
-                    className="font-bold truncate"
-                    style={{ color: isSelected ? w.color : '#fff' }}
-                  >
-                    0{idx + 1}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
+      <div className="relative z-20 w-full pt-2">
+        {/* Filmstrip selector track with flanking chevrons */}
+        <div className="flex items-center justify-center gap-2 sm:gap-3 py-2 px-2 max-w-5xl mx-auto">
+          <button
+            onClick={handlePrev}
+            aria-label="Previous Target"
+            className="shrink-0 w-8 sm:w-10 h-14 sm:h-16 rounded-lg glass-panel border border-white/20 hover:border-amber-400 text-white/70 hover:text-white flex items-center justify-center text-xl font-bold cursor-pointer transition-all hover:scale-105 bg-black/70"
+            title="Previous Heist Target"
+          >
+            ‹
+          </button>
+
+          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto py-1 px-1 no-scrollbar">
+            {WONDERS.map((w, idx) => {
+              const isSelected = idx === currentIndex;
+              return (
+                <button
+                  key={w.id}
+                  onClick={() => handleSelectWonder(idx)}
+                  className={`relative group shrink-0 rounded-lg overflow-hidden transition-all duration-300 cursor-pointer ${
+                    isSelected
+                      ? 'w-24 sm:w-32 h-14 sm:h-16 scale-105'
+                      : 'w-16 sm:w-20 h-12 sm:h-14 opacity-55 hover:opacity-100 hover:scale-100'
+                  }`}
+                  style={{
+                    border: isSelected ? `2px solid ${w.color}` : '1px solid rgba(255,255,255,0.2)',
+                    boxShadow: isSelected ? `0 0 20px ${w.color}80, inset 0 0 10px ${w.color}40` : 'none',
+                  }}
+                >
+                  <img
+                    src={w.image}
+                    alt={w.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                  <div className="absolute bottom-1 left-1.5 right-1.5 flex items-center justify-between text-[10px] font-game">
+                    <span className="text-xs">{w.flag}</span>
+                    <span
+                      className="font-bold truncate"
+                      style={{ color: isSelected ? w.color : '#fff' }}
+                    >
+                      0{idx + 1}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            onClick={handleNext}
+            aria-label="Next Target"
+            className="shrink-0 w-8 sm:w-10 h-14 sm:h-16 rounded-lg glass-panel border border-white/20 hover:border-amber-400 text-white/70 hover:text-white flex items-center justify-center text-xl font-bold cursor-pointer transition-all hover:scale-105 bg-black/70"
+            title="Next Heist Target"
+          >
+            ›
+          </button>
         </div>
 
         {/* Keyboard hint & Direct Next Chapter button */}
-        <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-game text-white/40 pt-2 border-t border-white/10">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-game text-white/50 pt-2 border-t border-white/10 max-w-5xl mx-auto">
           <div className="flex items-center gap-2">
-            <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 font-mono text-[10px]">
+            <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 font-mono text-[10px] text-amber-400">
               ← / →
             </span>
             <span>USE ARROW KEYS OR [1-7] TO CYCLE HEIST TARGETS</span>
@@ -664,7 +690,7 @@ export function SevenWondersBoard() {
               sounds.playClick();
               document.getElementById('section-editor')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="hover:text-amber-400 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-white/70"
+            className="hover:text-amber-400 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-white/80"
           >
             <span>ADVANCE TO CRIME LAB (14 HEIST TEMPLATES)</span>
             <span>→</span>

@@ -108,7 +108,7 @@ export function CharacterCreator() {
     }`;
 
   return (
-    <div className="min-h-screen bg-black/70 backdrop-blur-md relative overflow-hidden py-16 px-4">
+    <div className="min-h-screen bg-black/70 backdrop-blur-md relative overflow-hidden pt-20 pb-16 px-4">
       {/* Background grid */}
       <div
         className="fixed inset-0 z-0 opacity-10"

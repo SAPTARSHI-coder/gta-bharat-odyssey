@@ -41,7 +41,7 @@ export function FinalShare() {
         initial={{ opacity: 0, y: -25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 text-center pt-12 pb-6 px-4"
+        className="relative z-10 text-center pt-20 pb-6 px-4"
       >
         <div className="hud-element text-amber-400 mb-2 tracking-[0.5em] font-bold">
           ★ MISSION PASSED // RESPECT +100 // $1,000,000 PAYOUT ★
