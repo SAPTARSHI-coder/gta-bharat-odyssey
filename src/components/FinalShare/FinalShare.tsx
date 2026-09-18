@@ -44,7 +44,7 @@ export function FinalShare() {
         className="relative z-10 text-center pt-20 pb-6 px-4"
       >
         <div className="hud-element text-amber-400 mb-2 tracking-[0.5em] font-bold">
-          ★ MISSION PASSED // RESPECT +100 // $1,000,000 PAYOUT ★
+          ★ MISSION PASSED // RESPECT +100 // $1,000,000 IN-GAME HEIST BOUNTY ★
         </div>
         <h2
           className="font-cinematic text-5xl md:text-8xl text-white mb-2"
@@ -215,7 +215,7 @@ export function FinalShare() {
         {/* Footer Challenge Signature */}
         <div className="mt-auto text-center font-game text-xs text-white/30 pt-4 border-t border-white/10">
           <div>Built for the <strong>Unlayer "Build with React Image Editor Challenge"</strong> · #BuiltWithImageEditor</div>
-          <div className="text-[11px] text-white/20 mt-1">Powered by @unlayer/react-image-editor · Rockstar-Grade Open-World Web Experience</div>
+          <div className="text-[11px] text-white/20 mt-1">Powered by @unlayer/react-image-editor · Triple-A Open-World Web Experience</div>
         </div>
       </div>
     </div>

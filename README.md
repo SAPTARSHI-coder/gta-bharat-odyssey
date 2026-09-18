@@ -7,7 +7,7 @@
 [![GitHub Repo](https://img.shields.io/badge/GITHUB-SAPTARSHI--coder%2Fgta--bharat--odyssey-181717?style=for-the-badge&logo=github)](https://github.com/SAPTARSHI-coder/gta-bharat-odyssey)
 [![Built With React Image Editor](https://img.shields.io/badge/Built%20With-React%20Image%20Editor-b347ff?style=for-the-badge&logo=react)](https://github.com/unlayer/react-image-editor)
 [![Unlayer Challenge](https://img.shields.io/badge/%23BuiltWithImageEditor-Challenge%20Entry-ff6b35?style=for-the-badge)](https://www.linkedin.com/posts/builtwithimageeditor-ugcPost-7501266289240240128-5qRa/)
-[![Prize Target](https://img.shields.io/badge/Target-1st%20Prize%20%24500-ffd700?style=for-the-badge)](https://github.com/unlayer/react-image-editor)
+[![Official Entry](https://img.shields.io/badge/Official%20Entry-Unlayer%20Challenge-ffd700?style=for-the-badge&logo=unlayer)](https://github.com/unlayer/react-image-editor)
 
 <br/>
 
@@ -28,23 +28,23 @@
 
 **Los Santos to Bharat** is an Awwwards-grade, open-world interactive scrollytelling web experience built for the official **Unlayer "Build with React Image Editor Challenge" ($1,000 Prize Pool)**.
 
-Instead of embedding `@unlayer/react-image-editor` as a plain utility tool, this project transforms it into the **ultimate narrative climax**: an authentic **Ammu-Nation Crime Lab** where operatives forge their fake IDs, wanted posters, and street-level mugshots after pulling off interdimensional heists across **Los Santos**, **Bharat (India)**, and all **Seven Wonders of the World**.
+Instead of embedding `@unlayer/react-image-editor` as a plain utility tool, this project transforms it into the **ultimate narrative climax**: a covert **Black Market Crime Lab** where operatives forge their fake IDs, wanted posters, and street-level mugshots after pulling off interdimensional heists across **Los Santos**, **Bharat (India)**, and all **Seven Wonders of the World**.
 
 ---
 
-## 🎮 The Full GTA VI Experience Explained
+## 🎮 The Full GTA-Inspired Experience Explained
 
-Built with deep fidelity to Rockstar Games' iconic design language, **Los Santos to Bharat** translates the full GTA gameplay and aesthetic experience into an interactive web medium:
+Inspired by modern cinematic crime fiction and classic open-world game design languages, **Los Santos to Bharat** translates the full adrenaline-filled gameplay and aesthetic experience into an interactive web medium:
 
 ### 1. The LSPD Booking Terminal (Character Creation)
-Just like character creation in *GTA Online*, operatives start at the police booking terminal:
+Just like character creation in classic crime sandboxes, operatives start at the police booking terminal:
 - Choose from 4 criminal archetypes: *Vinewood Hustler*, *Darknet Infiltrator*, *Street Enforcer*, or *Corporate Embezzler*.
 - Distribute skill points across 5 core heist stats: **DRIVING**, **TECH**, **STREET**, **STYLE**, and **LUCK**.
 - Set your criminal alias and write your rap sheet bio, which dynamically syncs to your wanted poster later.
 
-### 2. Authentic In-Game GTA Heads-Up Display (HUD)
+### 2. GTA-Inspired Heads-Up Display (HUD)
 - **Dynamic Radar Minimap**: A circular pulsing radar scanner pinned to the bottom-left with real-time GPS waypoint markers, North compass needle, district names, and dual **Health (Green)** and **Armor (Blue)** status meters.
-- **Flashing Wanted Stars**: Iconic GTA `★ ★ ★ ★ ★` heat rating that pulses in the HUD as you escalate from Del Perro Beach to intercontinental fugitives.
+- **Flashing Wanted Stars**: Classic open-world `★ ★ ★ ★ ★` heat rating that pulses in the HUD as you escalate from Del Perro Beach to intercontinental fugitives.
 - **Slide-In Mission Banners**: Audio-accompanied mission notifications slide in from the top-left upon entering new territories (e.g., `★ MISSION 01: VINEWOOD HEAT // 2-STAR WANTED ★`).
 
 ### 3. Open-World Narrative & Dimensional Breach
@@ -57,13 +57,13 @@ Just like character creation in *GTA Online*, operatives start at the police boo
 - Features living ambient visual shaders: tropical storms & lightning in Rio de Janeiro, 18 floating illuminated Diwali lanterns in Agra, glowing arena embers in Rome, and desert torch flare in Petra.
 - Inspect dossiers with threat star ratings, $1.3M total bounty pool, and 4K fullscreen theater inspection.
 
-### 5. The Climax: Ammu-Nation Crime Lab (`@unlayer/react-image-editor`)
+### 5. The Climax: Black Market Crime Lab (`@unlayer/react-image-editor`)
 - An in-world crime forge where players finalize their fake IDs and wanted posters.
 - An automated HTML5 Canvas engine dynamically stamps the player's alias, title, and RPG stats onto 14 selectable crime scene templates.
 - Players crop out getaway rides, apply high-contrast filters to foil facial recognition, type bold street typography, and stamp decals.
 
 ### 6. Procedural Synthesizer Audio & Mission Debrief
-- Real-time Web Audio API synthesizer generating cosmic warp frequencies, camera shutter snaps, and the iconic triumphant GTA "Mission Passed" fanfare.
+- Real-time Web Audio API synthesizer generating cosmic warp frequencies, camera shutter snaps, and the iconic triumphant "Mission Passed" fanfare.
 - Concludes with a verified social debrief card and 1-click 4K poster download to leak to Bleeter.
 
 ---
@@ -108,10 +108,10 @@ When reality ruptures, seven world wonders open up as active Interpol targets:
 
 ---
 
-### 🕹️ 3. Authentic Rockstar Games GTA HUD System
-- **Dynamic Pulsing Radar Minimap**: Pinned GTA radar with sweeping scanner, GPS destination waypoint, North compass, location callout, and dual Health (Green) & Armor (Blue) meters.
-- **Flashing Wanted Stars**: Iconic GTA ★ ★ ★ ★ ★ heat indicator flashing in the HUD.
-- **Sliding Mission Objective Banners**: Authentic mission notifications slide in on chapter transition with audio chimes.
+### 🕹️ 3. Open-World Game-Inspired HUD System
+- **Dynamic Pulsing Radar Minimap**: Pinned tactical radar with sweeping scanner, GPS destination waypoint, North compass, location callout, and dual Health (Green) & Armor (Blue) meters.
+- **Flashing Wanted Stars**: Dynamic ★ ★ ★ ★ ★ heat indicator flashing in the HUD.
+- **Sliding Mission Objective Banners**: Cinematic mission notifications slide in on chapter transition with audio chimes.
 - **Responsive Clearance Architecture**: HUD elements dynamically scope to open-world chapters so they never overlap or crowd the interactive Crime Lab or Seven Wonders Board.
 
 ---
@@ -137,8 +137,8 @@ When reality ruptures, seven world wonders open up as active Interpol targets:
 | **06** | `section-delhi` | **Chapter 4: Corridors of Power** | Kartavya Path, India Gate, 10-lane VIP asphalt, yellow taxi chase |
 | **07** | `section-kolkata` | **Chapter 5: Rebel City** | Victoria Memorial, Howrah Bridge, intercontinental rift shockwave |
 | **08** | `section-wonders` | **Chapter 6: 7 Wonders Heist Board** | Global Interpol Red Notices, 7 living wonders, $1.3M bounty pool, 4K theater |
-| **09** | `section-editor` | **Chapter 7: Ammu-Nation Crime Lab** | **@unlayer/react-image-editor** studio with 14 heist templates & stats stamp |
-| **10** | `section-final` | **Mission Passed: Respect +100** | $1,000,000 payout, verified social card preview, high-res download |
+| **09** | `section-editor` | **Chapter 7: Black Market Crime Lab** | **@unlayer/react-image-editor** studio with 14 heist templates & stats stamp |
+| **10** | `section-final` | **Mission Passed: Respect +100** | $1,000,000 in-game fictional heist bounty payout, verified social card preview, high-res download |
 
 ---
 
@@ -222,7 +222,7 @@ npm run preview
 - [x] **Core `@unlayer/react-image-editor`**: Editor is the centerpiece where players forge their wanted poster.
 - [x] **Customization**: 14 selectable templates, automated canvas character stat stamping, filters, annotations, and export.
 - [x] **Open Source**: Public GitHub repository with clean history and documentation.
-- [x] **Full GTA VI Experience Explained in README**: Dedicated section covering character creation, HUD, minimap, Wanted stars, procedural audio, living shaders, and narrative heist climax.
+- [x] **Full GTA-Inspired Experience Explained in README**: Dedicated section covering character creation, HUD, minimap, Wanted stars, procedural audio, living shaders, and narrative heist climax.
 - [x] **Live Deployment**: Hosted on Vercel with HTTPS and zero-latency CDN.
 
 ---

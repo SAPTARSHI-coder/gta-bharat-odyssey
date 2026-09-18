@@ -269,7 +269,7 @@ export function JourneyEditor() {
       {/* Header Banner */}
       <div className="relative z-10 text-center max-w-4xl mx-auto mb-6">
         <div className="hud-element text-purple-400 mb-1.5 font-bold tracking-[0.4em]">
-          ★ AMMU-NATION CRIME LAB // UNLAYER MUGSHOT SUITE ★
+          ★ BLACK MARKET CRIME LAB // UNLAYER MUGSHOT SUITE ★
         </div>
         <h2
           className="font-cinematic text-4xl sm:text-5xl md:text-6xl text-white tracking-wide leading-tight mb-2"

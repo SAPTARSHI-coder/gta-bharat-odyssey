@@ -82,7 +82,7 @@ export function Landing() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hud-element text-xs md:text-sm tracking-[0.4em] text-cyan-400 mb-2 font-bold"
         >
-          ◈ A ROCKSTAR-GRADE CINEMATIC HEIST ODYSSEY ◈
+          ◈ A TRIPLE-A CINEMATIC HEIST ODYSSEY ◈
         </motion.div>
 
         {/* Main Title Banner */}
