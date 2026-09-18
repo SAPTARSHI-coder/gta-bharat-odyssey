@@ -1,10 +1,11 @@
-﻿import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { GameState, Scene, Character } from '../types';
 
 interface GameContextValue extends GameState {
   goToScene: (scene: Scene) => void;
   setCharacter: (char: Character) => void;
   setFinalPoster: (dataUrl: string) => void;
+  setSelectedTemplateId: (id: string) => void;
   resetGame: () => void;
 }
 
@@ -13,6 +14,7 @@ const defaultState: GameState = {
   character: null,
   finalPosterDataUrl: null,
   journeyStartTime: null,
+  selectedTemplateId: 'official-poster',
 };
 
 const GameContext = createContext<GameContextValue | null>(null);
@@ -36,6 +38,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, finalPosterDataUrl: dataUrl }));
   }, []);
 
+  const setSelectedTemplateId = useCallback((selectedTemplateId: string) => {
+    setState(prev => ({ ...prev, selectedTemplateId }));
+  }, []);
+
   const resetGame = useCallback(() => {
     setState(defaultState);
     const landing = document.getElementById('section-landing');
@@ -45,7 +51,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <GameContext.Provider value={{ ...state, goToScene, setCharacter, setFinalPoster, resetGame }}>
+    <GameContext.Provider value={{ ...state, goToScene, setCharacter, setFinalPoster, setSelectedTemplateId, resetGame }}>
       {children}
     </GameContext.Provider>
   );

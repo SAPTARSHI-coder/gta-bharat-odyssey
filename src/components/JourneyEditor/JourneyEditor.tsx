@@ -205,11 +205,18 @@ function createPersonalizedPoster(
 }
 
 export function JourneyEditor() {
-  const { character, goToScene, setFinalPoster } = useGame();
+  const { character, goToScene, setFinalPoster, selectedTemplateId: gameSelectedTemplateId } = useGame();
   const editorRef = useRef<ImageEditorRef>(null);
-  const [selectedTemplateId, setSelectedTemplateId] = useState('official-poster');
+  const [selectedTemplateId, setSelectedTemplateId] = useState(gameSelectedTemplateId || 'official-poster');
   const [activeImageUrl, setActiveImageUrl] = useState<string>('/assets/journey_poster_default.jpg');
   const [isRendering, setIsRendering] = useState(false);
+
+  // Sync if game context sets a new template (e.g. from 7 Wonders board)
+  useEffect(() => {
+    if (gameSelectedTemplateId) {
+      setSelectedTemplateId(gameSelectedTemplateId);
+    }
+  }, [gameSelectedTemplateId]);
 
   // Generate personalized poster when template or character changes
   useEffect(() => {

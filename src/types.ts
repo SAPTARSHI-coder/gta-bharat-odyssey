@@ -1,4 +1,4 @@
-﻿// Types for the entire game experience
+// Types for the entire game experience
 export type Scene =
   | 'landing'
   | 'character'
@@ -34,4 +34,5 @@ export interface GameState {
   character: Character | null;
   finalPosterDataUrl: string | null;
   journeyStartTime: number | null;
+  selectedTemplateId?: string;
 }
