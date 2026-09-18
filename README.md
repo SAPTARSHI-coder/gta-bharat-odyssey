@@ -32,9 +32,45 @@ Instead of embedding `@unlayer/react-image-editor` as a plain utility tool, this
 
 ---
 
+## 🎮 The Full GTA VI Experience Explained
+
+Built with deep fidelity to Rockstar Games' iconic design language, **Los Santos to Bharat** translates the full GTA gameplay and aesthetic experience into an interactive web medium:
+
+### 1. The LSPD Booking Terminal (Character Creation)
+Just like character creation in *GTA Online*, operatives start at the police booking terminal:
+- Choose from 4 criminal archetypes: *Vinewood Hustler*, *Darknet Infiltrator*, *Street Enforcer*, or *Corporate Embezzler*.
+- Distribute skill points across 5 core heist stats: **DRIVING**, **TECH**, **STREET**, **STYLE**, and **LUCK**.
+- Set your criminal alias and write your rap sheet bio, which dynamically syncs to your wanted poster later.
+
+### 2. Authentic In-Game GTA Heads-Up Display (HUD)
+- **Dynamic Radar Minimap**: A circular pulsing radar scanner pinned to the bottom-left with real-time GPS waypoint markers, North compass needle, district names, and dual **Health (Green)** and **Armor (Blue)** status meters.
+- **Flashing Wanted Stars**: Iconic GTA `★ ★ ★ ★ ★` heat rating that pulses in the HUD as you escalate from Del Perro Beach to intercontinental fugitives.
+- **Slide-In Mission Banners**: Audio-accompanied mission notifications slide in from the top-left upon entering new territories (e.g., `★ MISSION 01: VINEWOOD HEAT // 2-STAR WANTED ★`).
+
+### 3. Open-World Narrative & Dimensional Breach
+- Explore Del Perro Beach at dusk with police choppers circling overhead and an overheating Comet.
+- Discover and jump through a crackling interdimensional anomaly, tearing through concrete with ozone static and neon chromatic aberration.
+- Touch down in Bharat across 3 living landmarks: **Mumbai Colaba Pier** (Taj Palace & Arabian Sea), **New Delhi Kartavya Path** (India Gate & VIP motorcades), and **Kolkata Victoria Memorial** (colonial marble & Howrah Bridge).
+
+### 4. Seven Wonders Global Heist Syndicate
+- The cosmic shockwave shatters reality across all Seven Wonders of the World, transforming them into active Interpol Red Notice targets.
+- Features living ambient visual shaders: tropical storms & lightning in Rio de Janeiro, 18 floating illuminated Diwali lanterns in Agra, glowing arena embers in Rome, and desert torch flare in Petra.
+- Inspect dossiers with threat star ratings, $1.3M total bounty pool, and 4K fullscreen theater inspection.
+
+### 5. The Climax: Ammu-Nation Crime Lab (`@unlayer/react-image-editor`)
+- An in-world crime forge where players finalize their fake IDs and wanted posters.
+- An automated HTML5 Canvas engine dynamically stamps the player's alias, title, and RPG stats onto 14 selectable crime scene templates.
+- Players crop out getaway rides, apply high-contrast filters to foil facial recognition, type bold street typography, and stamp decals.
+
+### 6. Procedural Synthesizer Audio & Mission Debrief
+- Real-time Web Audio API synthesizer generating cosmic warp frequencies, camera shutter snaps, and the iconic triumphant GTA "Mission Passed" fanfare.
+- Concludes with a verified social debrief card and 1-click 4K poster download to leak to Bleeter.
+
+---
+
 ## 🎯 What Makes This Stand Out
 
-### 🎨 1. Deep `@unlayer/react-image-editor` Integration (The Climax)
+### 🎨 1. Deep `@unlayer/react-image-editor` Integration
 The Unlayer Image Editor is the payoff of a 10-chapter cinematic journey:
 - **Canvas Auto-Personalizer Engine**: Before loading into Unlayer, a custom HTML5 Canvas rendering pipeline auto-stamps the operative's alias, crime archetype, and custom stats (`DRIVING · TECH · STREET · STYLE`) directly onto high-resolution key art.
 - **14 Master Crime Scene Templates**: Operatives can toggle between 14 curated scenes directly in the editor toolbar:
@@ -186,6 +222,7 @@ npm run preview
 - [x] **Core `@unlayer/react-image-editor`**: Editor is the centerpiece where players forge their wanted poster.
 - [x] **Customization**: 14 selectable templates, automated canvas character stat stamping, filters, annotations, and export.
 - [x] **Open Source**: Public GitHub repository with clean history and documentation.
+- [x] **Full GTA VI Experience Explained in README**: Dedicated section covering character creation, HUD, minimap, Wanted stars, procedural audio, living shaders, and narrative heist climax.
 - [x] **Live Deployment**: Hosted on Vercel with HTTPS and zero-latency CDN.
 
 ---
