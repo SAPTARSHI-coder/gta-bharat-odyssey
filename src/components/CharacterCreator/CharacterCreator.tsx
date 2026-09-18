@@ -5,7 +5,8 @@ import { Character, CharacterStats } from '../../types';
 import { sounds } from '../../utils/audio';
 
 export interface CharacterArchetype {
-  id: 'urban' | 'tech' | 'street' | 'corporate';
+  id: string;
+  mappedAppearance: 'urban' | 'tech' | 'street' | 'corporate';
   name: string;
   role: string;
   image: string;
@@ -19,66 +20,131 @@ export interface CharacterArchetype {
   defaultBio: string;
 }
 
-export const ARCHETYPES: Record<'urban' | 'tech' | 'street' | 'corporate', CharacterArchetype> = {
-  urban: {
-    id: 'urban',
-    name: 'VINEWOOD HUSTLER',
-    role: 'Del Perro Street Racer & Syndicate Wheelman',
-    image: '/assets/char_hustler.jpg',
+export const MALE_ARCHETYPES: CharacterArchetype[] = [
+  {
+    id: 'male-prodigy',
+    mappedAppearance: 'urban',
+    name: 'VINEWOOD PRODIGY',
+    role: 'Vespucci Street Legend and Nitrous Wheelman',
+    image: '/assets/char_male_protag.jpg',
+    height: "6'0\"",
+    bounty: '$190,000',
+    threat: '★★★★★',
+    color: '#00f5ff',
+    accent: '#ff2d87',
+    specialty: 'Nitrous street tuning, high-speed highway evasion, counterfeit titles',
+    origin: 'Del Perro and Vinewood Hills',
+    defaultBio: 'Young charismatic street racer in black hoodie and dark shades. Ditching cruisers down PCH with ease.',
+  },
+  {
+    id: 'male-runner',
+    mappedAppearance: 'street',
+    name: 'DEL PERRO RUNNER',
+    role: 'Downtown Infiltrator and Heist Wheelman',
+    image: '/assets/char_male_runner.jpg',
     height: "6'1\"",
-    bounty: '$75,000',
+    bounty: '$140,000',
     threat: '★★★★☆',
     color: '#ff9933',
     accent: '#ffd700',
-    specialty: 'High-speed evasive driving, counterfeit vehicle titles, nitrous tuning',
-    origin: 'South Central & Vinewood Hills, Los Santos',
-    defaultBio: 'Wanted for grand theft auto and reckless evasion on Vespucci Blvd. Ditching cruisers on Pacific Coast Hwy.',
+    specialty: 'Tactical getaway driving, armed evasion, perimeter breaches',
+    origin: 'Pacific Coast Highway and Davis',
+    defaultBio: 'Ex-syndicate wheelman. The fastest getaway specialist between Los Santos and Bharat.',
   },
-  tech: {
-    id: 'tech',
-    name: 'DARKNET INFILTRATOR',
-    role: 'Zero-Day Exploit Specialist & Cyber Operative',
+  {
+    id: 'male-hacker',
+    mappedAppearance: 'tech',
+    name: 'DARKNET CYPHER',
+    role: 'Zero-Day Exploit Specialist and Cyber Operative',
     image: '/assets/char_hacker.jpg',
     height: "5'11\"",
-    bounty: '$120,000',
+    bounty: '$175,000',
     threat: '★★★★★',
-    color: '#00f5ff',
-    accent: '#b347ff',
+    color: '#b347ff',
+    accent: '#00f5ff',
     specialty: 'ATM skimming, bank security bypass, EMP pulses, drone surveillance',
-    origin: 'Black-Budget Silicon Syndicate, San Fierro',
-    defaultBio: 'Ex-defense contractor turned rogue cypherpunk. Erased his identity, emptied Maze Bank offshore vaults.',
+    origin: 'Black-Budget Silicon Syndicate',
+    defaultBio: 'Rogue cypherpunk. Erased his federal record, cracked Maze Bank encryption.',
   },
-  street: {
-    id: 'street',
+  {
+    id: 'male-enforcer',
+    mappedAppearance: 'street',
     name: 'STREET ENFORCER',
-    role: 'South Central Heavy Muscle & Vault Breacher',
+    role: 'South Central Heavy Muscle and Vault Breacher',
     image: '/assets/char_enforcer.jpg',
     height: "6'4\"",
-    bounty: '$150,000',
+    bounty: '$165,000',
     threat: '★★★★★',
     color: '#ff2d87',
     accent: '#ff6b35',
     specialty: 'Thermal lance breaching, armed intimidation, heavy munitions',
-    origin: 'Strawberry & Davis District, Los Santos',
+    origin: 'Strawberry and Davis District',
     defaultBio: 'Two-time Bolingbroke escapee. Built like a brick safehouse with gold chains and zero remorse.',
   },
-  corporate: {
-    id: 'corporate',
-    name: 'CORPORATE EMBEZZLER',
-    role: 'Maze Bank Shadow Executive & International Launderer',
-    image: '/assets/char_exec.jpg',
-    height: "6'0\"",
-    bounty: '$190,000',
-    threat: '★★★★☆',
-    color: '#ffd700',
-    accent: '#4ade80',
-    specialty: 'Shell company laundering, international wire routing, federal bribery',
-    origin: 'Downtown Los Santos Financial Core',
-    defaultBio: 'High-stakes boardroom predator. Siphoning millions through Caymans shell accounts. Untouchable.',
-  },
-};
+];
 
-const APPEARANCES = ['urban', 'tech', 'street', 'corporate'] as const;
+export const FEMALE_ARCHETYPES: CharacterArchetype[] = [
+  {
+    id: 'female-queenpin',
+    mappedAppearance: 'street',
+    name: 'VICE CITY QUEENPIN',
+    role: 'Armed Heist Mastermind and Syndicate Boss',
+    image: '/assets/char_female_heist.jpg',
+    height: "5'8\"",
+    bounty: '$250,000',
+    threat: '★★★★★',
+    color: '#ff2d87',
+    accent: '#ffd700',
+    specialty: 'Precision bank entry, armed intimidation, heavy weapon mastery',
+    origin: 'Vice City and South Central LS',
+    defaultBio: 'Sultry, deadly cartel mastermind. Most wanted by Miami and LSPD feds. Untouchable reputation.',
+  },
+  {
+    id: 'female-rebel',
+    mappedAppearance: 'urban',
+    name: 'BHARAT REBEL',
+    role: 'Mumbai Port Smuggler and Resistance Leader',
+    image: '/assets/char_female_rebel.jpg',
+    height: "5'7\"",
+    bounty: '$210,000',
+    threat: '★★★★★',
+    color: '#ffd700',
+    accent: '#ff9933',
+    specialty: 'Underground smuggling networks, twin pistol marksmanship, evasive driving',
+    origin: 'Colaba Harbor, Mumbai and Kolkata',
+    defaultBio: 'Ruling the maritime black markets from Colaba to Howrah. Known across underworld syndicates as the Ghost of Mumbai.',
+  },
+  {
+    id: 'female-cyber',
+    mappedAppearance: 'tech',
+    name: 'DARKNET INFILTRATOR',
+    role: 'Zero-Day Exploit Specialist and Cyber Infiltrator',
+    image: '/assets/char_hacker.jpg',
+    height: "5'10\"",
+    bounty: '$180,000',
+    threat: '★★★★★',
+    color: '#00f5ff',
+    accent: '#b347ff',
+    specialty: 'Maze Bank vault bypass, drone surveillance, EMP disruptions',
+    origin: 'Silicon Alley, San Fierro',
+    defaultBio: 'Black-budget cypherpunk. Empties offshore crypto reserves without leaving a single trace.',
+  },
+  {
+    id: 'female-exec',
+    mappedAppearance: 'corporate',
+    name: 'SHADOW EXECUTIVE',
+    role: 'Maze Bank Launderer and Offshore Strategist',
+    image: '/assets/char_exec.jpg',
+    height: "5'11\"",
+    bounty: '$195,000',
+    threat: '★★★★☆',
+    color: '#4ade80',
+    accent: '#00f5ff',
+    specialty: 'Caymans shell companies, federal wire routing, international bribery',
+    origin: 'Downtown Los Santos Financial Core',
+    defaultBio: 'Boardroom predator. Moving billions through shadow corporations. High-society untouchable.',
+  },
+];
 
 interface StatRowProps {
   label: string;
@@ -115,8 +181,8 @@ export function CharacterCreator() {
   const { goToScene, setCharacter } = useGame();
   const [name, setName] = useState('Saptarshi');
   const [gender, setGender] = useState<'Male' | 'Female' | 'Non-binary'>('Male');
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [backgroundOption, setBackgroundOption] = useState('Tech Nomad');
-  const [appearance, setAppearance] = useState<typeof APPEARANCES[number]>('urban');
 
   // Stats matching the ChatGPT mockup: Driving, Shooting, IQ, Style (plus Luck)
   const [stats, setStats] = useState<CharacterStats>({
@@ -129,7 +195,9 @@ export function CharacterCreator() {
 
   const [error, setError] = useState('');
 
-  const currentArchetype = ARCHETYPES[appearance];
+  // Active roster based on gender
+  const activeRoster = gender === 'Female' ? FEMALE_ARCHETYPES : MALE_ARCHETYPES;
+  const currentArchetype = activeRoster[selectedIndex] || activeRoster[0];
 
   // Map chosen background option to game internal types
   const getMappedBackground = (opt: string): 'streets' | 'tech' | 'art' | 'hustle' => {
@@ -142,6 +210,12 @@ export function CharacterCreator() {
     }
   };
 
+  const handleGenderChange = (g: 'Male' | 'Female' | 'Non-binary') => {
+    sounds.playClick();
+    setGender(g);
+    setSelectedIndex(0); // reset to top hot profile of chosen gender
+  };
+
   const handleStart = () => {
     if (!name.trim()) {
       setError('Please enter a character name');
@@ -152,11 +226,11 @@ export function CharacterCreator() {
       name: name.trim().toUpperCase(),
       title: backgroundOption.toUpperCase(),
       bio: `${gender} operative. ${currentArchetype.defaultBio}`,
-      appearance,
+      appearance: currentArchetype.mappedAppearance,
       outfit: 'hoodie',
       background: getMappedBackground(backgroundOption),
       stats,
-      avatar: appearance === 'tech' ? '💻' : appearance === 'street' ? '🎭' : appearance === 'corporate' ? '⚡' : '🕶️',
+      avatar: gender === 'Female' ? '💃' : '🕶️',
       image: currentArchetype.image,
     };
     setCharacter(char);
@@ -180,22 +254,16 @@ export function CharacterCreator() {
         return;
       }
 
-      if (e.key === '1') { sounds.playClick(); setAppearance('urban'); }
-      else if (e.key === '2') { sounds.playClick(); setAppearance('tech'); }
-      else if (e.key === '3') { sounds.playClick(); setAppearance('street'); }
-      else if (e.key === '4') { sounds.playClick(); setAppearance('corporate'); }
+      if (e.key === '1') { sounds.playClick(); setSelectedIndex(0); }
+      else if (e.key === '2') { sounds.playClick(); setSelectedIndex(1); }
+      else if (e.key === '3') { sounds.playClick(); setSelectedIndex(2); }
+      else if (e.key === '4') { sounds.playClick(); setSelectedIndex(3); }
       else if (e.key === 'ArrowRight') {
         sounds.playClick();
-        setAppearance(prev => {
-          const idx = APPEARANCES.indexOf(prev);
-          return APPEARANCES[(idx + 1) % APPEARANCES.length];
-        });
+        setSelectedIndex(prev => (prev + 1) % activeRoster.length);
       } else if (e.key === 'ArrowLeft') {
         sounds.playClick();
-        setAppearance(prev => {
-          const idx = APPEARANCES.indexOf(prev);
-          return APPEARANCES[(idx - 1 + APPEARANCES.length) % APPEARANCES.length];
-        });
+        setSelectedIndex(prev => (prev - 1 + activeRoster.length) % activeRoster.length);
       } else if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         handleStart();
@@ -203,7 +271,7 @@ export function CharacterCreator() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [name, gender, backgroundOption, appearance, stats, currentArchetype]);
+  }, [name, gender, backgroundOption, selectedIndex, stats, currentArchetype, activeRoster]);
 
   return (
     <div className="relative h-screen max-h-screen w-full flex items-center justify-center select-none overflow-hidden bg-black/90 backdrop-blur-md px-4 py-2">
@@ -335,15 +403,15 @@ export function CharacterCreator() {
 
             {/* 4 Avatar Selection Thumbnails (Directly Below Portrait, matching ChatGPT panel) */}
             <div className="grid grid-cols-4 gap-1.5 mt-2.5">
-              {Object.values(ARCHETYPES).map((arch, idx) => {
-                const isSelected = appearance === arch.id;
+              {activeRoster.map((arch, idx) => {
+                const isSelected = selectedIndex === idx;
                 return (
                   <button
                     key={arch.id}
                     type="button"
                     onClick={() => {
                       sounds.playClick();
-                      setAppearance(arch.id);
+                      setSelectedIndex(idx);
                     }}
                     className={`relative group rounded-lg overflow-hidden border transition-all duration-200 cursor-pointer p-1 text-center ${
                       isSelected
@@ -371,7 +439,7 @@ export function CharacterCreator() {
 
             {/* Specialty Snippet */}
             <div className="mt-2 px-2.5 py-1.5 rounded-lg bg-black/50 border border-white/10 flex items-center justify-between text-[10px] font-game text-white/70">
-              <span className="truncate" style={{ color: currentArchetype.color }}>
+              <span className="truncate font-bold" style={{ color: currentArchetype.color }}>
                 {currentArchetype.name}
               </span>
               <span className="text-white/40 truncate ml-2">{currentArchetype.role}</span>
@@ -398,10 +466,7 @@ export function CharacterCreator() {
                   <button
                     key={g}
                     type="button"
-                    onClick={() => {
-                      sounds.playClick();
-                      setGender(g);
-                    }}
+                    onClick={() => handleGenderChange(g)}
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-game transition-all cursor-pointer border ${
                       isSelected
                         ? 'border-purple-400 bg-purple-600/30 text-white font-bold shadow-[0_0_10px_rgba(179,71,255,0.4)]'
