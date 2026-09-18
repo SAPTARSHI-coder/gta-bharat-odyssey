@@ -27,6 +27,7 @@ export interface Character {
   background: 'streets' | 'tech' | 'art' | 'hustle';
   stats: CharacterStats;
   avatar: string;
+  image?: string;
 }
 
 export interface GameState {
