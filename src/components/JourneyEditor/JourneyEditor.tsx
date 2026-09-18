@@ -269,17 +269,19 @@ export function JourneyEditor() {
       {/* Header Banner */}
       <div className="relative z-10 text-center max-w-4xl mx-auto mb-6">
         <div className="hud-element text-purple-400 mb-1.5 font-bold tracking-[0.4em]">
-          ◈ UNLAYER REACT IMAGE EDITOR · WANTED POSTER STUDIO ◈
+          ★ AMMU-NATION CRIME LAB // UNLAYER MUGSHOT SUITE ★
         </div>
         <h2
           className="font-cinematic text-4xl sm:text-5xl md:text-6xl text-white tracking-wide leading-tight mb-2"
           style={{ textShadow: '0 0 35px rgba(179,71,255,0.7)' }}
         >
-          STAMP YOUR LEGEND
+          FORGE YOUR FAKE ID & WANTED POSTER
         </h2>
-        <p className="text-white/70 text-xs sm:text-sm font-game max-w-2xl mx-auto leading-relaxed">
-          Every criminal needs a calling card. Pick your landmark below, then use the Unlayer editor to
-          add text, filters, crop, draw, and frame your masterpiece. Hit <strong>SAVE</strong> when your poster is ready to go viral.
+        <p className="text-white/75 text-xs sm:text-sm font-game max-w-2xl mx-auto leading-relaxed">
+          You pulled off international grand theft across two dimensions and seven world wonders.
+          Now you need a street reputation or a bulletproof fake passport. Select your crime scene below,
+          use the <strong>Unlayer Image Editor</strong> toolbar to crop out the getaway ride, tweak the contrast to foil facial recognition,
+          and stamp your alias in bold lettering. Hit <strong>SAVE</strong> to lock the file before the feds raid the server.
         </p>
       </div>
 
@@ -315,8 +317,8 @@ export function JourneyEditor() {
               transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
               className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full mb-4"
             />
-            <div className="font-cinematic text-2xl text-white">GENERATING CUSTOM POSTER...</div>
-            <div className="font-game text-xs text-white/50 mt-1">Stamping operative dossier and travel route...</div>
+            <div className="font-cinematic text-2xl text-white">FORGING FAKE IDENTIFICATION...</div>
+            <div className="font-game text-xs text-white/50 mt-1">Encrypting biometric data and wiping police surveillance logs...</div>
           </div>
         ) : (
           <ImageEditor
@@ -339,15 +341,15 @@ export function JourneyEditor() {
       {/* Bottom Controls */}
       <div className="relative z-10 max-w-6xl mx-auto w-full mt-4 flex flex-wrap items-center justify-between gap-4 px-2">
         <div className="flex items-center gap-2 text-white/60 font-game text-xs">
-          <span className="text-emerald-400">●</span>
-          <span>Click <strong>SAVE</strong> in the editor toolbar to lock in your art and advance to the Mission Debrief.</span>
+          <span className="text-emerald-400 animate-pulse">●</span>
+          <span>Click <strong>SAVE</strong> in the Unlayer toolbar to burn your mugshot to disk and cash out the heist.</span>
         </div>
 
         <button
           onClick={handleSkip}
           className="glass-panel px-6 py-2.5 font-game text-xs text-white/80 hover:text-white transition-colors cursor-pointer border border-white/20"
         >
-          SKIP TO DEBRIEF — I'M ALREADY LEGENDARY →
+          SCREW THE ARTWORK — SKIP TO FINAL DEBRIEF →
         </button>
       </div>
     </div>

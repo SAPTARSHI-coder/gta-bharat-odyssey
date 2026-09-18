@@ -56,7 +56,7 @@ export function MumbaiScene() {
           transition={{ duration: 0.7 }}
           className="hud-element text-orange-400 mb-3 tracking-[0.4em] font-bold text-xs md:text-sm"
         >
-          ◈ CHAPTER 3: ARRIVAL IN BHARAT ◈
+          ★ MISSION 02: MAXIMUM CITY // ZERO RULES ★
         </motion.div>
 
         <motion.h2
@@ -70,7 +70,7 @@ export function MumbaiScene() {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            filter: 'drop-shadow(0 0 40px rgba(255,153,51,0.6))',
+            filter: 'drop-shadow(0 0 45px rgba(255,153,51,0.6))',
           }}
         >
           MUMBAI
@@ -81,10 +81,9 @@ export function MumbaiScene() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide"
+          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide leading-relaxed"
         >
-          "Maximum City. Gateway of India stands at the harbor.
-          Taj Mahal Palace lights up the Arabian Sea like it always has — unfazed by any dimension."
+          "Touchdown on Colaba Pier. Arabian Sea air hitting your lungs like a shot of cheap tequila. Behind you: the Taj Mahal Palace glowing in pure gold. In front of you: twenty-one million hustlers and zero traffic laws. Del Perro Beach was preschool. This is the big leagues."
         </motion.p>
 
         <motion.p
@@ -94,7 +93,7 @@ export function MumbaiScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          From Pacific Coast to the financial capital of Bharat. Same hustle. A billion more players.
+          LSPD lost your signal eight thousand miles back. But the local syndicates already clocked your drop. Hotwire a ride before someone hotwires you.
         </motion.p>
       </div>
 
@@ -107,10 +106,10 @@ export function MumbaiScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">DRIVE NORTH TO NEW DELHI [SCROLL DOWN] →</span>
+          <span className="font-bold tracking-wider">JACK A RIDE → DRIVE NORTH TO NEW DELHI [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          NEXT WAYPOINT: KARTAVYA PATH & INDIA GATE, DELHI
+          HIGHWAY 48 NORTH // NEXT CHECKPOINT: KARTAVYA PATH, DELHI
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface MinimapProps {
@@ -14,6 +14,23 @@ export function GTAMinimap({ locationName, zoneType = 'urban' }: MinimapProps) {
       transition={{ duration: 0.6 }}
       className="fixed bottom-5 left-5 z-40 select-none pointer-events-none"
     >
+      {/* GTA Iconic Flashing Wanted Stars */}
+      <div className="flex items-center gap-1 mb-1.5 px-2 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/10 w-fit">
+        <span className="font-game text-[9px] text-white/50 tracking-wider mr-1">WANTED:</span>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span
+            key={i}
+            className={`text-sm ${
+              i < 3
+                ? 'text-amber-400 drop-shadow-[0_0_8px_#ffd700] animate-pulse'
+                : 'text-white/20'
+            }`}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+
       {/* Outer Radar Container */}
       <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full p-1 bg-black/80 border-2 border-white/20 shadow-2xl backdrop-blur-md overflow-hidden">
         {/* Radar Map Grid Background */}

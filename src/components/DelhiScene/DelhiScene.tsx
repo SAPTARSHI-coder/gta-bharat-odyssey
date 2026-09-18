@@ -54,7 +54,7 @@ export function DelhiScene() {
           transition={{ duration: 0.7 }}
           className="hud-element text-amber-400 mb-3 tracking-[0.4em] font-bold text-xs md:text-sm"
         >
-          ◈ CHAPTER 4: THE CAPITAL ◈
+          ★ MISSION 03: CORRIDORS OF POWER // 4-STAR SECURITY ★
         </motion.div>
 
         <motion.h2
@@ -79,10 +79,9 @@ export function DelhiScene() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide"
+          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide leading-relaxed"
         >
-          "The seat of power. Kartavya Path — the most guarded straight road in any open world.
-          India Gate burns eternal at the far end."
+          "Kartavya Path at 2:00 AM. Three miles of polished blacktop flanked by concrete barricades, high-powered floodlights, and elite paramilitary units. India Gate looms at the end like an immovable monolith. Don't touch the horn; the guys in tactical gear don't check ID before firing."
         </motion.p>
 
         <motion.p
@@ -92,7 +91,7 @@ export function DelhiScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          No heat here — just history, marble, and the echo of a billion ambitions still chasing daylight.
+          Federal heat is spiking. The Ministry of Home Affairs flagged your entry. Put the pedal to the metal and burn rubber east to Kolkata.
         </motion.p>
       </div>
 
@@ -105,10 +104,10 @@ export function DelhiScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">HEAD EAST TO KOLKATA [SCROLL DOWN] →</span>
+          <span className="font-bold tracking-wider">FULL THROTTLE EAST TO KOLKATA [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          FINAL STOP: VICTORIA MEMORIAL & HOWRAH BRIDGE, KOLKATA
+          NATIONAL HIGHWAY 19 // NEXT DESTINATION: VICTORIA MEMORIAL, KOLKATA
         </div>
       </div>
     </div>

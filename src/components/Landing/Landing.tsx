@@ -45,15 +45,15 @@ export function Landing() {
 
       {/* TOP HEADER */}
       <motion.header
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
         className="relative z-20 w-full px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 backdrop-blur-md bg-black/40"
       >
         <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
           <span className="font-game text-xs tracking-widest text-white/90 font-bold uppercase">
-            ◆ FIVE-STAR WANTED: UNLAYER COMMUNITY CHALLENGE
+            ★ FIVE-STAR WANTED // UNLAYER CHALLENGE EDITION ★
           </span>
         </div>
 
@@ -61,15 +61,15 @@ export function Landing() {
         <div className="flex flex-wrap items-center gap-2 md:gap-3">
           <div className="glass-panel px-3 py-1 flex items-center gap-1.5 border border-purple-500/40">
             <span className="text-purple-400 text-xs">📸</span>
-            <span className="font-game text-[11px] text-purple-200">Powered by Unlayer React Image Editor</span>
+            <span className="font-game text-[11px] text-purple-200">Core Feature: @unlayer/react-image-editor</span>
           </div>
           <div className="glass-panel px-3 py-1 flex items-center gap-1.5 border border-cyan-500/40">
             <span className="text-cyan-400 text-xs">🎮</span>
-            <span className="font-game text-[11px] text-cyan-200">Open Source · GTA VI Inspired</span>
+            <span className="font-game text-[11px] text-cyan-200">Open World · GTA VI Inspired</span>
           </div>
           <div className="glass-panel px-3 py-1 flex items-center gap-1.5 border border-amber-500/40">
             <span className="text-amber-400 text-xs">🏆</span>
-            <span className="font-game text-[11px] text-amber-200 font-bold">$1,000 PRIZE POOL</span>
+            <span className="font-game text-[11px] text-amber-200 font-bold">$1,000 BOUNTY POOL</span>
           </div>
         </div>
       </motion.header>
@@ -82,7 +82,7 @@ export function Landing() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hud-element text-xs md:text-sm tracking-[0.4em] text-cyan-400 mb-2 font-bold"
         >
-          ◈ A CINEMATIC OPEN-WORLD INTERACTIVE STORY ◈
+          ◈ A ROCKSTAR-GRADE CINEMATIC HEIST ODYSSEY ◈
         </motion.div>
 
         {/* Main Title Banner */}
@@ -135,12 +135,12 @@ export function Landing() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="text-white/70 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mb-8 font-game leading-relaxed"
+          className="text-white/75 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mb-8 font-game leading-relaxed"
         >
-          Build your operative. Cross the dimensional rift on the Pacific Coast.
-          Hit the streets of Mumbai, power-walk Kartavya Path in New Delhi, and
-          reach the grand Victoria Memorial in Kolkata.
-          Then stamp your legend onto a custom travel poster — powered by Unlayer React Image Editor.
+          You're wanted by the LSPD, the repo man is hot on your tail, and your Comet is overheating on Del Perro.
+          Then the Pacific tears wide open. Ditch San Andreas, jump the cosmic singularity, and take over the streets of Bharat —
+          drifting through Mumbai traffic, cutting through Delhi motorcades, hitting Kolkata's marble palaces, and raiding the 7 Wonders of the World.
+          Then forge your official wanted poster in the Unlayer Editor before the feds trace your IP.
         </motion.p>
 
         {/* Primary Call to Action */}
@@ -154,7 +154,7 @@ export function Landing() {
             onClick={() => goToScene('character')}
             className="game-btn-purple text-base md:text-lg px-12 py-4 relative group shadow-[0_0_35px_rgba(179,71,255,0.6)] cursor-pointer"
           >
-            <span className="relative z-10 font-bold tracking-widest">▶ LOAD NEW GAME</span>
+            <span className="relative z-10 font-bold tracking-widest">▶ HIT THE STREETS [START STORY]</span>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity"
             />
@@ -164,7 +164,7 @@ export function Landing() {
             onClick={() => goToScene('editor')}
             className="game-btn-orange text-sm md:text-base px-8 py-4 cursor-pointer font-bold tracking-wider"
           >
-            🎨 SKIP TO POSTER STUDIO
+            🎨 FORGE WANTED POSTER [SKIP]
           </button>
         </motion.div>
       </div>
@@ -177,20 +177,20 @@ export function Landing() {
         className="relative z-20 w-full px-6 py-3 border-t border-white/10 backdrop-blur-md bg-black/60 flex flex-wrap items-center justify-between gap-4 text-xs font-game text-white/50"
       >
         <div className="flex items-center gap-6 overflow-x-auto py-1">
-          <span className="text-white/80 font-bold">MISSION ROUTE:</span>
-          <span className="hover:text-purple-300 transition-colors">1. Del Perro Beach, LS</span>
+          <span className="text-white/80 font-bold">HEIST ROUTE:</span>
+          <span className="hover:text-purple-300 transition-colors">1. Del Perro Pier, LS</span>
           <span>→</span>
-          <span className="hover:text-purple-300 transition-colors">2. Dimensional Rift</span>
+          <span className="hover:text-purple-300 transition-colors">2. Singularity Breach</span>
           <span>→</span>
           <span className="hover:text-orange-300 transition-colors">3. Colaba Harbor, Mumbai</span>
           <span>→</span>
-          <span className="hover:text-orange-300 transition-colors">4. Kartavya Path, New Delhi</span>
+          <span className="hover:text-orange-300 transition-colors">4. Kartavya Path, Delhi</span>
           <span>→</span>
           <span className="hover:text-cyan-300 transition-colors">5. Victoria Memorial, Kolkata</span>
           <span>→</span>
-          <span className="hover:text-red-300 transition-colors">6. 7 Wonders Global Board</span>
+          <span className="hover:text-red-300 transition-colors">6. 7 Wonders Heist Board</span>
           <span>→</span>
-          <span className="text-amber-400 font-bold">7. Unlayer Poster Studio</span>
+          <span className="text-amber-400 font-bold">7. Unlayer Mugshot Studio</span>
         </div>
 
         <div className="flex items-center gap-3 ml-auto text-white/40 text-[11px]">

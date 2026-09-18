@@ -9,16 +9,16 @@ export interface Chapter {
 }
 
 export const CHAPTERS: Chapter[] = [
-  { id: 'section-landing',    number: '01', name: 'TITLE SCREEN',   badge: 'LOS SANTOS TO BHARAT' },
-  { id: 'section-character',  number: '02', name: 'CHARACTER SETUP', badge: 'WHO ARE YOU?' },
-  { id: 'section-los-santos', number: '03', name: 'LOS SANTOS',     badge: 'DEL PERRO BEACH' },
-  { id: 'section-portal',     number: '04', name: 'THE PORTAL',     badge: 'COSMIC RIFT' },
-  { id: 'section-mumbai',     number: '05', name: 'MUMBAI',         badge: 'TAJ MAHAL PALACE' },
-  { id: 'section-delhi',      number: '06', name: 'NEW DELHI',      badge: 'INDIA GATE' },
-  { id: 'section-kolkata',    number: '07', name: 'KOLKATA',        badge: 'VICTORIA MEMORIAL' },
-  { id: 'section-wonders',    number: '08', name: 'SEVEN WONDERS',  badge: 'GLOBAL HEIST BOARD' },
-  { id: 'section-editor',     number: '09', name: 'POSTER STUDIO',  badge: 'REACT IMAGE EDITOR' },
-  { id: 'section-final',      number: '10', name: 'MISSION DEBRIEF', badge: 'SHARE & DOWNLOAD' },
+  { id: 'section-landing',    number: '01', name: 'LOS SANTOS TO BHARAT', badge: 'PROLOGUE' },
+  { id: 'section-character',  number: '02', name: 'LSPD BOOKING',         badge: 'RAP SHEET' },
+  { id: 'section-los-santos', number: '03', name: 'DEL PERRO HEAT',       badge: 'TWO STARS' },
+  { id: 'section-portal',     number: '04', name: 'PUNCH THE RIFT',       badge: 'SINGULARITY' },
+  { id: 'section-mumbai',     number: '05', name: 'COLABA HARBOR',        badge: 'MAXIMUM CITY' },
+  { id: 'section-delhi',      number: '06', name: 'KARTAVYA PATH',        badge: 'POWER AXIS' },
+  { id: 'section-kolkata',    number: '07', name: 'VICTORIA MEMORIAL',    badge: 'REBEL CITY' },
+  { id: 'section-wonders',    number: '08', name: '7 WONDERS HEIST',      badge: 'INTERPOL RED' },
+  { id: 'section-editor',     number: '09', name: 'UNLAYER POSTER LAB',   badge: 'FORGE MUGSHOT' },
+  { id: 'section-final',      number: '10', name: 'MISSION PASSED',       badge: 'RESPECT +' },
 ];
 
 interface HatomNavRailProps {

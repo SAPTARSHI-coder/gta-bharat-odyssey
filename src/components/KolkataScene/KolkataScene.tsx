@@ -53,7 +53,7 @@ export function KolkataScene() {
           transition={{ duration: 0.7 }}
           className="hud-element text-cyan-400 mb-3 tracking-[0.4em] font-bold text-xs md:text-sm"
         >
-          ◈ CHAPTER 5: THE CITY OF JOY ◈
+          ★ MISSION 04: REBEL CITY SAFEHOUSE // INTERNATIONAL WANTED ★
         </motion.div>
 
         <motion.h2
@@ -78,10 +78,9 @@ export function KolkataScene() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide"
+          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide leading-relaxed"
         >
-          "Victoria Memorial — white marble palace where British power ended and Bharat's story began.
-          The Howrah Bridge hasn't moved in 80 years. Neither have the ambitions beneath it."
+          "Yellow cabs fish-tailing across tram tracks, monsoon rain drumming on tin roofs, and three centuries of rebellion in every brick. Victoria Memorial sits like a colonial trophy conquered into a park. Howrah Bridge hasn't moved in eighty years. Your passport is cooked, the FIB has zero jurisdiction, and the chaiwallahs already know your alias. You're an urban legend."
         </motion.p>
 
         <motion.p
@@ -91,8 +90,7 @@ export function KolkataScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          Your expedition across Bharat has peaked. But the rift didn't stop here — cosmic seismic waves just shattered the global grid.
-          Seven ancient wonders across the planet are now wide open.
+          The rift didn't stop in Bharat. Seismic shockwaves just blew open vaults across all Seven Wonders of the World. The heist just went intercontinental.
         </motion.p>
       </div>
 
@@ -105,10 +103,10 @@ export function KolkataScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">ACCESS 7 WONDERS GLOBAL HEIST BOARD [SCROLL DOWN] →</span>
+          <span className="font-bold tracking-wider">RAID THE 7 WONDERS HEIST BOARD [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          ◆ PLANETARY TARGETS UNLOCKED · SEVEN WONDERS DOSSIER ◆
+          INTERPOL RED NOTICES ACTIVATED · 7 PLANETARY TARGETS UNLOCKED
         </div>
       </div>
     </div>

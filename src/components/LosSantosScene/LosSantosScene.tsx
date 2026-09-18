@@ -36,7 +36,7 @@ export function LosSantosScene() {
           transition={{ duration: 0.8 }}
           className="hud-element text-xs md:text-sm tracking-[0.4em] text-amber-400 mb-3 font-bold"
         >
-          ◈ CHAPTER 1: PACIFIC SHORES ◈
+          ★ MISSION 01: VINEWOOD HEAT // 2-STAR WANTED ★
         </motion.div>
 
         <motion.h2
@@ -47,7 +47,7 @@ export function LosSantosScene() {
           className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-white mb-4 leading-tight"
           style={{ textShadow: '0 5px 35px rgba(0,0,0,0.9), 0 0 50px rgba(255,107,53,0.5)' }}
         >
-          {stage === 'portal_discovered' ? 'SOMETHING AIN\'T RIGHT' : 'DEL PERRO BEACH'}
+          {stage === 'portal_discovered' ? 'THE PACIFIC JUST BROKE' : 'DEL PERRO PIER'}
         </motion.h2>
 
         <motion.p
@@ -58,8 +58,8 @@ export function LosSantosScene() {
           className="font-game text-sm sm:text-base md:text-lg text-white/85 tracking-wider max-w-2xl mx-auto leading-relaxed drop-shadow-md"
         >
           {stage === 'portal_discovered'
-            ? 'The air crackles with violet static. The ocean turns silent. A dimensional rift tears open between the dumpsters — wide enough to walk through.'
-            : 'Sun drops behind Del Perro pier. Pacific waves catch the last gold light. You\'ve got heat on your tail and nowhere left to run — except forward.'}
+            ? "Forget the LSPD. The alleyway dumpsters just vaporized into purple static. An electric rift is tearing through the concrete like tissue paper, smelling like ozone, burning rubber, and spicy street food from an entirely different hemisphere. Jump through or enjoy 25-to-life in Bolingbroke."
+            : "Del Perro Beach at dusk. Smog hanging thick over the Pacific, police choppers spotlighting the coastline, and your Comet's engine is ticking on zero coolant. You've got two stars, twenty bucks, and nowhere left to run in Los Santos. Check the alley."}
         </motion.p>
       </div>
 
@@ -95,7 +95,7 @@ export function LosSantosScene() {
             >
               <div className="font-game text-xs text-white font-bold tracking-widest flex items-center gap-2">
                 <span className="px-1.5 py-0.5 rounded bg-white/20 text-[10px]">E</span>
-                <span>STEP INTO RIFT</span>
+                <span>PULL THE TRIGGER // ENTER RIFT</span>
               </div>
             </motion.div>
           </div>
@@ -115,7 +115,7 @@ export function LosSantosScene() {
               className="game-btn-orange px-8 py-3.5 text-sm md:text-base flex items-center gap-3 cursor-pointer shadow-xl"
             >
               <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/20 font-bold">E</span>
-              <span className="font-bold tracking-wider">SWEEP THE COAST →</span>
+              <span className="font-bold tracking-wider">SCOUT THE ALLEYWAY [SHAKE THE HEAT] →</span>
             </motion.button>
           ) : (
             <motion.button
@@ -126,13 +126,13 @@ export function LosSantosScene() {
               className="game-btn-purple px-10 py-4 text-base md:text-lg flex items-center gap-3 cursor-pointer shadow-[0_0_35px_rgba(179,71,255,0.8)]"
             >
               <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">SPACE</span>
-              <span className="font-bold tracking-wider">STEP INTO THE RIFT [SCROLL DOWN] →</span>
+              <span className="font-bold tracking-wider">DITCH SAN ANDREAS → DIVE INTO THE RIFT →</span>
             </motion.button>
           )}
         </AnimatePresence>
 
         <div className="font-game text-[11px] text-white/50 tracking-widest">
-          {character ? `OPERATIVE: ${character.name.toUpperCase()} · ${character.title}` : '[ UNREGISTERED OPERATIVE ]'}
+          {character ? `WANTED SUSPECT: ${character.name.toUpperCase()} · ${character.title} · BOUNTY ACTIVE` : '[ SUSPECT UNIDENTIFIED ]'}
         </div>
       </div>
     </div>

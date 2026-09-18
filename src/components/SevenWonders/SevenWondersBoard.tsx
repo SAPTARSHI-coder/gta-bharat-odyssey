@@ -451,13 +451,13 @@ export function SevenWondersBoard() {
         <div className="flex items-center gap-3">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
           <span className="hud-element text-red-400 text-xs md:text-sm tracking-[0.4em] font-bold">
-            ◈ CHAPTER 08: 7 WONDERS GLOBAL HEIST BOARD ◈
+            ★ CHAPTER 08: INTERPOL RED NOTICES // 7 WONDERS ★
           </span>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="glass-panel px-4 py-1.5 border border-red-500/40 flex items-center gap-2">
-            <span className="font-game text-[11px] text-white/70">ACTIVE HEIST POOL:</span>
+            <span className="font-game text-[11px] text-white/70">GLOBAL BOUNTY POOL:</span>
             <span className="font-cinematic text-lg text-red-400" style={{ textShadow: '0 0 10px #ff4444' }}>
               ${totalBounty.toLocaleString()}
             </span>
@@ -469,7 +469,7 @@ export function SevenWondersBoard() {
             title="Open 4K Fullscreen Theater"
           >
             <span>⛶</span>
-            <span className="hidden sm:inline">THEATER MODE</span>
+            <span className="hidden sm:inline">4K THEATER</span>
           </button>
         </div>
       </div>
@@ -578,7 +578,7 @@ export function SevenWondersBoard() {
                   E
                 </span>
                 <span className="font-bold tracking-wider">
-                  DESIGN POSTER FOR {currentWonder.name.split(' ')[0]} →
+                  FORGE WANTED POSTER FOR THIS TARGET →
                 </span>
               </button>
 
@@ -586,7 +586,7 @@ export function SevenWondersBoard() {
                 onClick={() => setIsTheaterOpen(true)}
                 className="glass-panel px-5 py-3.5 font-game text-xs text-white/80 hover:text-white border border-white/20 hover:border-cyan-400 cursor-pointer transition-colors"
               >
-                VIEW 4K MASTER ART 👁️
+                4K HEIST INTEL [FULLSCREEN] 👁️
               </button>
             </div>
           </motion.div>
@@ -656,7 +656,7 @@ export function SevenWondersBoard() {
             <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 font-mono text-[10px]">
               ← / →
             </span>
-            <span>USE ARROW KEYS OR [1-7] TO CYCLE WONDERS</span>
+            <span>USE ARROW KEYS OR [1-7] TO CYCLE HEIST TARGETS</span>
           </div>
 
           <button
@@ -666,7 +666,7 @@ export function SevenWondersBoard() {
             }}
             className="hover:text-amber-400 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-white/70"
           >
-            <span>ADVANCE TO POSTER STUDIO (14 TEMPLATES)</span>
+            <span>ADVANCE TO CRIME LAB (14 HEIST TEMPLATES)</span>
             <span>→</span>
           </button>
         </div>

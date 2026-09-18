@@ -44,13 +44,13 @@ export function FinalShare() {
         className="relative z-10 text-center pt-12 pb-6 px-4"
       >
         <div className="hud-element text-amber-400 mb-2 tracking-[0.5em] font-bold">
-          ◈ FIVE-STAR MISSION COMPLETE ◈
+          ★ MISSION PASSED // RESPECT +100 // $1,000,000 PAYOUT ★
         </div>
         <h2
           className="font-cinematic text-5xl md:text-8xl text-white mb-2"
           style={{ textShadow: '0 0 45px rgba(255,153,51,0.5)' }}
         >
-          LEGEND UNLOCKED
+          MOST WANTED IN TWO WORLDS
         </h2>
         {character && (
           <div className="flex items-center justify-center gap-3">
@@ -60,7 +60,7 @@ export function FinalShare() {
                 {character.name}
               </span>
               <span className="font-game text-xs text-orange-400 px-2 py-0.5 rounded bg-orange-400/10 border border-orange-400/30">
-                {character.title}
+                {character.title} · FIVE-STAR FUGITIVE
               </span>
             </div>
             <div className="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-purple-500" />
@@ -78,7 +78,7 @@ export function FinalShare() {
           className="glass-panel p-4 mb-6 border border-white/15"
         >
           <div className="hud-element text-orange-400 mb-3 text-center text-xs tracking-widest font-bold">
-            ◈ COMPLETED HEIST ROUTE ◈
+            ◈ CONFIRMED INTERCONTINENTAL HEIST TRAIL ◈
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-center">
             {[
@@ -89,6 +89,8 @@ export function FinalShare() {
               { label: 'KARTAVYA, DELHI', icon: '🇮🇳', color: '#ff6b35' },
               { label: '→', icon: null, color: '#66aaff' },
               { label: 'VICTORIA, KOLKATA', icon: '👑', color: '#66aaff' },
+              { label: '→ 7 WONDERS →', icon: '🏛️', color: '#ffd700' },
+              { label: 'CRIME LAB', icon: '🎨', color: '#00f5ff' },
             ].map(({ label, icon, color }, i) => (
               <div key={i} className="flex items-center gap-1">
                 {icon && <span className="text-base">{icon}</span>}
@@ -117,11 +119,11 @@ export function FinalShare() {
             </div>
             <div>
               <div className="font-game text-sm font-bold text-white flex items-center gap-1.5">
-                <span>{character?.name || 'Operative'}</span>
+                <span>{character?.name || 'Frankie Vance'}</span>
                 <span className="text-cyan-400 text-xs">✓</span>
               </div>
               <div className="font-game text-xs text-white/40">
-                @{character?.name?.toLowerCase().replace(/\s+/g, '') || 'player'} · Just now
+                @{character?.name?.toLowerCase().replace(/\s+/g, '') || 'wanted'} · Bleeter for Eyefind · Just now
               </div>
             </div>
             <div className="ml-auto font-game text-xs text-purple-400 border border-purple-400/30 px-2 py-0.5 rounded">
@@ -149,30 +151,31 @@ export function FinalShare() {
           )}
 
           {/* Social Post Text */}
-          <p className="font-game text-sm text-white/90 mb-3">
-            I crossed dimensions from Los Santos to Bharat and survived. 🌴🌀🇮🇳
-            Same dreams. A different map. — custom poster powered by @unlayer React Image Editor.
+          <p className="font-game text-sm text-white/90 mb-3 leading-relaxed">
+            Pulled off the heist of the millennium across two dimensions and 7 world wonders. 
+            LSPD detectives are scratching their heads on Del Perro Pier while I'm sipping lassi outside the Taj Mahal Palace.
+            Forged my official wanted poster in @unlayer React Image Editor. Come and get me, federals. 🌴🌀🇮🇳
           </p>
           <div className="flex flex-wrap gap-2 text-xs font-game text-cyan-400 mb-4">
             <span>#BuiltWithImageEditor</span>
             <span>#Unlayer</span>
             <span>#GTA6Inspired</span>
-            <span>#Bharat</span>
             <span>#LosSantosToBharat</span>
+            <span>#FiveStarWanted</span>
           </div>
 
           {/* Social Engagement Metrics */}
           <div className="flex items-center gap-6 pt-3 border-t border-white/10 text-xs font-game text-white/50">
             <span className="flex items-center gap-1.5 hover:text-red-400 transition-colors cursor-pointer">
-              ❤️ <strong className="text-white/80">1.4K</strong>
+              ❤️ <strong className="text-white/80">2.8K</strong>
             </span>
             <span className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors cursor-pointer">
-              💬 <strong className="text-white/80">188</strong>
+              💬 <strong className="text-white/80">340</strong>
             </span>
             <span className="flex items-center gap-1.5 hover:text-green-400 transition-colors cursor-pointer">
-              🔄 <strong className="text-white/80">142</strong>
+              🔄 <strong className="text-white/80">612</strong>
             </span>
-            <span className="ml-auto text-amber-400 font-bold">★ VERIFIED OPERATIVE</span>
+            <span className="ml-auto text-amber-400 font-bold">★ MOST WANTED STATUS</span>
           </div>
         </motion.div>
 
@@ -189,7 +192,7 @@ export function FinalShare() {
               className="game-btn-purple py-4 px-8 text-sm md:text-base font-bold flex items-center gap-2 cursor-pointer shadow-[0_0_30px_rgba(179,71,255,0.6)]"
             >
               <span>⬇</span>
-              <span>DOWNLOAD YOUR WANTED POSTER</span>
+              <span>EXPORT 4K WANTED MUGSHOT</span>
             </button>
           )}
 
@@ -198,21 +201,21 @@ export function FinalShare() {
             className="game-btn-orange py-4 px-8 text-sm md:text-base font-bold flex items-center gap-2 cursor-pointer shadow-[0_0_30px_rgba(255,107,53,0.6)]"
           >
             <span>🔗</span>
-            <span>SHARE THE DROP LINK</span>
+            <span>LEAK HEIST DROP [COPY LINK]</span>
           </button>
 
           <button
             onClick={resetGame}
             className="glass-panel px-6 py-4 font-game text-xs md:text-sm text-white/70 hover:text-white transition-colors cursor-pointer border border-white/20"
           >
-            ↺ NEW GAME +
+            ↺ NEW HEIST [START OVER]
           </button>
         </motion.div>
 
         {/* Footer Challenge Signature */}
         <div className="mt-auto text-center font-game text-xs text-white/30 pt-4 border-t border-white/10">
           <div>Built for the <strong>Unlayer "Build with React Image Editor Challenge"</strong> · #BuiltWithImageEditor</div>
-          <div className="text-[11px] text-white/20 mt-1">Powered by @unlayer/react-image-editor · Production-Grade Open-World Web Experience</div>
+          <div className="text-[11px] text-white/20 mt-1">Powered by @unlayer/react-image-editor · Rockstar-Grade Open-World Web Experience</div>
         </div>
       </div>
     </div>

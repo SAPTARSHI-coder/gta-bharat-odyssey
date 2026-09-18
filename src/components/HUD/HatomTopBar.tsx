@@ -10,16 +10,16 @@ interface TopBarProps {
 }
 
 const SECTION_TITLES: Record<string, { title: string; location: string; step: number }> = {
-  'section-landing':    { title: 'EXPEDITION START',     location: 'LOS SANTOS BEACH',         step: 1 },
-  'section-character':  { title: 'OPERATIVE CREATION',   location: 'CUSTOMIZATION STATION',    step: 2 },
-  'section-los-santos': { title: 'CHAPTER 1: THE COAST', location: 'DEL PERRO BEACH, LS',       step: 3 },
-  'section-portal':     { title: 'CHAPTER 2: THE RIFT',  location: 'DIMENSIONAL CONVERGENCE',  step: 4 },
-  'section-mumbai':     { title: 'CHAPTER 3: MUMBAI',    location: 'COLABA HARBOR, BHARAT',    step: 5 },
-  'section-delhi':      { title: 'CHAPTER 4: NEW DELHI', location: 'KARTAVYA PATH, BHARAT',    step: 6 },
-  'section-kolkata':    { title: 'CHAPTER 5: KOLKATA',   location: 'VICTORIA MEMORIAL, BHARAT',step: 7 },
-  'section-wonders':    { title: 'SEVEN WONDERS',        location: 'GLOBAL WANTED BOARD',      step: 8 },
-  'section-editor':     { title: 'POSTER STUDIO',        location: 'REACT IMAGE EDITOR',       step: 9 },
-  'section-final':      { title: 'MISSION DEBRIEF',      location: 'JOURNEY COMPLETED',        step: 10 },
+  'section-landing':    { title: 'PROLOGUE',              location: 'DEL PERRO, LOS SANTOS',    step: 1 },
+  'section-character':  { title: 'LSPD BOOKING',          location: 'CRIME LAB // RAP SHEET',    step: 2 },
+  'section-los-santos': { title: 'CHAPTER 1: THE HEAT',   location: 'DEL PERRO PIER, LS',        step: 3 },
+  'section-portal':     { title: 'CHAPTER 2: THE RIFT',   location: 'SINGULARITY BREACH',        step: 4 },
+  'section-mumbai':     { title: 'CHAPTER 3: MUMBAI',     location: 'COLABA HARBOR, BHARAT',     step: 5 },
+  'section-delhi':      { title: 'CHAPTER 4: NEW DELHI',  location: 'KARTAVYA PATH, BHARAT',     step: 6 },
+  'section-kolkata':    { title: 'CHAPTER 5: KOLKATA',    location: 'VICTORIA MEMORIAL, BHARAT', step: 7 },
+  'section-wonders':    { title: 'CHAPTER 6: 7 WONDERS',  location: 'INTERPOL RED NOTICES',      step: 8 },
+  'section-editor':     { title: 'CHAPTER 7: FORGE ID',   location: 'UNLAYER MUGSHOT STUDIO',    step: 9 },
+  'section-final':      { title: 'MISSION PASSED',        location: 'MOST WANTED // BLEETER',    step: 10 },
 };
 
 export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: TopBarProps) {
@@ -118,7 +118,7 @@ export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: To
             }}
             className="game-btn-orange text-xs px-3.5 py-1.5 cursor-pointer font-bold tracking-wider hidden sm:inline-flex"
           >
-            🎨 POSTER STUDIO
+            🎨 FORGE WANTED POSTER
           </button>
         </div>
       </div>
