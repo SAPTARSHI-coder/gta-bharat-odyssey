@@ -126,10 +126,11 @@ export function CharacterCreator() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <div className="hud-element text-purple-400 mb-2">◈ OPERATIVE REGISTRATION ◈</div>
+          <div className="hud-element text-purple-400 mb-2">◈ WANTED OPERATIVE FILE ◈</div>
           <h2 className="font-cinematic text-5xl md:text-7xl text-white" style={{ textShadow: '0 0 30px rgba(179,71,255,0.5)' }}>
-            CREATE YOUR CHARACTER
+            BUILD YOUR CRIMINAL
           </h2>
+          <p className="font-game text-xs text-white/40 tracking-[0.3em] mt-2">SELECT ARCHETYPE · ASSIGN ATTRIBUTES · CHOOSE YOUR HUSTLE</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -142,24 +143,24 @@ export function CharacterCreator() {
           >
             {/* Name */}
             <div className="glass-panel p-5">
-              <label className="hud-element text-purple-400 block mb-2">◈ OPERATIVE NAME</label>
+              <label className="hud-element text-purple-400 block mb-2">◈ ALIAS / STREET NAME</label>
               <input
                 value={name}
                 onChange={e => { setName(e.target.value); setError(''); }}
-                placeholder="Enter your name..."
+                placeholder="What do they call you on the streets..."
                 className="w-full bg-transparent border border-purple-500/30 rounded px-4 py-3 text-white font-game text-lg uppercase tracking-widest focus:outline-none focus:border-purple-500 placeholder-white/20 transition-colors"
                 maxLength={20}
               />
-              {error && <p className="text-red-400 text-xs mt-2 font-game">{error}</p>}
+              {error && <p className="text-red-400 text-xs mt-2 font-game">⚠ {error}</p>}
             </div>
 
             {/* Appearance */}
             <div className="glass-panel p-5">
-              <label className="hud-element text-purple-400 block mb-3">◈ APPEARANCE / STYLE</label>
+              <label className="hud-element text-purple-400 block mb-3">◈ LOOK & VIBE</label>
               <div className="grid grid-cols-2 gap-2">
                 {APPEARANCES.map(a => (
                   <button key={a} onClick={() => setAppearance(a)} className={optionBtn(appearance === a)}>
-                    {a === 'urban' ? '🌆 Urban' : a === 'tech' ? '💻 Tech' : a === 'street' ? '🎭 Street' : '⚡ Corporate'}
+                    {a === 'urban' ? '🌆 Urban Grit' : a === 'tech' ? '💻 Dark Tech' : a === 'street' ? '🎭 Street Art' : '⚡ Corporate Shadow'}
                   </button>
                 ))}
               </div>
@@ -167,11 +168,11 @@ export function CharacterCreator() {
 
             {/* Outfit */}
             <div className="glass-panel p-5">
-              <label className="hud-element text-purple-400 block mb-3">◈ OUTFIT</label>
+              <label className="hud-element text-purple-400 block mb-3">◈ THREADS</label>
               <div className="grid grid-cols-2 gap-2">
                 {OUTFITS.map(o => (
                   <button key={o} onClick={() => setOutfit(o)} className={optionBtn(outfit === o)}>
-                    {o === 'jacket' ? '🧥 Jacket' : o === 'hoodie' ? '👕 Hoodie' : o === 'suit' ? '👔 Suit' : '👗 Casual'}
+                    {o === 'jacket' ? '🧥 Leather Jacket' : o === 'hoodie' ? '👕 Streetwear Hoodie' : o === 'suit' ? '👔 Power Suit' : '👗 Low Profile'}
                   </button>
                 ))}
               </div>
@@ -179,11 +180,11 @@ export function CharacterCreator() {
 
             {/* Background */}
             <div className="glass-panel p-5">
-              <label className="hud-element text-purple-400 block mb-3">◈ BACKGROUND</label>
+              <label className="hud-element text-purple-400 block mb-3">◈ ORIGINS</label>
               <div className="grid grid-cols-2 gap-2">
                 {BACKGROUNDS.map(b => (
                   <button key={b} onClick={() => setBackground(b)} className={optionBtn(background === b)}>
-                    {b === 'streets' ? '🏙️ Streets' : b === 'tech' ? '🔬 Tech' : b === 'art' ? '🎨 Art' : '💰 Hustle'}
+                    {b === 'streets' ? '🏙️ Raised on the Streets' : b === 'tech' ? '🔬 Ex-Darknet Coder' : b === 'art' ? '🎨 Rogue Visionary' : '💰 Born to Hustle'}
                   </button>
                 ))}
               </div>
@@ -191,11 +192,11 @@ export function CharacterCreator() {
 
             {/* Bio */}
             <div className="glass-panel p-5">
-              <label className="hud-element text-purple-400 block mb-2">◈ SHORT BIO</label>
+              <label className="hud-element text-purple-400 block mb-2">◈ POLICE INCIDENT NOTE</label>
               <textarea
                 value={bio}
                 onChange={e => setBio(e.target.value)}
-                placeholder="Who are you? What drives you..."
+                placeholder="Last seen near Del Perro pier. Considered armed and creative..."
                 className="w-full bg-transparent border border-purple-500/30 rounded px-4 py-3 text-white/80 text-sm focus:outline-none focus:border-purple-500 placeholder-white/20 transition-colors resize-none"
                 rows={3}
                 maxLength={120}
@@ -226,7 +227,7 @@ export function CharacterCreator() {
                 }}
               />
               <div className="relative z-10">
-                <div className="hud-element text-purple-400 mb-4">◈ OPERATIVE PROFILE</div>
+                <div className="hud-element text-purple-400 mb-4">◈ LSPD DOSSIER ◈</div>
                 {/* Avatar */}
                 <div className="flex items-center gap-4 mb-6">
                   <div
@@ -241,7 +242,7 @@ export function CharacterCreator() {
                   </div>
                   <div>
                     <div className="font-cinematic text-3xl text-white leading-none">
-                      {name || 'YOUR NAME'}
+                      {name || 'YOUR ALIAS'}
                     </div>
                     <div
                       className="font-game text-sm mt-1"
@@ -286,14 +287,14 @@ export function CharacterCreator() {
 
                 {/* Total */}
                 <div className="mt-3 text-right hud-element text-orange-400 text-xs">
-                  TOTAL: {totalPoints} / 500
+                  TOTAL THREAT LEVEL: {totalPoints} / 500
                 </div>
               </div>
             </div>
 
             {/* Stats Panel */}
             <div className="glass-panel p-5">
-              <div className="hud-element text-purple-400 mb-4">◈ ASSIGN STATS</div>
+              <div className="hud-element text-purple-400 mb-4">◈ DISTRIBUTE SKILL POINTS</div>
               <StatSlider label="TECH" value={stats.tech} onChange={v => updateStat('tech', v)} color="#b347ff" />
               <StatSlider label="DRIVING" value={stats.driving} onChange={v => updateStat('driving', v)} color="#ff6b35" />
               <StatSlider label="STYLE" value={stats.style} onChange={v => updateStat('style', v)} color="#ff2d87" />
@@ -308,7 +309,7 @@ export function CharacterCreator() {
               onClick={handleStart}
               className="w-full game-btn-orange py-5 text-lg"
             >
-              ◈ BEGIN JOURNEY ◈
+              ◈ START THE MISSION ◈
             </motion.button>
           </motion.div>
         </div>
@@ -316,3 +317,4 @@ export function CharacterCreator() {
     </div>
   );
 }
+

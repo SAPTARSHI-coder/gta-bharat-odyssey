@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 function KolkataGlow({ x, y, delay }: { x: number; y: number; delay: number }) {
@@ -80,7 +80,8 @@ export function KolkataScene() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide"
         >
-          "Victoria Memorial reflects gracefully upon the lake. The illuminated Howrah Bridge spans the historic Hooghly River."
+          "Victoria Memorial — white marble palace where British power ended and Bharat's story began.
+          The Howrah Bridge hasn't moved in 80 years. Neither have the ambitions beneath it."
         </motion.p>
 
         <motion.p
@@ -90,8 +91,8 @@ export function KolkataScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          City of Joy, poets, and revolutions. Your expedition through Bharat has reached its final historic chapter.
-          Now enter the studio to immortalize your journey poster.
+          Your expedition ends here. But legends don't retire — they get framed, printed, and shared worldwide.
+          It's time to hit the Poster Studio.
         </motion.p>
       </div>
 
@@ -104,12 +105,13 @@ export function KolkataScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">CREATE JOURNEY POSTER IN UNLAYER →</span>
+          <span className="font-bold tracking-wider">DESIGN YOUR WANTED POSTER IN UNLAYER →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          NEXT: @UNLAYER/REACT-IMAGE-EDITOR STUDIO
+          ◆ POWERED BY @UNLAYER/REACT-IMAGE-EDITOR · YOUR MUGSHOT AWAITS ◆
         </div>
       </div>
     </div>
   );
 }
+

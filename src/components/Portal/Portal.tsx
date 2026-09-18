@@ -63,7 +63,7 @@ export function Portal() {
           viewport={{ once: false, amount: 0.4 }}
           className="hud-element text-purple-400 mb-2 font-bold tracking-[0.4em]"
         >
-          ◈ CHAPTER 2: THE COSMIC RIFT ◈
+          ◈ CHAPTER 2: THE DIMENSIONAL BREACH ◈
         </motion.div>
         <motion.h2
           initial={{ opacity: 0, scale: 0.9 }}
@@ -72,10 +72,11 @@ export function Portal() {
           className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-white mb-2"
           style={{ textShadow: '0 0 40px #b347ff' }}
         >
-          UNKNOWN DESTINATION
+          NO TURNING BACK
         </motion.h2>
         <p className="text-white/70 font-game text-sm md:text-base tracking-wider max-w-xl mx-auto">
-          A fracture in the fabric of space. The street neon of Los Santos bends around the singularity.
+          The rift hums like a thousand stolen engines. Step through and you're not in Blaine County anymore.
+          GPS reads: <span className="text-cyan-300 font-bold">DESTINATION UNKNOWN</span>.
         </p>
       </div>
 
@@ -125,10 +126,10 @@ export function Portal() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             E
           </span>
-          <span className="font-bold tracking-wider">ENTER PORTAL → WARP TO MUMBAI</span>
+          <span className="font-bold tracking-wider">JACK THE RIFT → WARP TO MUMBAI</span>
         </motion.button>
         <div className="font-game text-xs text-cyan-300/70 tracking-widest">
-          COORDINATES LOCKED: MUMBAI, BHARAT
+          ⚡ WARP LOCK ACQUIRED: COLABA HARBOR, MUMBAI, BHARAT ⚡
         </div>
       </div>
 

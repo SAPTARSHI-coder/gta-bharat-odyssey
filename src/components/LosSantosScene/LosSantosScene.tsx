@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '../../context/GameContext';
 
@@ -47,7 +47,7 @@ export function LosSantosScene() {
           className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-white mb-4 leading-tight"
           style={{ textShadow: '0 5px 35px rgba(0,0,0,0.9), 0 0 50px rgba(255,107,53,0.5)' }}
         >
-          {stage === 'portal_discovered' ? 'A RIFT IN REALITY' : 'LOS SANTOS BEACH'}
+          {stage === 'portal_discovered' ? 'SOMETHING AIN\'T RIGHT' : 'DEL PERRO BEACH'}
         </motion.h2>
 
         <motion.p
@@ -58,8 +58,8 @@ export function LosSantosScene() {
           className="font-game text-sm sm:text-base md:text-lg text-white/85 tracking-wider max-w-2xl mx-auto leading-relaxed drop-shadow-md"
         >
           {stage === 'portal_discovered'
-            ? 'An intense cosmic vortex is ripping through the coastline alley, crackling with violet lightning.'
-            : 'The sun melts into the Pacific ocean behind Del Perro pier. Your journey here is only the prologue.'}
+            ? 'The air crackles with violet static. The ocean turns silent. A dimensional rift tears open between the dumpsters — wide enough to walk through.'
+            : 'Sun drops behind Del Perro pier. Pacific waves catch the last gold light. You\'ve got heat on your tail and nowhere left to run — except forward.'}
         </motion.p>
       </div>
 
@@ -115,7 +115,7 @@ export function LosSantosScene() {
               className="game-btn-orange px-8 py-3.5 text-sm md:text-base flex items-center gap-3 cursor-pointer shadow-xl"
             >
               <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/20 font-bold">E</span>
-              <span className="font-bold tracking-wider">INVESTIGATE COASTLINE →</span>
+              <span className="font-bold tracking-wider">SWEEP THE COAST →</span>
             </motion.button>
           ) : (
             <motion.button
@@ -126,15 +126,16 @@ export function LosSantosScene() {
               className="game-btn-purple px-10 py-4 text-base md:text-lg flex items-center gap-3 cursor-pointer shadow-[0_0_35px_rgba(179,71,255,0.8)]"
             >
               <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">SPACE</span>
-              <span className="font-bold tracking-wider">ENTER THE PORTAL [SCROLL DOWN] →</span>
+              <span className="font-bold tracking-wider">STEP INTO THE RIFT [SCROLL DOWN] →</span>
             </motion.button>
           )}
         </AnimatePresence>
 
         <div className="font-game text-[11px] text-white/50 tracking-widest">
-          {character ? `${character.name.toUpperCase()} · ${character.title}` : 'OPERATIVE DISPATCH'}
+          {character ? `OPERATIVE: ${character.name.toUpperCase()} · ${character.title}` : '[ UNREGISTERED OPERATIVE ]'}
         </div>
       </div>
     </div>
   );
 }
+

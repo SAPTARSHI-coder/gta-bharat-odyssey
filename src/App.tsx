@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useGame } from './context/GameContext';
 import { Landing } from './components/Landing/Landing';
 import { CharacterCreator } from './components/CharacterCreator/CharacterCreator';
@@ -29,44 +29,44 @@ const SECTION_MINIMAP: Record<string, { location: string; zone: 'beach' | 'urban
 
 const SECTION_MISSION: Record<string, { title: string; subtitle?: string; badge: string }> = {
   'section-character': {
-    badge: 'STAGE 1: SETUP',
-    title: 'Create Your Protagonist.',
-    subtitle: 'Choose name, appearance, background, and allocate stats.',
+    badge: 'STAGE 1: BUILD YOUR CRIMINAL',
+    title: 'Construct your operative.',
+    subtitle: 'Street alias, look, origins, and skill allocation. Make it count.',
   },
   'section-los-santos': {
-    badge: 'STAGE 2: LOS SANTOS',
-    title: 'Find the package near the pier.',
-    subtitle: 'Explore the Pacific shoreline before the dimensional encounter.',
+    badge: 'STAGE 2: DEL PERRO, LOS SANTOS',
+    title: 'Something strange near the pier.',
+    subtitle: 'Pacific waves, five-star heat, and an anomaly you can\'t explain.',
   },
   'section-portal': {
-    badge: 'STAGE 3: THE RIFT',
-    title: 'Investigate the Gateway.',
-    subtitle: 'Press E or Space to step through into Bharat.',
+    badge: 'STAGE 3: THE DIMENSIONAL RIFT',
+    title: 'Press E to jack the rift.',
+    subtitle: 'GPS reads: DESTINATION UNKNOWN. Warp coordinates set to Bharat.',
   },
   'section-mumbai': {
-    badge: 'STAGE 4: MUMBAI',
-    title: 'Welcome to Mumbai.',
-    subtitle: 'Taj Mahal Palace & Gateway of India across the Arabian Sea.',
+    badge: 'STAGE 4: COLABA HARBOR, MUMBAI',
+    title: 'Maximum City. New rules.',
+    subtitle: 'Gateway of India & Taj Mahal Palace across the Arabian Sea.',
   },
   'section-delhi': {
-    badge: 'STAGE 5: NEW DELHI',
-    title: 'Next Stop: New Delhi.',
-    subtitle: 'Kartavya Path and the eternal flame at India Gate.',
+    badge: 'STAGE 5: KARTAVYA PATH, NEW DELHI',
+    title: 'The seat of power.',
+    subtitle: 'India Gate burns eternal at the end of the most famous road in Bharat.',
   },
   'section-kolkata': {
-    badge: 'STAGE 6: KOLKATA',
-    title: 'Final Stop: Kolkata.',
-    subtitle: 'Victoria Memorial lake reflection and the historic Howrah Bridge.',
+    badge: 'STAGE 6: VICTORIA MEMORIAL, KOLKATA',
+    title: 'End of the road. Start of the legend.',
+    subtitle: 'City of Joy. Marble. History. Your final chapter awaits.',
   },
   'section-editor': {
-    badge: 'STAGE 7: STUDIO',
-    title: 'Craft Your Journey Poster.',
-    subtitle: 'Customize templates with Unlayer React Image Editor tools.',
+    badge: 'STAGE 7: UNLAYER POSTER STUDIO',
+    title: 'Stamp your legend.',
+    subtitle: 'Customize your wanted poster with Unlayer React Image Editor.',
   },
   'section-final': {
-    badge: 'STAGE 8: DEBRIEF',
-    title: 'Expedition Complete.',
-    subtitle: 'Download your high-resolution travel card & share the journey.',
+    badge: 'STAGE 8: MISSION DEBRIEF',
+    title: 'Five-star legend unlocked.',
+    subtitle: 'Download your poster. Share your legacy. The world needs to know.',
   },
 };
 

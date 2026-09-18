@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 function Lanterns() {
@@ -83,7 +83,8 @@ export function MumbaiScene() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide"
         >
-          "City of Dreams. The Gateway of India & Taj Mahal Palace across the Arabian Sea."
+          "Maximum City. Gateway of India stands at the harbor.
+          Taj Mahal Palace lights up the Arabian Sea like it always has — unfazed by any dimension."
         </motion.p>
 
         <motion.p
@@ -93,7 +94,7 @@ export function MumbaiScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          From the Pacific coast to the financial heart of India. Same ambition, but a billion more dreams pulsing in rhythm.
+          From Pacific Coast to the financial capital of Bharat. Same hustle. A billion more players.
         </motion.p>
       </div>
 
@@ -106,12 +107,13 @@ export function MumbaiScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">JOURNEY TO NEW DELHI [SCROLL DOWN] →</span>
+          <span className="font-bold tracking-wider">DRIVE NORTH TO NEW DELHI [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          DESTINATION: KARTAVYA PATH & INDIA GATE
+          NEXT WAYPOINT: KARTAVYA PATH & INDIA GATE, DELHI
         </div>
       </div>
     </div>
   );
 }
+

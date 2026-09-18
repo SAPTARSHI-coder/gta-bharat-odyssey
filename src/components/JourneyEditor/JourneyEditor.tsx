@@ -213,17 +213,17 @@ export function JourneyEditor() {
       {/* Header Banner */}
       <div className="relative z-10 text-center max-w-4xl mx-auto mb-6">
         <div className="hud-element text-purple-400 mb-1.5 font-bold tracking-[0.4em]">
-          ◈ UNLAYER REACT IMAGE EDITOR STUDIO ◈
+          ◈ UNLAYER REACT IMAGE EDITOR · WANTED POSTER STUDIO ◈
         </div>
         <h2
           className="font-cinematic text-4xl sm:text-5xl md:text-6xl text-white tracking-wide leading-tight mb-2"
           style={{ textShadow: '0 0 35px rgba(179,71,255,0.7)' }}
         >
-          CRAFT YOUR OFFICIAL POSTER
+          STAMP YOUR LEGEND
         </h2>
         <p className="text-white/70 text-xs sm:text-sm font-game max-w-2xl mx-auto leading-relaxed">
-          The core challenge integration: Select your base landmark or travel poster below.
-          Use the Unlayer editor toolbar to apply filters, crop, draw, add text typography, stickers, and frames.
+          Every criminal needs a calling card. Pick your landmark below, then use the Unlayer editor to
+          add text, filters, crop, draw, and frame your masterpiece. Hit <strong>SAVE</strong> when your poster is ready to go viral.
         </p>
       </div>
 
@@ -284,14 +284,14 @@ export function JourneyEditor() {
       <div className="relative z-10 max-w-6xl mx-auto w-full mt-4 flex flex-wrap items-center justify-between gap-4 px-2">
         <div className="flex items-center gap-2 text-white/60 font-game text-xs">
           <span className="text-emerald-400">●</span>
-          <span>Click <strong>SAVE</strong> in the editor toolbar to apply changes and advance to final debrief.</span>
+          <span>Click <strong>SAVE</strong> in the editor toolbar to lock in your art and advance to the Mission Debrief.</span>
         </div>
 
         <button
           onClick={handleSkip}
           className="glass-panel px-6 py-2.5 font-game text-xs text-white/80 hover:text-white transition-colors cursor-pointer border border-white/20"
         >
-          SKIP TO SHARE DEBRIEF →
+          SKIP TO DEBRIEF — I'M ALREADY LEGENDARY →
         </button>
       </div>
     </div>

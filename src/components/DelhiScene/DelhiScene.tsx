@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 function Firework({ x, y, delay }: { x: number; y: number; delay: number }) {
@@ -81,7 +81,8 @@ export function DelhiScene() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide"
         >
-          "The grand axis of power and history. India Gate stands illuminated under the twilight sky."
+          "The seat of power. Kartavya Path — the most guarded straight road in any open world.
+          India Gate burns eternal at the far end."
         </motion.p>
 
         <motion.p
@@ -91,7 +92,7 @@ export function DelhiScene() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
         >
-          Kartavya Path stretches into eternity. The Amar Jawan Jyoti flame honors every dreamer who journeyed before.
+          No heat here — just history, marble, and the echo of a billion ambitions still chasing daylight.
         </motion.p>
       </div>
 
@@ -104,12 +105,13 @@ export function DelhiScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">JOURNEY TO KOLKATA [SCROLL DOWN] →</span>
+          <span className="font-bold tracking-wider">HEAD EAST TO KOLKATA [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          DESTINATION: VICTORIA MEMORIAL & HOWRAH BRIDGE
+          FINAL STOP: VICTORIA MEMORIAL & HOWRAH BRIDGE, KOLKATA
         </div>
       </div>
     </div>
   );
 }
+
