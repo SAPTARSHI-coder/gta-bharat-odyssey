@@ -13,7 +13,7 @@ export function LosSantosScene() {
   // Keyboard shortcut [E] or [Space] to interact
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'e' || e.key === 'E' || e.key === ' ') {
+      if (e.key === 'e' || e.key === 'E' || e.key === ' ' || e.key === 'Enter') {
         if (stage === 'explore') {
           setStage('portal_discovered');
         } else if (stage === 'portal_discovered') {

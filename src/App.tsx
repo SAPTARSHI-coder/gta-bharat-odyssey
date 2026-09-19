@@ -123,6 +123,45 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Global Enter / Space keyboard navigation between narrative chapters
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (e.key === 'Enter' || e.key === ' ') {
+        const NARRATIVE_NEXT: Record<string, string> = {
+          'section-landing': 'section-character',
+          'section-los-santos': 'section-portal',
+          'section-portal': 'section-mumbai',
+          'section-mumbai': 'section-delhi',
+          'section-delhi': 'section-kolkata',
+          'section-kolkata': 'section-dream-meadow',
+          'section-dream-meadow': 'section-wonders',
+          'section-wonders': 'section-editor',
+        };
+
+        const nextSectionId = NARRATIVE_NEXT[activeSectionId];
+        if (nextSectionId) {
+          if (e.key === ' ') {
+            e.preventDefault();
+          }
+          handleScrollToSection(nextSectionId);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [activeSectionId]);
+
   const minimapInfo = SECTION_MINIMAP[activeSectionId] || SECTION_MINIMAP['section-los-santos'];
   const missionInfo = SECTION_MISSION[activeSectionId];
 

@@ -59,12 +59,54 @@ interface SparkleClick {
 export function DreamMeadowScene() {
   const { setSelectedTemplateId } = useGame();
   const [whisperIndex, setWhisperIndex] = useState(0);
+  const [isWhisperOpen, setIsWhisperOpen] = useState(true);
   const [isSerenadePlaying, setIsSerenadePlaying] = useState(false);
   const [wishActive, setWishActive] = useState(false);
   const [heartConstellation, setHeartConstellation] = useState(false);
   const [extraFireflies, setExtraFireflies] = useState<FireflyParticle[]>([]);
   const [clickSparkles, setClickSparkles] = useState<SparkleClick[]>([]);
   const [isTheaterOpen, setIsTheaterOpen] = useState(false);
+
+  const scrollToWonders = useCallback(() => {
+    sounds.playClick();
+    document.getElementById('section-wonders')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const scrollToKolkata = useCallback(() => {
+    sounds.playClick();
+    document.getElementById('section-kolkata')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  // Keyboard shortcut [Enter] or [Space] to advance
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isTheaterOpen) {
+        setIsTheaterOpen(false);
+        return;
+      }
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+      const section = document.getElementById('section-dream-meadow');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.3;
+      if (!inView) return;
+
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === ' ') e.preventDefault();
+        scrollToWonders();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isTheaterOpen, scrollToWonders]);
 
   // Web Audio Synth for ambient dream serenade (wind tone + peaceful harmonics)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -453,6 +495,22 @@ export function DreamMeadowScene() {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              setIsWhisperOpen(prev => !prev);
+            }}
+            className={`glass-panel px-3 py-1.5 text-xs font-game border flex items-center gap-1.5 cursor-pointer transition-all ${
+              isWhisperOpen
+                ? 'border-pink-400 bg-pink-950/60 text-pink-200'
+                : 'border-white/20 hover:border-pink-300 text-white/80 hover:text-white bg-black/70'
+            }`}
+            title="Toggle Romantic Whispers"
+          >
+            <span>💬</span>
+            <span className="hidden sm:inline">{isWhisperOpen ? 'HIDE WHISPERS' : 'SHOW WHISPERS'}</span>
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
               setIsTheaterOpen(true);
             }}
             className="glass-panel px-3 py-1.5 text-xs font-game border border-white/20 hover:border-pink-300 text-white/80 hover:text-white cursor-pointer transition-all flex items-center gap-1.5 bg-black/70"
@@ -490,137 +548,155 @@ export function DreamMeadowScene() {
         </motion.div>
       </div>
 
-      {/* TOP-RIGHT INTEL CARD: Poetic Whispers + Romantic Moments Actions */}
+      {/* ROMANTIC WHISPERS & MAGIC PANEL: Positioned at Bottom-Right out of the way of Moon & Outlaws */}
       <div
         onClick={e => e.stopPropagation()}
-        className="fixed right-4 md:right-12 top-24 z-30 max-w-sm w-full pointer-events-auto"
+        className="absolute bottom-28 right-4 sm:right-8 md:right-12 z-30 max-w-xs sm:max-w-sm pointer-events-auto"
       >
         <AnimatePresence mode="wait">
-          <motion.div
-            key={whisperIndex}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.4 }}
-            className="bg-neutral-950/90 backdrop-blur-2xl p-4 sm:p-5 rounded-2xl border border-pink-500/30 shadow-[0_15px_45px_rgba(0,0,0,0.9)] space-y-3"
-            style={{
-              borderLeft: '4px solid #ec4899',
-              boxShadow: '0 0 30px rgba(236,72,153,0.25), 0 20px 40px rgba(0,0,0,0.85)',
-            }}
-          >
-            {/* Intel Card Header */}
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">🌙</span>
-                <span className="font-game text-[10px] tracking-widest font-bold px-2 py-0.5 rounded bg-pink-950/80 text-pink-300 border border-pink-500/40">
-                  {currentWhisper.tag}
-                </span>
+          {isWhisperOpen ? (
+            <motion.div
+              key={whisperIndex}
+              initial={{ opacity: 0, y: 15, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 15, scale: 0.96 }}
+              transition={{ duration: 0.3 }}
+              className="bg-neutral-950/92 backdrop-blur-2xl p-4 sm:p-5 rounded-2xl border border-pink-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.9)] space-y-3"
+              style={{
+                borderLeft: '4px solid #ec4899',
+                boxShadow: '0 0 30px rgba(236,72,153,0.3), 0 20px 40px rgba(0,0,0,0.9)',
+              }}
+            >
+              {/* Intel Card Header with Next & Minimize */}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🌙</span>
+                  <span className="font-game text-[10px] tracking-widest font-bold px-2 py-0.5 rounded bg-pink-950/80 text-pink-300 border border-pink-500/40">
+                    {currentWhisper.tag}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => {
+                      sounds.playClick();
+                      setWhisperIndex((prev) => (prev + 1) % ROMANTIC_WHISPERS.length);
+                    }}
+                    className="font-game text-[10px] text-pink-300 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/20 cursor-pointer transition-all"
+                    title="Next Dialogue"
+                  >
+                    NEXT ›
+                  </button>
+                  <button
+                    onClick={() => setIsWhisperOpen(false)}
+                    className="font-game text-[10px] text-white/50 hover:text-white px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 border border-white/10 cursor-pointer transition-all"
+                    title="Minimize Whispers"
+                  >
+                    HIDE ▾
+                  </button>
+                </div>
               </div>
+
+              {/* Speaker & Dialogue */}
+              <div>
+                <div className="font-game text-[11px] text-pink-400 font-bold uppercase tracking-wider mb-1">
+                  {currentWhisper.speaker}
+                </div>
+                <p className="font-game text-xs sm:text-sm text-white font-medium leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
+                  "{currentWhisper.text}"
+                </p>
+              </div>
+
+              {/* Interactive Romantic Moments Buttons */}
+              <div className="pt-2 border-t border-white/10 flex flex-wrap gap-2">
+                <button
+                  onClick={handleMakeWish}
+                  className="text-[11px] font-game px-2.5 py-1.5 rounded-lg bg-pink-900/40 hover:bg-pink-800/60 border border-pink-400/40 text-pink-200 hover:text-white font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(236,72,153,0.3)]"
+                  title="Trigger Shooting Star"
+                >
+                  <span>💫</span>
+                  <span>MAKE A WISH</span>
+                </button>
+
+                <button
+                  onClick={handleSummonFireflies}
+                  className="text-[11px] font-game px-2.5 py-1.5 rounded-lg bg-amber-900/40 hover:bg-amber-800/60 border border-amber-400/40 text-amber-200 hover:text-white font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(251,191,36,0.3)]"
+                  title="Release 30 Radiant Fireflies"
+                >
+                  <span>✨</span>
+                  <span>SWARM FIREFLIES</span>
+                </button>
+
+                <button
+                  onClick={handleHeartConstellation}
+                  className="text-[11px] font-game px-2.5 py-1.5 rounded-lg bg-purple-900/40 hover:bg-purple-800/60 border border-purple-400/40 text-purple-200 hover:text-white font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(168,85,247,0.3)]"
+                  title="Illuminate Heart Constellation"
+                >
+                  <span>💖</span>
+                  <span>HEART STAR</span>
+                </button>
+              </div>
+
+              {/* Call to Action: Unlayer Poster Lab */}
               <button
                 onClick={() => {
                   sounds.playClick();
-                  setWhisperIndex((prev) => (prev + 1) % ROMANTIC_WHISPERS.length);
+                  setSelectedTemplateId('dream-meadow');
+                  document.getElementById('section-editor')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="font-game text-[10px] text-pink-300 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/20 cursor-pointer transition-all"
-                title="Next Dialogue"
+                className="w-full game-btn-purple text-xs py-2 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(236,72,153,0.6)]"
               >
-                NEXT WHISPER ›
+                <span>🎨</span>
+                <span className="font-bold tracking-wider">
+                  FORGE MOONLIGHT POSTER IN CRIME LAB
+                </span>
               </button>
-            </div>
-
-            {/* Speaker & Dialogue */}
-            <div>
-              <div className="font-game text-[11px] text-pink-400 font-bold uppercase tracking-wider mb-1">
-                {currentWhisper.speaker}
-              </div>
-              <p className="font-game text-xs sm:text-sm text-white font-medium leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
-                "{currentWhisper.text}"
-              </p>
-            </div>
-
-            {/* Interactive Romantic Moments Buttons */}
-            <div className="pt-2 border-t border-white/10 flex flex-wrap gap-2">
-              <button
-                onClick={handleMakeWish}
-                className="text-[11px] font-game px-2.5 py-1.5 rounded-lg bg-pink-900/40 hover:bg-pink-800/60 border border-pink-400/40 text-pink-200 hover:text-white font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(236,72,153,0.3)]"
-                title="Trigger Shooting Star"
-              >
-                <span>💫</span>
-                <span>MAKE A WISH</span>
-              </button>
-
-              <button
-                onClick={handleSummonFireflies}
-                className="text-[11px] font-game px-2.5 py-1.5 rounded-lg bg-amber-900/40 hover:bg-amber-800/60 border border-amber-400/40 text-amber-200 hover:text-white font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(251,191,36,0.3)]"
-                title="Release 30 Radiant Fireflies"
-              >
-                <span>✨</span>
-                <span>SWARM FIREFLIES</span>
-              </button>
-
-              <button
-                onClick={handleHeartConstellation}
-                className="text-[11px] font-game px-2.5 py-1.5 rounded-lg bg-purple-900/40 hover:bg-purple-800/60 border border-purple-400/40 text-purple-200 hover:text-white font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(168,85,247,0.3)]"
-                title="Illuminate Heart Constellation"
-              >
-                <span>💖</span>
-                <span>HEART STAR</span>
-              </button>
-            </div>
-
-            {/* Call to Action: Unlayer Poster Lab */}
-            <button
-              onClick={() => {
-                sounds.playClick();
-                setSelectedTemplateId('dream-meadow');
-                document.getElementById('section-editor')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full game-btn-purple text-xs py-2 flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(236,72,153,0.6)]"
+            </motion.div>
+          ) : (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              onClick={() => setIsWhisperOpen(true)}
+              className="ml-auto glass-panel px-4 py-2 rounded-xl border border-pink-400/50 bg-neutral-950/90 hover:bg-neutral-900 text-pink-200 hover:text-white flex items-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(236,72,153,0.4)] transition-all"
             >
-              <span>🎨</span>
-              <span className="font-bold tracking-wider">
-                FORGE MOONLIGHT POSTER IN CRIME LAB
+              <span className="text-base">🌙</span>
+              <span className="font-game text-xs font-bold tracking-wider">OUTLAW WHISPERS & MAGIC</span>
+              <span className="text-[10px] text-pink-300 font-mono px-1.5 py-0.5 rounded bg-pink-900/60">
+                OPEN ▴
               </span>
-            </button>
-          </motion.div>
+            </motion.button>
+          )}
         </AnimatePresence>
       </div>
 
-      {/* BOTTOM BAR: Navigation Gateways */}
+      {/* BOTTOM ACTION CONTROLS: Identical layout to Mumbai, Delhi, and Kolkata scenes */}
       <div
         onClick={e => e.stopPropagation()}
-        className="relative z-20 w-full pt-2 max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/15 text-xs font-game text-white/80"
+        className="relative z-30 flex flex-col items-center gap-2 mt-auto"
       >
-        <div className="flex items-center gap-2">
-          <span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 border border-pink-500/40 font-bold">
-            TIP
+        <motion.button
+          onClick={scrollToWonders}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="game-btn-purple px-10 py-4 text-base md:text-lg flex items-center gap-3 cursor-pointer shadow-[0_0_40px_rgba(236,72,153,0.85)] border border-pink-400/50"
+        >
+          <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold text-pink-300">
+            ENTER / SPACE
           </span>
-          <span className="text-white/90">
-            CLICK ANYWHERE ON SCREEN TO SPAWN FLOATING STARLIGHT SPARKS & HEARTS
-          </span>
-        </div>
+          <span className="font-bold tracking-wider">RAID THE 7 WONDERS HEIST BOARD [SCROLL DOWN] →</span>
+        </motion.button>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 text-[11px] font-game text-white/50 tracking-widest">
           <button
-            onClick={() => {
-              sounds.playClick();
-              document.getElementById('section-kolkata')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="text-white/70 hover:text-white transition-colors cursor-pointer"
+            onClick={scrollToKolkata}
+            className="text-white/40 hover:text-pink-300 transition-colors cursor-pointer"
           >
             ‹ BACK TO KOLKATA
           </button>
-
-          <button
-            onClick={() => {
-              sounds.playClick();
-              document.getElementById('section-wonders')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="text-amber-400 hover:text-amber-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]"
-          >
-            <span>ENTER 7 WONDERS HEIST BOARD</span>
-            <span>↓</span>
-          </button>
+          <span>•</span>
+          <span>VALLEY OF WHISPERS // NEXT CHECKPOINT: INTERPOL RED NOTICE BOARD</span>
+          <span>•</span>
+          <span className="text-pink-300/60 hidden sm:inline">CLICK SCREEN FOR SPARKS</span>
         </div>
       </div>
 

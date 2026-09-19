@@ -39,7 +39,7 @@ export function Portal() {
   // Keyboard shortcut [E] or [Space] to enter
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.key === 'e' || e.key === 'E' || e.key === ' ') && phase === 'idle') {
+      if ((e.key === 'e' || e.key === 'E' || e.key === ' ' || e.key === 'Enter') && phase === 'idle') {
         const portalEl = document.getElementById('section-portal');
         if (portalEl) {
           const rect = portalEl.getBoundingClientRect();

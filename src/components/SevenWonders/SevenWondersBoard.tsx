@@ -758,6 +758,8 @@ export function SevenWondersBoard() {
         handlePrev();
       } else if (e.key === 'Escape' && isTheaterOpen) {
         setIsTheaterOpen(false);
+      } else if (e.key === 'Enter' && !isTheaterOpen) {
+        document.getElementById('section-editor')?.scrollIntoView({ behavior: 'smooth' });
       } else {
         const num = parseInt(e.key, 10);
         if (num >= 1 && num <= WONDERS.length) {
