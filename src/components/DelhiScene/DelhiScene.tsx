@@ -45,43 +45,61 @@ export function DelhiScene() {
         <Firework x={85} y={20} delay={0.4} />
       </div>
 
-      {/* Center Story Text in High-Contrast Frosted Dossier Card */}
-      <div className="relative z-20 my-auto text-center max-w-3xl mx-auto pointer-events-none px-2">
+      {/* Center Cinematic City Title ONLY - Zero Visual Obstruction */}
+      <div className="relative z-20 my-auto text-center max-w-4xl mx-auto pointer-events-none px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="bg-neutral-950/80 backdrop-blur-2xl border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,153,51,0.2)] max-w-2xl mx-auto"
+          className="hud-element text-amber-400 mb-2 tracking-[0.4em] font-bold text-xs sm:text-sm drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
         >
-          <div className="hud-element text-amber-400 mb-2 tracking-[0.35em] font-bold text-xs sm:text-sm">
-            ★ MISSION 03: CORRIDORS OF POWER // 4-STAR SECURITY ★
+          ★ MISSION 03: CORRIDORS OF POWER // 4-STAR SECURITY ★
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.88 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="font-cinematic text-6xl sm:text-8xl md:text-[10rem] leading-none select-none"
+          style={{
+            background: 'linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            filter: 'drop-shadow(0 6px 30px rgba(0,0,0,0.95)) drop-shadow(0 0 50px rgba(255,153,51,0.6))',
+          }}
+        >
+          NEW DELHI
+        </motion.h2>
+      </div>
+
+      {/* Top-Right Cinematic Tactical Intel Card */}
+      <motion.div
+        initial={{ opacity: 0, x: 25 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        className="absolute top-24 sm:top-28 right-4 sm:right-10 md:right-16 max-w-xs sm:max-w-sm z-30 pointer-events-none"
+      >
+        <div className="bg-neutral-950/85 backdrop-blur-xl border-l-4 border-amber-400 border-y border-r border-white/15 rounded-r-xl p-4 sm:p-5 shadow-[0_15px_40px_rgba(0,0,0,0.9),0_0_20px_rgba(255,153,51,0.15)]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+            <span className="font-game text-[10px] tracking-widest text-amber-400 font-bold uppercase">
+              TACTICAL INTEL // KARTAVYA PATH
+            </span>
           </div>
 
-          <h2
-            className="font-cinematic text-6xl sm:text-8xl md:text-9xl leading-none mb-3"
-            style={{
-              background: 'linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 4px 25px rgba(0,0,0,1)) drop-shadow(0 0 35px rgba(255,153,51,0.6))',
-            }}
-          >
-            NEW DELHI
-          </h2>
-
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-4" />
-
-          <p className="font-game text-base sm:text-lg md:text-xl text-white font-medium max-w-xl mx-auto mb-3 tracking-wide leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
+          <p className="font-game text-xs sm:text-sm text-white font-medium leading-relaxed mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
             "Kartavya Path at 2:00 AM. Three miles of polished blacktop flanked by concrete barricades, high-powered floodlights, and elite paramilitary units. India Gate looms at the end like an immovable monolith. Don't touch the horn; the guys in tactical gear don't check ID before firing."
           </p>
 
-          <p className="font-game text-xs sm:text-sm text-amber-200/90 font-medium max-w-lg mx-auto leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,1)]">
+          <p className="font-game text-[11px] text-amber-200/90 leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,1)] border-t border-white/10 pt-2">
             Federal heat is spiking. The Ministry of Home Affairs flagged your entry. Put the pedal to the metal and burn rubber east to Kolkata.
           </p>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
       {/* Bottom Action Controls */}
       <div className="relative z-30 flex flex-col items-center gap-2 mt-auto">

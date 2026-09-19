@@ -27,35 +27,53 @@ export function LosSantosScene() {
 
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-between py-24 px-6 md:px-12 select-none">
-      {/* Center Cinematic Story Narrative in High-Contrast Frosted Dossier Card */}
-      <div className="relative z-20 my-auto text-center max-w-3xl mx-auto pointer-events-none px-2">
+      {/* Center Cinematic City Title ONLY - Zero Visual Obstruction */}
+      <div className="relative z-20 my-auto text-center max-w-4xl mx-auto pointer-events-none px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.8 }}
-          className="bg-neutral-950/80 backdrop-blur-2xl border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,107,53,0.2)] max-w-2xl mx-auto"
+          className="hud-element text-xs md:text-sm tracking-[0.4em] text-amber-400 mb-2 font-bold drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
         >
-          <div className="hud-element text-xs md:text-sm tracking-[0.35em] text-amber-400 mb-2 font-bold">
-            ★ MISSION 01: VINEWOOD HEAT // 2-STAR WANTED ★
+          ★ MISSION 01: VINEWOOD HEAT // 2-STAR WANTED ★
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-cinematic text-6xl sm:text-8xl md:text-[9rem] text-white leading-none select-none"
+          style={{ textShadow: '0 6px 30px rgba(0,0,0,1), 0 0 50px rgba(255,107,53,0.5)' }}
+        >
+          {stage === 'portal_discovered' ? 'THE PACIFIC JUST BROKE' : 'DEL PERRO PIER'}
+        </motion.h2>
+      </div>
+
+      {/* Top-Right Cinematic Tactical Intel Card */}
+      <motion.div
+        initial={{ opacity: 0, x: 25 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        className="absolute top-24 sm:top-28 right-4 sm:right-10 md:right-16 max-w-xs sm:max-w-sm z-30 pointer-events-none"
+      >
+        <div className="bg-neutral-950/85 backdrop-blur-xl border-l-4 border-amber-400 border-y border-r border-white/15 rounded-r-xl p-4 sm:p-5 shadow-[0_15px_40px_rgba(0,0,0,0.9),0_0_20px_rgba(255,107,53,0.15)]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+            <span className="font-game text-[10px] tracking-widest text-amber-400 font-bold uppercase">
+              TACTICAL INTEL // PACIFIC COAST
+            </span>
           </div>
 
-          <h2
-            className="font-cinematic text-5xl sm:text-7xl md:text-8xl text-white mb-3 leading-tight"
-            style={{ textShadow: '0 5px 35px rgba(0,0,0,1), 0 0 50px rgba(255,107,53,0.5)' }}
-          >
-            {stage === 'portal_discovered' ? 'THE PACIFIC JUST BROKE' : 'DEL PERRO PIER'}
-          </h2>
-
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-4" />
-
-          <p className="font-game text-sm sm:text-base md:text-lg text-white font-medium tracking-wider max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
+          <p className="font-game text-xs sm:text-sm text-white font-medium tracking-wide leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
             {stage === 'portal_discovered'
               ? "Forget the LSPD. The alleyway dumpsters just vaporized into purple static. An electric rift is tearing through the concrete like tissue paper, smelling like ozone, burning rubber, and spicy street food from an entirely different hemisphere. Jump through or enjoy 25-to-life in Bolingbroke."
               : "Del Perro Beach at dusk. Smog hanging thick over the Pacific, police choppers spotlighting the coastline, and your Comet's engine is ticking on zero coolant. You've got two stars, twenty bucks, and nowhere left to run in Los Santos. Check the alley."}
           </p>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
       {/* Glowing Interactive Portal Marker */}
       {stage === 'portal_discovered' && (

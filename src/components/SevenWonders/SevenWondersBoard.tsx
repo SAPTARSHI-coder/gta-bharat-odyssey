@@ -485,22 +485,15 @@ function AndesGodRaysFX() {
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-      {/* Majestic Sun Corona / Golden Rays rotating over Andes Peaks */}
+      {/* Majestic Soft Sun Bloom over Andes Mountain Peaks */}
       <motion.div
-        className="absolute -top-20 right-1/4 w-[750px] h-[750px] rounded-full pointer-events-none mix-blend-screen"
+        className="absolute -top-32 right-1/4 w-[600px] h-[600px] rounded-full pointer-events-none mix-blend-screen"
         style={{
-          background: 'radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,160,20,0.12) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,225,120,0.35) 0%, rgba(255,180,50,0.12) 45%, transparent 70%)',
+          filter: 'blur(20px)',
         }}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+        animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -top-32 right-1/4 w-[900px] h-[900px] pointer-events-none mix-blend-screen"
-        style={{
-          background: 'conic-gradient(from 0deg, transparent 0deg, rgba(255,220,100,0.2) 20deg, transparent 40deg, rgba(255,220,100,0.2) 60deg, transparent 80deg, rgba(255,220,100,0.2) 100deg, transparent 120deg)',
-        }}
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
       />
 
       {/* Floating Golden Solar Dust Motes */}
