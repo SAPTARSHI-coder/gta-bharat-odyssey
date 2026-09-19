@@ -56,7 +56,7 @@ export const MALE_ARCHETYPES: CharacterArchetype[] = [
     mappedAppearance: 'tech',
     name: 'DARKNET CYPHER',
     role: 'Zero-Day Exploit Specialist and Cyber Operative',
-    image: '/assets/char_hacker.jpg',
+    image: '/assets/char_male_hacker.jpg',
     height: "5'11\"",
     bounty: '$175,000',
     threat: '★★★★★',
@@ -71,7 +71,7 @@ export const MALE_ARCHETYPES: CharacterArchetype[] = [
     mappedAppearance: 'street',
     name: 'STREET ENFORCER',
     role: 'South Central Heavy Muscle and Vault Breacher',
-    image: '/assets/char_enforcer.jpg',
+    image: '/assets/char_male_enforcer.jpg',
     height: "6'4\"",
     bounty: '$165,000',
     threat: '★★★★★',
@@ -119,7 +119,7 @@ export const FEMALE_ARCHETYPES: CharacterArchetype[] = [
     mappedAppearance: 'tech',
     name: 'DARKNET INFILTRATOR',
     role: 'Zero-Day Exploit Specialist and Cyber Infiltrator',
-    image: '/assets/char_hacker.jpg',
+    image: '/assets/char_female_cyber.jpg',
     height: "5'10\"",
     bounty: '$180,000',
     threat: '★★★★★',
@@ -134,7 +134,7 @@ export const FEMALE_ARCHETYPES: CharacterArchetype[] = [
     mappedAppearance: 'corporate',
     name: 'SHADOW EXECUTIVE',
     role: 'Maze Bank Launderer and Offshore Strategist',
-    image: '/assets/char_exec.jpg',
+    image: '/assets/char_female_exec.jpg',
     height: "5'11\"",
     bounty: '$195,000',
     threat: '★★★★☆',
@@ -143,6 +143,69 @@ export const FEMALE_ARCHETYPES: CharacterArchetype[] = [
     specialty: 'Caymans shell companies, federal wire routing, international bribery',
     origin: 'Downtown Los Santos Financial Core',
     defaultBio: 'Boardroom predator. Moving billions through shadow corporations. High-society untouchable.',
+  },
+];
+
+export const NON_BINARY_ARCHETYPES: CharacterArchetype[] = [
+  {
+    id: 'nb-renegade',
+    mappedAppearance: 'urban',
+    name: 'NEO RENEGADE',
+    role: 'Underground Netrunner and Street Rebel',
+    image: '/assets/char_nb_renegade.jpg',
+    height: "5'9\"",
+    bounty: '$220,000',
+    threat: '★★★★★',
+    color: '#b347ff',
+    accent: '#00f5ff',
+    specialty: 'Cybernetic overdrive, illegal signal interception, street evasion',
+    origin: 'Neo-Shinjuku and Little Seoul',
+    defaultBio: 'Daring cyberpunk operative with electric hair and retro optics. Hacking police frequencies across borders.',
+  },
+  {
+    id: 'nb-phantom',
+    mappedAppearance: 'tech',
+    name: 'GHOST PHANTOM',
+    role: 'Black-Budget Stealth Operative',
+    image: '/assets/char_nb_phantom.jpg',
+    height: "5'10\"",
+    bounty: '$240,000',
+    threat: '★★★★★',
+    color: '#00f5ff',
+    accent: '#4ade80',
+    specialty: 'Active camouflage techwear, biometric spoofing, zero-footprint infiltration',
+    origin: 'Classified R&D Facility, Mount Chiliad',
+    defaultBio: 'Stealth infiltrator equipped with holographic visor and carbon gear. In and out before alarms sound.',
+  },
+  {
+    id: 'nb-drift',
+    mappedAppearance: 'street',
+    name: 'CHROME DRIFT',
+    role: 'Midnight Touge Specialist and Getaway Prodigy',
+    image: '/assets/char_nb_drift.jpg',
+    height: "5'8\"",
+    bounty: '$185,000',
+    threat: '★★★★☆',
+    color: '#ffd700',
+    accent: '#ff2d87',
+    specialty: 'Twin-turbo apex drifting, night getaway runs, nitro boost mechanics',
+    origin: 'East Vinewood Industrial Docks',
+    defaultBio: 'Underground street racing prodigy known as Jax. Rules the highway drift circuits with split-second precision.',
+  },
+  {
+    id: 'nb-apex',
+    mappedAppearance: 'corporate',
+    name: 'APEX SYNDICATE',
+    role: 'High-Society Heist Architect and Broker',
+    image: '/assets/char_nb_apex.jpg',
+    height: "5'11\"",
+    bounty: '$260,000',
+    threat: '★★★★★',
+    color: '#ff2d87',
+    accent: '#ffd700',
+    specialty: 'High-stakes heist logistics, encrypted communications, international fencing',
+    origin: 'Vinewood Penthouse Row',
+    defaultBio: 'Calculating syndicate architect in bespoke designer trench coat. Orchestrating seven-wonder heists from the shadows.',
   },
 ];
 
@@ -196,7 +259,12 @@ export function CharacterCreator() {
   const [error, setError] = useState('');
 
   // Active roster based on gender
-  const activeRoster = gender === 'Female' ? FEMALE_ARCHETYPES : MALE_ARCHETYPES;
+  const activeRoster =
+    gender === 'Female'
+      ? FEMALE_ARCHETYPES
+      : gender === 'Non-binary'
+        ? NON_BINARY_ARCHETYPES
+        : MALE_ARCHETYPES;
   const currentArchetype = activeRoster[selectedIndex] || activeRoster[0];
 
   // Map chosen background option to game internal types
@@ -230,7 +298,7 @@ export function CharacterCreator() {
       outfit: 'hoodie',
       background: getMappedBackground(backgroundOption),
       stats,
-      avatar: gender === 'Female' ? '💃' : '🕶️',
+      avatar: gender === 'Female' ? '💃' : gender === 'Non-binary' ? '⚡' : '🕶️',
       image: currentArchetype.image,
     };
     setCharacter(char);
