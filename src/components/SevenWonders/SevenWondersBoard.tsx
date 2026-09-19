@@ -123,40 +123,97 @@ export const WONDERS: Wonder[] = [
    ATMOSPHERIC LIVING FX LAYERS
    ========================================================================= */
 
-// 1. Rio: Lightning flashes & rain
+// 1. Rio: Christ the Redeemer - Epic Tropical Storm & Branching Lightning Bolts
 function RioLightningFX() {
+  const [bolts, setBolts] = useState<Array<{ id: number; path: string; color: string }>>([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const startX = 350 + (Math.random() - 0.5) * 200;
+      const midX1 = startX + (Math.random() - 0.5) * 80;
+      const midY1 = 150 + Math.random() * 50;
+      const midX2 = midX1 + (Math.random() - 0.5) * 60;
+      const midY2 = 300 + Math.random() * 60;
+      const endX = 400 + (Math.random() - 0.5) * 80;
+
+      const path = `M ${startX} 0 L ${midX1} ${midY1} L ${midX2} ${midY2} L ${endX} 480`;
+      const newBolt = {
+        id: Date.now(),
+        path,
+        color: Math.random() > 0.4 ? '#00f5ff' : '#ffffff',
+      };
+      setBolts([newBolt]);
+      setTimeout(() => setBolts([]), 220);
+    }, 2800);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-      {/* Random lightning flash */}
+      {/* Sky Flash */}
       <motion.div
-        className="absolute inset-0 bg-cyan-200/20"
-        animate={{ opacity: [0, 0, 0.4, 0, 0.8, 0, 0, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, times: [0, 0.6, 0.62, 0.64, 0.68, 0.72, 0.8, 1] }}
+        className="absolute inset-0 bg-cyan-100/25 pointer-events-none"
+        animate={{ opacity: [0, 0, 0.6, 0, 0.9, 0, 0] }}
+        transition={{ duration: 4, repeat: Infinity, times: [0, 0.65, 0.67, 0.69, 0.72, 0.76, 1] }}
       />
-      {/* Rain streaks */}
+      {/* Dynamic SVG Lightning Bolt */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 600" preserveAspectRatio="none">
+        {bolts.map(b => (
+          <path
+            key={b.id}
+            d={b.path}
+            fill="none"
+            stroke={b.color}
+            strokeWidth={3.5}
+            strokeLinecap="round"
+            filter="drop-shadow(0 0 12px #00f5ff) drop-shadow(0 0 25px #b347ff)"
+          />
+        ))}
+      </svg>
+      {/* Heavy tropical storm rain streaks */}
       <div
-        className="absolute inset-0 opacity-25"
+        className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(115deg, transparent 40%, rgba(0,245,255,0.4) 41%, transparent 42%)',
-          backgroundSize: '25px 25px',
+          backgroundImage: 'linear-gradient(115deg, transparent 40%, rgba(0,245,255,0.6) 41%, transparent 43%)',
+          backgroundSize: '20px 20px',
         }}
       />
     </div>
   );
 }
 
-// 2. Agra: Floating Diwali lanterns
+// 2. Agra: Taj Mahal - Celestial Moonlight Aura & Floating Diwali Lanterns & Stardust
 function TajLanternsFX() {
   const lanterns = Array.from({ length: 18 }, (_, i) => ({
     id: i,
     x: 10 + ((i * 17) % 80),
     delay: (i * 0.4) % 4,
     duration: 6 + ((i * 1.3) % 4),
-    size: 6 + (i % 5) * 2,
+    size: 7 + (i % 4) * 2,
+  }));
+
+  const stardust = Array.from({ length: 22 }, (_, i) => ({
+    id: i,
+    x: (i * 13) % 100,
+    y: 15 + ((i * 19) % 65),
+    delay: (i * 0.3) % 3,
+    size: 2 + (i % 3),
   }));
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* Soft Ethereal Lunar Moon Halo over dome */}
+      <motion.div
+        className="absolute top-10 left-1/2 -translate-x-1/2 w-[550px] h-[550px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,245,200,0.2) 0%, rgba(255,215,0,0.08) 45%, transparent 75%)',
+        }}
+        animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0.9, 0.6] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Floating Diwali Lanterns */}
       {lanterns.map(l => (
         <motion.div
           key={l.id}
@@ -165,14 +222,14 @@ function TajLanternsFX() {
             left: `${l.x}%`,
             bottom: '-10%',
             width: l.size,
-            height: l.size * 1.3,
-            background: 'radial-gradient(circle, #fff 0%, #ff9933 60%, transparent 100%)',
-            boxShadow: '0 0 12px #ff9933, 0 0 25px #ffd700',
+            height: l.size * 1.35,
+            background: 'radial-gradient(circle at 50% 35%, #ffffff 0%, #ffd700 45%, #ff7700 85%, transparent 100%)',
+            boxShadow: '0 0 14px #ff9933, 0 0 28px #ffd700',
           }}
           animate={{
             y: ['0vh', '-120vh'],
             x: [0, Math.sin(l.id) * 35, 0],
-            opacity: [0, 0.9, 0.9, 0],
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
             duration: l.duration,
@@ -182,36 +239,93 @@ function TajLanternsFX() {
           }}
         />
       ))}
+
+      {/* Twinkling Celestial Stardust Motes */}
+      {stardust.map(s => (
+        <motion.div
+          key={`star-${s.id}`}
+          className="absolute rounded-full bg-amber-200"
+          style={{
+            left: `${s.x}%`,
+            top: `${s.y}%`,
+            width: s.size,
+            height: s.size,
+            boxShadow: '0 0 8px #ffd700, 0 0 16px #ffffff',
+          }}
+          animate={{
+            opacity: [0.1, 0.9, 0.1],
+            scale: [0.7, 1.4, 0.7],
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 3 + (s.id % 3),
+            delay: s.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
     </div>
   );
 }
 
-// 3. Rome: Torch embers & sparks
+// 3. Rome: Colosseum - Roaring Gladiator Torches, Sparks & Cinematic Arena Spotlights
 function ColosseumEmbersFX() {
-  const embers = Array.from({ length: 20 }, (_, i) => ({
+  const embers = Array.from({ length: 24 }, (_, i) => ({
     id: i,
-    x: 15 + ((i * 19) % 70),
-    delay: (i * 0.3) % 3,
-    duration: 3 + ((i * 0.7) % 3),
+    x: 12 + ((i * 16) % 76),
+    delay: (i * 0.25) % 2.5,
+    duration: 2.8 + ((i * 0.6) % 2.5),
+    size: 2 + (i % 3),
   }));
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* Sweeping Arena Searchlight Beams */}
+      <motion.div
+        className="absolute bottom-0 left-1/4 w-32 h-[120vh] origin-bottom -rotate-45 pointer-events-none mix-blend-screen"
+        style={{
+          background: 'linear-gradient(0deg, rgba(255,180,80,0.3) 0%, rgba(255,100,50,0.1) 60%, transparent 100%)',
+          filter: 'blur(8px)',
+        }}
+        animate={{ rotate: [-45, -15, -45] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-1/4 w-32 h-[120vh] origin-bottom rotate-45 pointer-events-none mix-blend-screen"
+        style={{
+          background: 'linear-gradient(0deg, rgba(255,180,80,0.3) 0%, rgba(255,100,50,0.1) 60%, transparent 100%)',
+          filter: 'blur(8px)',
+        }}
+        animate={{ rotate: [45, 15, 45] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Fiery Arena Torches Glow */}
+      <motion.div
+        className="absolute inset-0 bg-red-950/20 mix-blend-color-dodge"
+        animate={{ opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Updraft Embers & Sparks */}
       {embers.map(e => (
         <motion.div
           key={e.id}
-          className="absolute w-1.5 h-1.5 rounded-full"
+          className="absolute rounded-full"
           style={{
             left: `${e.x}%`,
-            bottom: '15%',
-            background: ['#ff4400', '#ff9900', '#ffd700'][e.id % 3],
-            boxShadow: '0 0 8px #ff4400',
+            bottom: '10%',
+            width: e.size,
+            height: e.size,
+            background: ['#ffffff', '#ffd700', '#ff5500', '#ff2200'][e.id % 4],
+            boxShadow: '0 0 10px #ff5500, 0 0 20px #ffd700',
           }}
           animate={{
-            y: [0, -250 - (e.id * 10)],
-            x: [0, (e.id % 2 === 0 ? 1 : -1) * 30],
+            y: [0, -320 - (e.id * 8)],
+            x: [0, (e.id % 2 === 0 ? 1 : -1) * 35],
             opacity: [0, 1, 0],
-            scale: [1, 0.2],
+            scale: [1, 0.3],
           }}
           transition={{
             duration: e.duration,
@@ -225,44 +339,134 @@ function ColosseumEmbersFX() {
   );
 }
 
-// 4. Yucatan: Emerald energy runes & fireflies
+// 4. Yucatan: Chichen Itza - Mystical Pyramid Cosmic Light Beam & Floating Mayan Glyphs
 function ChichenEnergyFX() {
-  const fireflies = Array.from({ length: 16 }, (_, i) => ({
+  const glyphs = ['✦', '◆', '◈', '☼', '◬', '✧'];
+  const orbs = Array.from({ length: 14 }, (_, i) => ({
     id: i,
-    x: 20 + ((i * 15) % 65),
-    y: 35 + ((i * 12) % 50),
-    delay: i * 0.2,
+    x: 25 + ((i * 14) % 50),
+    y: 30 + ((i * 16) % 50),
+    delay: i * 0.25,
+    glyph: glyphs[i % glyphs.length],
   }));
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-      {/* Mysterious pulsing green fog */}
+      {/* Cosmic Vertical Energy Beam shooting from Pyramid Apex to the Heavens */}
       <motion.div
-        className="absolute inset-0 bg-emerald-500/10"
-        animate={{ opacity: [0.1, 0.3, 0.1] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-8 sm:w-12 h-[65%] origin-bottom mix-blend-screen pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, rgba(0,245,255,0.8) 0%, rgba(57,255,20,0.6) 50%, transparent 100%)',
+          filter: 'blur(6px)',
+          boxShadow: '0 0 40px #00f5ff, 0 0 80px #39ff14',
+        }}
+        animate={{
+          scaleX: [1, 1.4, 0.9, 1.2, 1],
+          opacity: [0.65, 0.95, 0.65],
+        }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
       />
-      {fireflies.map(f => (
+
+      {/* Floating Mystical Runes / Orbs */}
+      {orbs.map(o => (
         <motion.div
-          key={f.id}
-          className="absolute w-2 h-2 rounded-full"
+          key={o.id}
+          className="absolute font-mono text-emerald-300 font-bold select-none"
           style={{
-            left: `${f.x}%`,
-            top: `${f.y}%`,
-            background: '#39ff14',
-            boxShadow: '0 0 15px #39ff14, 0 0 30px #00f5ff',
+            left: `${o.x}%`,
+            top: `${o.y}%`,
+            textShadow: '0 0 12px #39ff14, 0 0 25px #00f5ff',
           }}
           animate={{
-            x: [0, Math.cos(f.id) * 40, 0],
-            y: [0, Math.sin(f.id) * 30, 0],
-            opacity: [0.2, 1, 0.2],
-            scale: [0.8, 1.3, 0.8],
+            y: [0, -40, 0],
+            x: [0, Math.sin(o.id) * 20, 0],
+            opacity: [0.2, 0.85, 0.2],
+            scale: [0.8, 1.25, 0.8],
+            rotate: [0, 45, 0],
           }}
           transition={{
-            duration: 3 + (f.id % 3),
-            delay: f.delay,
+            duration: 4 + (o.id % 3),
+            delay: o.delay,
             repeat: Infinity,
             ease: 'easeInOut',
+          }}
+        >
+          {o.glyph}
+        </motion.div>
+      ))}
+
+      {/* Ethereal Jungle Spirit Fog */}
+      <motion.div
+        className="absolute inset-0 bg-emerald-600/10 mix-blend-screen"
+        animate={{ opacity: [0.15, 0.35, 0.15] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </div>
+  );
+}
+
+// 5. Badaling Ridge: Great Wall - Dragon Ridge Mist, Swaying Red Lanterns & Watchtower Beacon Flames
+function GreatWallMistFX() {
+  const lanterns = [
+    { x: '18%', y: '52%' },
+    { x: '35%', y: '44%' },
+    { x: '58%', y: '36%' },
+    { x: '78%', y: '30%' },
+  ];
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* Rolling Dragon Mountain Mist */}
+      <motion.div
+        className="absolute inset-0 opacity-30 mix-blend-screen pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 45% 65%, rgba(200,220,255,0.4) 0%, transparent 60%)',
+        }}
+        animate={{ x: [-40, 40, -40], opacity: [0.2, 0.45, 0.2] }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Swaying Ancient Red Lantern Beacons on the Watchtowers */}
+      {lanterns.map((l, i) => (
+        <motion.div
+          key={i}
+          className="absolute flex flex-col items-center pointer-events-none"
+          style={{ left: l.x, top: l.y }}
+          animate={{ rotate: [-8, 8, -8] }}
+          transition={{ duration: 3.2 + i * 0.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <div className="w-1 h-3 bg-amber-400/60" />
+          <div
+            className="w-4 h-6 rounded-md"
+            style={{
+              background: 'radial-gradient(circle at 50% 40%, #ffeedd 0%, #ff2222 65%, #990000 100%)',
+              boxShadow: '0 0 16px #ff2222, 0 0 32px #ff7700',
+            }}
+          />
+        </motion.div>
+      ))}
+
+      {/* Smoke & Ember Drift from Ridge Towers */}
+      {Array.from({ length: 12 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1.5 h-1.5 rounded-full bg-amber-400 pointer-events-none"
+          style={{
+            left: `${20 + (i * 20) % 60}%`,
+            top: `${40 + (i * 7) % 20}%`,
+            boxShadow: '0 0 8px #ff7700',
+          }}
+          animate={{
+            y: [0, -100 - i * 10],
+            x: [0, (i % 2 === 0 ? 1 : -1) * 30],
+            opacity: [0, 0.8, 0],
+            scale: [1, 2.5],
+          }}
+          transition={{
+            duration: 3 + i * 0.4,
+            delay: i * 0.3,
+            repeat: Infinity,
+            ease: 'easeOut',
           }}
         />
       ))}
@@ -270,50 +474,147 @@ function ChichenEnergyFX() {
   );
 }
 
-// 5. Great Wall: Mountain fog roll
-function GreatWallMistFX() {
-  return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        style={{
-          background: 'radial-gradient(ellipse at 40% 70%, rgba(255,255,255,0.4) 0%, transparent 60%)',
-        }}
-        animate={{ x: [-30, 30, -30], opacity: [0.15, 0.3, 0.15] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
-  );
-}
-
-// 6. Machu Picchu: Sun god rays
+// 6. Cusco: Machu Picchu - Incan Sun God Solar Corona & Rolling Terrace Cloud Mist
 function AndesGodRaysFX() {
+  const runes = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    x: 15 + ((i * 17) % 70),
+    y: 20 + ((i * 19) % 60),
+    delay: (i * 0.3) % 3,
+  }));
+
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* Majestic Sun Corona / Golden Rays rotating over Andes Peaks */}
       <motion.div
-        className="absolute -top-10 left-1/3 w-96 h-[800px] origin-top rotate-[-15deg] opacity-20"
+        className="absolute -top-20 right-1/4 w-[750px] h-[750px] rounded-full pointer-events-none mix-blend-screen"
         style={{
-          background: 'linear-gradient(180deg, rgba(255,215,0,0.6) 0%, rgba(255,255,255,0.2) 40%, transparent 80%)',
+          background: 'radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,160,20,0.12) 40%, transparent 70%)',
         }}
-        animate={{ opacity: [0.1, 0.3, 0.1], rotate: [-15, -12, -15] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute -top-32 right-1/4 w-[900px] h-[900px] pointer-events-none mix-blend-screen"
+        style={{
+          background: 'conic-gradient(from 0deg, transparent 0deg, rgba(255,220,100,0.2) 20deg, transparent 40deg, rgba(255,220,100,0.2) 60deg, transparent 80deg, rgba(255,220,100,0.2) 100deg, transparent 120deg)',
+        }}
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+      />
+
+      {/* Floating Golden Solar Dust Motes */}
+      {runes.map(r => (
+        <motion.div
+          key={r.id}
+          className="absolute w-2 h-2 rounded-full bg-amber-300 pointer-events-none"
+          style={{
+            left: `${r.x}%`,
+            top: `${r.y}%`,
+            boxShadow: '0 0 12px #ffd700, 0 0 24px #ffaa00',
+          }}
+          animate={{
+            y: [0, -35, 0],
+            x: [0, Math.cos(r.id) * 20, 0],
+            opacity: [0.2, 0.9, 0.2],
+            scale: [0.7, 1.3, 0.7],
+          }}
+          transition={{
+            duration: 4 + (r.id % 3),
+            delay: r.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+
+      {/* High-altitude Andes Cloud Mist Rolling across Terraces */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-[45%] pointer-events-none mix-blend-screen"
+        style={{
+          background: 'linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.18) 50%, rgba(200,240,255,0.25) 100%)',
+          filter: 'blur(10px)',
+        }}
+        animate={{ y: [0, -15, 0], opacity: [0.5, 0.85, 0.5] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
   );
 }
 
-// 7. Petra: Desert torch flare
+// 7. Ma'an: Petra Treasury - Siq Desert Sand Vortex & Ancient Torchfire with Glowing Vault Door
 function PetraTorchFX() {
+  const sandParticles = Array.from({ length: 28 }, (_, i) => ({
+    id: i,
+    x: (i * 7) % 100,
+    y: 20 + ((i * 13) % 75),
+    delay: (i * 0.15) % 2.5,
+    size: 2 + (i % 3),
+  }));
+
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* Mystical Golden Amber Pulse from the Treasury Vault Portal Door */}
       <motion.div
-        className="absolute bottom-10 left-1/4 w-80 h-80 rounded-full opacity-20"
+        className="absolute top-[48%] left-[49%] -translate-x-1/2 -translate-y-1/2 w-48 h-64 rounded-xl pointer-events-none mix-blend-screen"
         style={{
-          background: 'radial-gradient(circle, #ff6b35 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(255,180,60,0.55) 0%, rgba(255,80,20,0.25) 50%, transparent 80%)',
+          filter: 'blur(8px)',
         }}
-        animate={{ scale: [1, 1.25, 1], opacity: [0.15, 0.35, 0.15] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{
+          scale: [0.95, 1.25, 0.95],
+          opacity: [0.6, 1, 0.6],
+        }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
       />
+
+      {/* Ancient Bedouin Torches along the Siq Cliff Base */}
+      <motion.div
+        className="absolute bottom-12 left-1/4 w-72 h-72 rounded-full pointer-events-none mix-blend-screen"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,120,40,0.4) 0%, rgba(255,60,0,0.1) 50%, transparent 70%)',
+          filter: 'blur(12px)',
+        }}
+        animate={{ scale: [1, 1.3, 1], opacity: [0.6, 0.9, 0.6] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-12 right-1/4 w-72 h-72 rounded-full pointer-events-none mix-blend-screen"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,120,40,0.4) 0%, rgba(255,60,0,0.1) 50%, transparent 70%)',
+          filter: 'blur(12px)',
+        }}
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.9, 0.6, 0.9] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Swirling Desert Sand Vortex Particles */}
+      {sandParticles.map(p => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+            background: ['#f59e0b', '#fbbf24', '#fef08a', '#d97706'][p.id % 4],
+            boxShadow: '0 0 8px #f59e0b',
+          }}
+          animate={{
+            x: [0, 80 + (p.id % 4) * 20],
+            y: [0, -40 - (p.id % 3) * 15],
+            opacity: [0, 0.85, 0],
+            scale: [0.8, 1.5, 0.8],
+          }}
+          transition={{
+            duration: 3 + (p.id % 3),
+            delay: p.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -483,7 +784,7 @@ export function SevenWondersBoard() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 15 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="glass-panel p-5 sm:p-6 rounded-2xl border border-white/15 bg-black/85 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] space-y-3.5"
+            className="bg-neutral-950/90 backdrop-blur-2xl p-5 sm:p-6 rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.95)] space-y-3.5"
             style={{
               borderLeft: `4px solid ${currentWonder.color}`,
               boxShadow: `0 0 35px ${currentWonder.color}25, 0 20px 50px rgba(0,0,0,0.9)`,
@@ -496,15 +797,15 @@ export function SevenWondersBoard() {
                 <span
                   className="font-game text-[11px] tracking-widest font-bold px-2.5 py-1 rounded"
                   style={{
-                    background: 'rgba(0,0,0,0.9)',
+                    background: 'rgba(0,0,0,0.95)',
                     color: currentWonder.color,
-                    border: `1px solid ${currentWonder.color}60`,
+                    border: `1px solid ${currentWonder.color}80`,
                     boxShadow: `0 0 12px ${currentWonder.color}30`,
                   }}
                 >
                   TARGET 0{currentIndex + 1} OF 07 · {currentWonder.district}
                 </span>
-                <span className="font-game text-[11px] text-white/50">{currentWonder.country}</span>
+                <span className="font-game text-xs font-bold text-white/80">{currentWonder.country}</span>
               </div>
 
               {/* In-Card Quick Target Chevrons */}
@@ -512,7 +813,7 @@ export function SevenWondersBoard() {
                 <button
                   onClick={handlePrev}
                   aria-label="Previous Target"
-                  className="w-7 h-7 rounded-md bg-white/10 hover:bg-white/20 border border-white/20 hover:border-amber-400 text-white/80 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-all"
+                  className="w-7 h-7 rounded-md bg-white/10 hover:bg-white/25 border border-white/30 hover:border-amber-400 text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-all"
                   title="Previous Heist Target (←)"
                 >
                   ‹
@@ -520,7 +821,7 @@ export function SevenWondersBoard() {
                 <button
                   onClick={handleNext}
                   aria-label="Next Target"
-                  className="w-7 h-7 rounded-md bg-white/10 hover:bg-white/20 border border-white/20 hover:border-amber-400 text-white/80 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-all"
+                  className="w-7 h-7 rounded-md bg-white/10 hover:bg-white/25 border border-white/30 hover:border-amber-400 text-white flex items-center justify-center text-sm font-bold cursor-pointer transition-all"
                   title="Next Heist Target (→)"
                 >
                   ›
@@ -532,7 +833,7 @@ export function SevenWondersBoard() {
             <h2
               className="font-cinematic text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-wide"
               style={{
-                textShadow: `0 4px 25px rgba(0,0,0,0.9), 0 0 35px ${currentWonder.color}70`,
+                textShadow: `0 4px 25px rgba(0,0,0,1), 0 0 35px ${currentWonder.color}80`,
               }}
             >
               {currentWonder.name}
@@ -541,8 +842,8 @@ export function SevenWondersBoard() {
             {/* Threat, Bounty & Status Badges */}
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Stars */}
-              <div className="glass-panel px-3 py-1 border border-white/20 flex items-center gap-1 bg-black/60">
-                <span className="font-game text-[10px] text-white/50 mr-1">THREAT:</span>
+              <div className="glass-panel px-3 py-1 border border-white/25 flex items-center gap-1 bg-black/70">
+                <span className="font-game text-[11px] text-white/80 font-bold mr-1">THREAT:</span>
                 {Array.from({ length: 5 }, (_, i) => (
                   <span
                     key={i}
@@ -559,9 +860,9 @@ export function SevenWondersBoard() {
 
               {/* Bounty */}
               <div
-                className="glass-panel px-3 py-1 border font-game text-xs font-bold tracking-wider bg-black/60"
+                className="glass-panel px-3 py-1 border font-game text-xs font-bold tracking-wider bg-black/70"
                 style={{
-                  borderColor: `${currentWonder.color}60`,
+                  borderColor: `${currentWonder.color}80`,
                   color: currentWonder.status === 'CLEARED' ? '#4ade80' : '#ffd700',
                   textShadow: '0 0 8px currentColor',
                 }}
@@ -573,8 +874,8 @@ export function SevenWondersBoard() {
               <div
                 className={`font-game text-[11px] font-bold tracking-widest px-2.5 py-1 rounded ${
                   currentWonder.status === 'CLEARED'
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
-                    : 'bg-red-500/20 text-red-400 border border-red-500/50'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/60 font-bold'
+                    : 'bg-red-500/25 text-red-300 border border-red-500/60 font-bold'
                 }`}
               >
                 {currentWonder.status === 'CLEARED' ? '✓ CLEARED' : '⚡ ACTIVE TARGET'}
@@ -582,11 +883,11 @@ export function SevenWondersBoard() {
             </div>
 
             {/* Mission Briefing Text */}
-            <div className="border-l-2 pl-3 py-1" style={{ borderColor: currentWonder.color }}>
-              <div className="font-game text-[10px] text-white/50 tracking-widest uppercase mb-1">
+            <div className="border-l-2 pl-3.5 py-1.5 bg-white/5 rounded-r-lg" style={{ borderColor: currentWonder.color }}>
+              <div className="font-game text-xs text-amber-400 font-bold tracking-widest uppercase mb-1">
                 FIB SURVEILLANCE & MISSION INTEL:
               </div>
-              <p className="font-game text-xs sm:text-sm text-white/90 leading-relaxed italic">
+              <p className="font-game text-sm text-white font-medium leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
                 "{currentWonder.brief}"
               </p>
             </div>
@@ -607,7 +908,7 @@ export function SevenWondersBoard() {
 
               <button
                 onClick={() => setIsTheaterOpen(true)}
-                className="glass-panel px-4 py-2.5 font-game text-xs text-white/80 hover:text-white border border-white/20 hover:border-cyan-400 cursor-pointer transition-colors bg-black/60"
+                className="glass-panel px-4 py-2.5 font-game text-xs text-white font-bold hover:text-cyan-300 border border-white/30 hover:border-cyan-400 cursor-pointer transition-colors bg-black/70"
               >
                 4K HEIST INTEL 👁️
               </button>
@@ -677,12 +978,12 @@ export function SevenWondersBoard() {
         </div>
 
         {/* Keyboard hint & Direct Next Chapter button */}
-        <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-game text-white/50 pt-2 border-t border-white/10 max-w-5xl mx-auto">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-game text-white/80 pt-2 border-t border-white/15 max-w-5xl mx-auto">
           <div className="flex items-center gap-2">
-            <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 font-mono text-[10px] text-amber-400">
+            <span className="px-1.5 py-0.5 rounded bg-white/15 border border-white/30 font-mono text-[10px] text-amber-400 font-bold">
               ← / →
             </span>
-            <span>USE ARROW KEYS OR [1-7] TO CYCLE HEIST TARGETS</span>
+            <span className="text-white/90 font-medium">USE ARROW KEYS OR [1-7] TO CYCLE HEIST TARGETS</span>
           </div>
 
           <button
@@ -690,7 +991,7 @@ export function SevenWondersBoard() {
               sounds.playClick();
               document.getElementById('section-editor')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="hover:text-amber-400 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-white/80"
+            className="text-amber-400 hover:text-amber-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]"
           >
             <span>ADVANCE TO CRIME LAB (14 HEIST TEMPLATES)</span>
             <span>→</span>

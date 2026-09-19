@@ -203,10 +203,9 @@ export function HatomBackgroundManager({ activeSectionId }: HatomBackgroundManag
           </>
         )}
 
-        {/* New Delhi: Amar Jawan Jyoti Living Flame + Auto-Rickshaw Headlights */}
+        {/* New Delhi: Auto-Rickshaw & VIP Ambassador Headlights + Soft Twilight Rays */}
         {activeSectionId === 'section-delhi' && (
           <>
-            <AmarJawanFlame />
             <GodRays origin="50% 65%" color="rgba(255,120,40,0.16)" />
             <HeadlightBeams
               beams={[

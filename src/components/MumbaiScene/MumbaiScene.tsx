@@ -47,54 +47,42 @@ export function MumbaiScene() {
     <div className="relative min-h-screen w-full flex flex-col justify-between py-24 px-6 md:px-12 select-none overflow-hidden">
       <Lanterns />
 
-      {/* Center Cinematic Story Text */}
-      <div className="relative z-20 my-auto text-center max-w-3xl mx-auto pointer-events-none">
+      {/* Center Cinematic Story Text in High-Contrast Frosted Dossier Card */}
+      <div className="relative z-20 my-auto text-center max-w-3xl mx-auto pointer-events-none px-2">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="hud-element text-orange-400 mb-3 tracking-[0.4em] font-bold text-xs md:text-sm"
+          className="bg-neutral-950/80 backdrop-blur-2xl border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,153,51,0.2)] max-w-2xl mx-auto"
         >
-          ★ MISSION 02: MAXIMUM CITY // ZERO RULES ★
+          <div className="hud-element text-amber-400 mb-2 tracking-[0.35em] font-bold text-xs sm:text-sm">
+            ★ MISSION 02: MAXIMUM CITY // ZERO RULES ★
+          </div>
+
+          <h2
+            className="font-cinematic text-6xl sm:text-8xl md:text-9xl leading-none mb-3"
+            style={{
+              background: 'linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 4px 25px rgba(0,0,0,1)) drop-shadow(0 0 35px rgba(255,153,51,0.6))',
+            }}
+          >
+            MUMBAI
+          </h2>
+
+          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-4" />
+
+          <p className="font-game text-base sm:text-lg md:text-xl text-white font-medium max-w-xl mx-auto mb-3 tracking-wide leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
+            "Touchdown on Colaba Pier. Arabian Sea air hitting your lungs like a shot of cheap tequila. Behind you: the Taj Mahal Palace glowing in pure gold. In front of you: twenty-one million hustlers and zero traffic laws. Del Perro Beach was preschool. This is the big leagues."
+          </p>
+
+          <p className="font-game text-xs sm:text-sm text-amber-200/90 font-medium max-w-lg mx-auto leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,1)]">
+            LSPD lost your signal eight thousand miles back. But the local syndicates already clocked your drop. Hotwire a ride before someone hotwires you.
+          </p>
         </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.88 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false, amount: 0.4 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="font-cinematic text-6xl sm:text-8xl md:text-9xl leading-none mb-4"
-          style={{
-            background: 'linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            filter: 'drop-shadow(0 0 45px rgba(255,153,51,0.6))',
-          }}
-        >
-          MUMBAI
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: false, amount: 0.4 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-game text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-3 tracking-wide leading-relaxed"
-        >
-          "Touchdown on Colaba Pier. Arabian Sea air hitting your lungs like a shot of cheap tequila. Behind you: the Taj Mahal Palace glowing in pure gold. In front of you: twenty-one million hustlers and zero traffic laws. Del Perro Beach was preschool. This is the big leagues."
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: false, amount: 0.4 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-game text-xs sm:text-sm text-white/60 max-w-xl mx-auto leading-relaxed"
-        >
-          LSPD lost your signal eight thousand miles back. But the local syndicates already clocked your drop. Hotwire a ride before someone hotwires you.
-        </motion.p>
       </div>
 
       {/* Bottom Action Controls */}
