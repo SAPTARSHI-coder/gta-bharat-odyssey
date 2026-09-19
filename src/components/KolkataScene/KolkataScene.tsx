@@ -32,7 +32,7 @@ function KolkataGlow({ x, y, delay }: { x: number; y: number; delay: number }) {
 
 export function KolkataScene() {
   const scrollToWonders = () => {
-    document.getElementById('section-wonders')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('section-dream-meadow')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -109,10 +109,10 @@ export function KolkataScene() {
           <span className="px-2 py-0.5 rounded bg-black/40 font-mono text-xs border border-white/30 font-bold">
             SPACE
           </span>
-          <span className="font-bold tracking-wider">RAID THE 7 WONDERS HEIST BOARD [SCROLL DOWN] →</span>
+          <span className="font-bold tracking-wider">DISCOVER THE 8TH WONDER [SCROLL DOWN] →</span>
         </motion.button>
         <div className="font-game text-[11px] text-white/40 tracking-widest">
-          INTERPOL RED NOTICES ACTIVATED · 7 PLANETARY TARGETS UNLOCKED
+          THE ETERNAL DREAM MEADOW · THE UNCOPIABLE WONDER · AWAITS
         </div>
       </div>
     </div>
