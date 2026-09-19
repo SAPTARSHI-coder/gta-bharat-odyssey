@@ -18,6 +18,7 @@ export type HatomSceneId =
   | 'section-mumbai'
   | 'section-delhi'
   | 'section-kolkata'
+  | 'section-dream-meadow'
   | 'section-wonders'
   | 'section-editor'
   | 'section-final';
@@ -70,6 +71,12 @@ const BG_CONFIGS: Record<HatomSceneId, BackgroundConfig> = {
     zoom: 'pan-left',
     overlayGrad: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.75) 100%)',
     tintColor: '#66aaff',
+  },
+  'section-dream-meadow': {
+    image: '/assets/dream_meadow_gta.jpg',
+    zoom: 'out',
+    overlayGrad: 'radial-gradient(ellipse at center, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.85) 100%)',
+    tintColor: '#ec4899',
   },
   'section-wonders': {
     image: '/assets/taj_mahal_gta.jpg',

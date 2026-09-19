@@ -64,6 +64,13 @@ const TEMPLATES: TemplateOption[] = [
     description: 'Victoria Memorial lake reflection & Howrah Bridge',
   },
   {
+    id: 'dream-meadow',
+    name: 'The 8th Wonder: Moonlight Lovers',
+    icon: '🌙',
+    path: '/assets/dream_meadow_gta.jpg',
+    description: 'Valley of Whispers · Under the full moon with fireflies · Priceless Sanctuary',
+  },
+  {
     id: 'great-wall',
     name: 'Great Wall of China (Wonder)',
     icon: '🇨🇳',

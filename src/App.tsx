@@ -8,6 +8,7 @@ import { MumbaiScene } from './components/MumbaiScene/MumbaiScene';
 import { DelhiScene } from './components/DelhiScene/DelhiScene';
 import { KolkataScene } from './components/KolkataScene/KolkataScene';
 import { SevenWondersBoard } from './components/SevenWonders/SevenWondersBoard';
+import { DreamMeadowScene } from './components/DreamMeadow/DreamMeadowScene';
 import { JourneyEditor } from './components/JourneyEditor/JourneyEditor';
 import { FinalShare } from './components/FinalShare/FinalShare';
 import { HatomBackgroundManager } from './components/shared/HatomBackgroundManager';
@@ -17,16 +18,17 @@ import { GTAMinimap } from './components/HUD/GTAMinimap';
 import { GTAMissionBox } from './components/HUD/GTAMissionBox';
 
 const SECTION_MINIMAP: Record<string, { location: string; zone: 'beach' | 'urban' | 'monument' | 'gateway' }> = {
-  'section-landing':    { location: 'DEL PERRO PIER, LOS SANTOS', zone: 'beach' },
-  'section-character':  { location: 'LSPD BOOKING // RAP SHEET', zone: 'urban' },
-  'section-los-santos': { location: '2-STAR HEAT · DEL PERRO',   zone: 'beach' },
-  'section-portal':     { location: 'COSMIC SINGULARITY [RIFT]', zone: 'gateway' },
-  'section-mumbai':     { location: 'COLABA HARBOR, MUMBAI',     zone: 'beach' },
-  'section-delhi':      { location: 'KARTAVYA PATH, NEW DELHI',  zone: 'monument' },
-  'section-kolkata':    { location: 'VICTORIA MEMORIAL, WB',     zone: 'monument' },
-  'section-wonders':    { location: 'INTERPOL RED NOTICE BOARD', zone: 'monument' },
-  'section-editor':     { location: 'UNLAYER CRIME LAB STUDIO',  zone: 'urban' },
-  'section-final':      { location: 'MISSION PASSED // BLEETER', zone: 'monument' },
+  'section-landing':      { location: 'DEL PERRO PIER, LOS SANTOS', zone: 'beach' },
+  'section-character':    { location: 'LSPD BOOKING // RAP SHEET', zone: 'urban' },
+  'section-los-santos':   { location: '2-STAR HEAT · DEL PERRO',   zone: 'beach' },
+  'section-portal':       { location: 'COSMIC SINGULARITY [RIFT]', zone: 'gateway' },
+  'section-mumbai':       { location: 'COLABA HARBOR, MUMBAI',     zone: 'beach' },
+  'section-delhi':        { location: 'KARTAVYA PATH, NEW DELHI',  zone: 'monument' },
+  'section-kolkata':      { location: 'VICTORIA MEMORIAL, WB',     zone: 'monument' },
+  'section-dream-meadow': { location: 'VALLEY OF WHISPERS, MOON',  zone: 'monument' },
+  'section-wonders':      { location: 'INTERPOL RED NOTICE BOARD', zone: 'monument' },
+  'section-editor':       { location: 'UNLAYER CRIME LAB STUDIO',  zone: 'urban' },
+  'section-final':        { location: 'MISSION PASSED // BLEETER', zone: 'monument' },
 };
 
 const SECTION_MISSION: Record<string, { title: string; subtitle?: string; badge: string }> = {
@@ -59,6 +61,11 @@ const SECTION_MISSION: Record<string, { title: string; subtitle?: string; badge:
     badge: '★ MISSION: REBEL CITY SAFEHOUSE ★',
     title: 'Victoria Memorial heist ground.',
     subtitle: 'Yellow taxis, colonial marble, and the Howrah Bridge. Your rep is international.',
+  },
+  'section-dream-meadow': {
+    badge: '★ THE UNCOPIABLE 8TH WONDER ★',
+    title: 'The Moonlit Meadow of Outlaws.',
+    subtitle: 'No sirens, no syndicate bounties. Whispering grass, dancing fireflies, and two lovers under the full moon.',
   },
   'section-wonders': {
     badge: '★ MISSION: INTERPOL RED NOTICES ★',
@@ -125,6 +132,7 @@ export default function App() {
     'section-mumbai',
     'section-delhi',
     'section-kolkata',
+    'section-dream-meadow',
   ].includes(activeSectionId);
 
   return (
@@ -201,17 +209,22 @@ export default function App() {
           <KolkataScene />
         </section>
 
-        {/* Section 08: Seven Wonders Global Wanted Board */}
+        {/* Section 08: The 8th Wonder · Eternal Dream Meadow */}
+        <section id="section-dream-meadow" className="relative w-full min-h-screen">
+          <DreamMeadowScene />
+        </section>
+
+        {/* Section 09: Seven Wonders Global Wanted Board */}
         <section id="section-wonders" className="relative w-full min-h-screen">
           <SevenWondersBoard />
         </section>
 
-        {/* Section 09: Unlayer React Image Editor Studio */}
+        {/* Section 10: Unlayer React Image Editor Studio */}
         <section id="section-editor" className="relative w-full min-h-screen">
           <JourneyEditor />
         </section>
 
-        {/* Section 10: Final Share & Debrief */}
+        {/* Section 11: Final Share & Debrief */}
         <section id="section-final" className="relative w-full min-h-screen">
           <FinalShare />
         </section>

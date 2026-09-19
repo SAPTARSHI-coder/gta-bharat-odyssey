@@ -57,12 +57,18 @@ Just like character creation in classic crime sandboxes, operatives start at the
 - Features living ambient visual shaders: tropical storms & lightning in Rio de Janeiro, 18 floating illuminated Diwali lanterns in Agra, glowing arena embers in Rome, and desert torch flare in Petra.
 - Inspect dossiers with threat star ratings, $1.3M total bounty pool, and 4K fullscreen theater inspection.
 
-### 5. The Climax: Black Market Crime Lab (`@unlayer/react-image-editor`)
+### 5. The 8th Wonder: Eternal Dream Meadow (The Uncopyable Climax)
+- Beyond the syndicate wars and sirens lies the true eighth wonder of the world: an intimate moonlit grassland sanctuary under a giant luminous full moon.
+- **Living Firefly Physics**: 40+ bioluminescent fireflies dancing with organic drift that dynamically respond to cursor movement and clicks.
+- **Interactive Romantic Moments**: Outlaw whispers dialogue system, real-time shooting star wishing engine, starlight heart constellations, and an ambient Web Audio synthesizer serenade.
+- The ultimate emotional contrast that proves some treasures were never meant to be stolen—making this hackathon submission completely unique and uncopiable.
+
+### 6. The Climax: Black Market Crime Lab (`@unlayer/react-image-editor`)
 - An in-world crime forge where players finalize their fake IDs and wanted posters.
-- An automated HTML5 Canvas engine dynamically stamps the player's alias, title, and RPG stats onto 14 selectable crime scene templates.
+- An automated HTML5 Canvas engine dynamically stamps the player's alias, title, and RPG stats onto 15 selectable crime scene templates (including the 8th Wonder Moonlight Lovers template).
 - Players crop out getaway rides, apply high-contrast filters to foil facial recognition, type bold street typography, and stamp decals.
 
-### 6. Procedural Synthesizer Audio & Mission Debrief
+### 7. Procedural Synthesizer Audio & Mission Debrief
 - Real-time Web Audio API synthesizer generating cosmic warp frequencies, camera shutter snaps, and the iconic triumphant "Mission Passed" fanfare.
 - Concludes with a verified social debrief card and 1-click 4K poster download to leak to Bleeter.
 

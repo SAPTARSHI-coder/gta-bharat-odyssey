@@ -9,16 +9,17 @@ export interface Chapter {
 }
 
 export const CHAPTERS: Chapter[] = [
-  { id: 'section-landing',    number: '01', name: 'LOS SANTOS TO BHARAT', badge: 'PROLOGUE' },
-  { id: 'section-character',  number: '02', name: 'LSPD BOOKING',         badge: 'RAP SHEET' },
-  { id: 'section-los-santos', number: '03', name: 'DEL PERRO HEAT',       badge: 'TWO STARS' },
-  { id: 'section-portal',     number: '04', name: 'PUNCH THE RIFT',       badge: 'SINGULARITY' },
-  { id: 'section-mumbai',     number: '05', name: 'COLABA HARBOR',        badge: 'MAXIMUM CITY' },
-  { id: 'section-delhi',      number: '06', name: 'KARTAVYA PATH',        badge: 'POWER AXIS' },
-  { id: 'section-kolkata',    number: '07', name: 'VICTORIA MEMORIAL',    badge: 'REBEL CITY' },
-  { id: 'section-wonders',    number: '08', name: '7 WONDERS HEIST',      badge: 'INTERPOL RED' },
-  { id: 'section-editor',     number: '09', name: 'UNLAYER POSTER LAB',   badge: 'FORGE MUGSHOT' },
-  { id: 'section-final',      number: '10', name: 'MISSION PASSED',       badge: 'RESPECT +' },
+  { id: 'section-landing',      number: '01', name: 'LOS SANTOS TO BHARAT', badge: 'PROLOGUE' },
+  { id: 'section-character',    number: '02', name: 'LSPD BOOKING',         badge: 'RAP SHEET' },
+  { id: 'section-los-santos',   number: '03', name: 'DEL PERRO HEAT',       badge: 'TWO STARS' },
+  { id: 'section-portal',       number: '04', name: 'PUNCH THE RIFT',       badge: 'SINGULARITY' },
+  { id: 'section-mumbai',       number: '05', name: 'COLABA HARBOR',        badge: 'MAXIMUM CITY' },
+  { id: 'section-delhi',        number: '06', name: 'KARTAVYA PATH',        badge: 'POWER AXIS' },
+  { id: 'section-kolkata',      number: '07', name: 'VICTORIA MEMORIAL',    badge: 'REBEL CITY' },
+  { id: 'section-dream-meadow', number: '08', name: 'THE 8TH WONDER',        badge: 'DREAM MEADOW' },
+  { id: 'section-wonders',      number: '09', name: '7 WONDERS HEIST',      badge: 'INTERPOL RED' },
+  { id: 'section-editor',       number: '10', name: 'UNLAYER POSTER LAB',   badge: 'FORGE MUGSHOT' },
+  { id: 'section-final',        number: '11', name: 'MISSION PASSED',       badge: 'RESPECT +' },
 ];
 
 interface HatomNavRailProps {

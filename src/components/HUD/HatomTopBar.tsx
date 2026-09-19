@@ -10,16 +10,17 @@ interface TopBarProps {
 }
 
 const SECTION_TITLES: Record<string, { title: string; location: string; step: number }> = {
-  'section-landing':    { title: 'PROLOGUE',              location: 'DEL PERRO, LOS SANTOS',    step: 1 },
-  'section-character':  { title: 'LSPD BOOKING',          location: 'CRIME LAB // RAP SHEET',    step: 2 },
-  'section-los-santos': { title: 'CHAPTER 1: THE HEAT',   location: 'DEL PERRO PIER, LS',        step: 3 },
-  'section-portal':     { title: 'CHAPTER 2: THE RIFT',   location: 'SINGULARITY BREACH',        step: 4 },
-  'section-mumbai':     { title: 'CHAPTER 3: MUMBAI',     location: 'COLABA HARBOR, BHARAT',     step: 5 },
-  'section-delhi':      { title: 'CHAPTER 4: NEW DELHI',  location: 'KARTAVYA PATH, BHARAT',     step: 6 },
-  'section-kolkata':    { title: 'CHAPTER 5: KOLKATA',    location: 'VICTORIA MEMORIAL, BHARAT', step: 7 },
-  'section-wonders':    { title: 'CHAPTER 6: 7 WONDERS',  location: 'INTERPOL RED NOTICES',      step: 8 },
-  'section-editor':     { title: 'CHAPTER 7: FORGE ID',   location: 'UNLAYER MUGSHOT STUDIO',    step: 9 },
-  'section-final':      { title: 'MISSION PASSED',        location: 'MOST WANTED // BLEETER',    step: 10 },
+  'section-landing':      { title: 'PROLOGUE',              location: 'DEL PERRO, LOS SANTOS',    step: 1 },
+  'section-character':    { title: 'LSPD BOOKING',          location: 'CRIME LAB // RAP SHEET',    step: 2 },
+  'section-los-santos':   { title: 'CHAPTER 1: THE HEAT',   location: 'DEL PERRO PIER, LS',        step: 3 },
+  'section-portal':       { title: 'CHAPTER 2: THE RIFT',   location: 'SINGULARITY BREACH',        step: 4 },
+  'section-mumbai':       { title: 'CHAPTER 3: MUMBAI',     location: 'COLABA HARBOR, BHARAT',     step: 5 },
+  'section-delhi':        { title: 'CHAPTER 4: NEW DELHI',  location: 'KARTAVYA PATH, BHARAT',     step: 6 },
+  'section-kolkata':      { title: 'CHAPTER 5: KOLKATA',    location: 'VICTORIA MEMORIAL, BHARAT', step: 7 },
+  'section-dream-meadow': { title: 'THE 8TH WONDER',        location: 'VALLEY OF WHISPERS, MOON',  step: 8 },
+  'section-wonders':      { title: 'CHAPTER 6: 7 WONDERS',  location: 'INTERPOL RED NOTICES',      step: 9 },
+  'section-editor':       { title: 'CHAPTER 7: FORGE ID',   location: 'UNLAYER MUGSHOT STUDIO',    step: 10 },
+  'section-final':        { title: 'MISSION PASSED',        location: 'MOST WANTED // BLEETER',    step: 11 },
 };
 
 export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: TopBarProps) {
@@ -65,8 +66,9 @@ export function HatomTopBar({ activeSectionId, progressPercent, onNavigate }: To
             { id: 'section-portal',     label: 'PORTAL' },
             { id: 'section-mumbai',     label: 'MUMBAI' },
             { id: 'section-delhi',      label: 'DELHI' },
-            { id: 'section-kolkata',    label: 'KOLKATA' },
-            { id: 'section-wonders',    label: '7 WONDERS' },
+            { id: 'section-kolkata',      label: 'KOLKATA' },
+            { id: 'section-dream-meadow', label: '8TH WONDER 🌙' },
+            { id: 'section-wonders',      label: '7 WONDERS' },
             { id: 'section-editor',     label: 'POSTER' },
           ].map((item, i, arr) => {
             const isCurrent = activeSectionId === item.id;

@@ -20,6 +20,20 @@ export interface Wonder {
 
 export const WONDERS: Wonder[] = [
   {
+    id: 'dream-meadow',
+    name: 'ETERNAL DREAM MEADOW',
+    district: 'VALLEY OF WHISPERS',
+    country: 'THE 8TH WONDER OF THE WORLD',
+    flag: '🌙',
+    bounty: 'PRICELESS',
+    stars: 5,
+    brief: 'Beyond the syndicate wars and heist vaults lies the true eighth wonder of the world. Under a luminous full moon, sitting together in the whispering grass with fireflies carrying silent promises. Some treasures were never meant to be stolen.',
+    status: 'ACTIVE',
+    image: '/assets/dream_meadow_gta.jpg',
+    color: '#ec4899',
+    accent: '#a855f7',
+  },
+  {
     id: 'great-wall',
     name: 'GREAT WALL OF CHINA',
     district: 'BADALING RIDGE DISTRICT',
@@ -612,8 +626,76 @@ function PetraTorchFX() {
   );
 }
 
+// 8. Valley of Whispers: Dream Meadow - Ethereal Full Moon Corona, Night Cloud Parallax & Bioluminescent Fireflies
+function DreamMeadowAtmosphereFX() {
+  const fireflies = Array.from({ length: 32 }, (_, i) => ({
+    id: i,
+    x: 12 + ((i * 17) % 76),
+    y: 38 + ((i * 19) % 52),
+    delay: (i * 0.3) % 3,
+    duration: 3.5 + (i % 4),
+    size: 2.5 + (i % 3) * 1.5,
+    color: ['#bbf7d0', '#fef08a', '#a7f3d0', '#fde047', '#fed7aa'][i % 5],
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* Luminous Moon Corona Glow */}
+      <motion.div
+        className="absolute top-[12%] right-[22%] -translate-y-1/2 translate-x-1/2 w-[480px] h-[480px] rounded-full pointer-events-none mix-blend-screen"
+        style={{
+          background: 'radial-gradient(circle, rgba(255,250,230,0.35) 0%, rgba(255,220,150,0.12) 40%, transparent 75%)',
+          filter: 'blur(20px)',
+        }}
+        animate={{ scale: [1, 1.12, 1], opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Floating Living Bioluminescent Fireflies */}
+      {fireflies.map(f => (
+        <motion.div
+          key={f.id}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: `${f.x}%`,
+            top: `${f.y}%`,
+            width: f.size,
+            height: f.size,
+            backgroundColor: f.color,
+            boxShadow: `0 0 10px ${f.color}, 0 0 20px ${f.color}`,
+          }}
+          animate={{
+            y: [0, -35 - (f.id % 4) * 10, 0],
+            x: [0, ((f.id % 2 === 0 ? 1 : -1) * 25), 0],
+            opacity: [0.25, 1, 0.25],
+            scale: [0.8, 1.4, 0.8],
+          }}
+          transition={{
+            duration: f.duration,
+            delay: f.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+
+      {/* Drifting Night Clouds */}
+      <motion.div
+        className="absolute top-[20%] left-0 w-[200%] h-44 pointer-events-none opacity-25 mix-blend-screen"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(200,225,255,0.25) 0%, transparent 70%)',
+          filter: 'blur(28px)',
+        }}
+        animate={{ x: ['-20%', '10%', '-20%'] }}
+        transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </div>
+  );
+}
+
 function WonderAtmosphere({ id }: { id: string }) {
   switch (id) {
+    case 'dream-meadow':    return <DreamMeadowAtmosphereFX />;
     case 'christ-redeemer': return <RioLightningFX />;
     case 'taj-mahal':       return <TajLanternsFX />;
     case 'colosseum':        return <ColosseumEmbersFX />;
@@ -688,7 +770,8 @@ export function SevenWondersBoard() {
   }, [handleNext, handlePrev, isTheaterOpen]);
 
   const totalBounty = WONDERS.filter(w => w.status !== 'CLEARED').reduce((sum, w) => {
-    return sum + parseInt(w.bounty.replace(/[$,]/g, ''), 10);
+    const val = parseInt(w.bounty.replace(/[$,]/g, ''), 10);
+    return sum + (isNaN(val) ? 0 : val);
   }, 0);
 
   return (
@@ -745,11 +828,23 @@ export function SevenWondersBoard() {
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
           <span className="hud-element text-red-400 text-xs md:text-sm tracking-[0.35em] font-bold">
-            ★ CHAPTER 08: INTERPOL RED NOTICES // 7 WONDERS ★
+            ★ CHAPTER 09: INTERPOL RED NOTICES // 7 WONDERS + 8TH SECRET WONDER ★
           </span>
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => {
+              const idx = WONDERS.findIndex(w => w.id === 'dream-meadow');
+              if (idx !== -1) handleSelectWonder(idx);
+            }}
+            className="glass-panel px-3 py-1.5 text-xs font-game border border-pink-500/40 hover:border-pink-400 text-pink-300 hover:text-white cursor-pointer transition-all flex items-center gap-1.5 bg-black/70 shadow-[0_0_12px_rgba(236,72,153,0.3)]"
+            title="Jump to 8th Wonder: Dream Meadow"
+          >
+            <span>🌙</span>
+            <span>8TH WONDER</span>
+          </button>
+
           <div className="glass-panel px-3.5 py-1.5 border border-red-500/40 flex items-center gap-2 bg-black/70 backdrop-blur-md">
             <span className="font-game text-[10px] sm:text-[11px] text-white/70">GLOBAL BOUNTY POOL:</span>
             <span className="font-cinematic text-base sm:text-lg text-red-400" style={{ textShadow: '0 0 10px #ff4444' }}>
@@ -796,7 +891,7 @@ export function SevenWondersBoard() {
                     boxShadow: `0 0 12px ${currentWonder.color}30`,
                   }}
                 >
-                  TARGET 0{currentIndex + 1} OF 07 · {currentWonder.district}
+                  TARGET 0{currentIndex + 1} OF 0{WONDERS.length} · {currentWonder.district}
                 </span>
                 <span className="font-game text-xs font-bold text-white/80">{currentWonder.country}</span>
               </div>
@@ -976,7 +1071,7 @@ export function SevenWondersBoard() {
             <span className="px-1.5 py-0.5 rounded bg-white/15 border border-white/30 font-mono text-[10px] text-amber-400 font-bold">
               ← / →
             </span>
-            <span className="text-white/90 font-medium">USE ARROW KEYS OR [1-7] TO CYCLE HEIST TARGETS</span>
+            <span className="text-white/90 font-medium">USE ARROW KEYS OR [1-8] TO CYCLE TARGETS</span>
           </div>
 
           <button
@@ -986,7 +1081,7 @@ export function SevenWondersBoard() {
             }}
             className="text-amber-400 hover:text-amber-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]"
           >
-            <span>ADVANCE TO CRIME LAB (14 HEIST TEMPLATES)</span>
+            <span>ADVANCE TO CRIME LAB (15 HEIST TEMPLATES)</span>
             <span>→</span>
           </button>
         </div>
